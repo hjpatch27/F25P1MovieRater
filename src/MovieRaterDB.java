@@ -21,7 +21,8 @@ public class MovieRaterDB implements MovieRater {
      * (Re)initialize the database
      * @return true on clear
      */
-    public boolean clear() {
+    public boolean clear() 
+    {
         return true;
     }
 
@@ -39,7 +40,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the review was successfully added.
      *         False otherwise (for bad input values)
      */
-    public boolean addReview(int reviewer, int movie, int score) {
+    public boolean addReview(int reviewer, int movie, int score) 
+    {
         // Scores must be in the range 1 to 10.
         return true;
     }
@@ -53,7 +55,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the reviewer was successfully deleted.
      *         False if no such reviewer in the database.
      */
-    public boolean deleteReviewer(int reviewer) {
+    public boolean deleteReviewer(int reviewer) 
+    {
         return true;
     }
 
@@ -66,7 +69,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the movie was successfully deleted.
      *         False if no such movie in the database.
      */
-    public boolean deleteMovie(int movie) {
+    public boolean deleteMovie(int movie) 
+    {
         return true;
     }
 
@@ -80,7 +84,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the score was successfully deleted.
      *         False if no such score in the database.
      */
-    public boolean deleteScore(int reviewer, int movie) {
+    public boolean deleteScore(int reviewer, int movie) 
+    {
         return true;
     }
 
@@ -92,7 +97,8 @@ public class MovieRaterDB implements MovieRater {
      * movie/score pairs listed in ascending order of movie index.
      * @return String representing the listing, empty string if there are none
      */
-    public String printRatings() {
+    public String printRatings() 
+    {
         return "";
     }
 
@@ -104,7 +110,8 @@ public class MovieRaterDB implements MovieRater {
      * @param reviewer The reviewer to list ratings for
      * @return String representing the listing, null if no such reviewer
      */
-    public String listReviewer(int reviewer) {
+    public String listReviewer(int reviewer) 
+    {
         return "";
     }
 
@@ -116,7 +123,8 @@ public class MovieRaterDB implements MovieRater {
      * @param movie The movie to list ratings for
      * @return String representing the listing, null if no such movie
      */
-    public String listMovie(int movie) {
+    public String listMovie(int movie) 
+    {
         return "";
     }
 
@@ -129,7 +137,8 @@ public class MovieRaterDB implements MovieRater {
      *         Return -1 if this movie does not exist or if there is no
      *           suitable match
      */
-    public int similarMovie(int movie) {
+    public int similarMovie(int movie) 
+    {
         return -1;
     }
 
@@ -142,7 +151,8 @@ public class MovieRaterDB implements MovieRater {
      *         Return -1 if this reviewer does not exist or if there is no
      *           suitable match
      */
-    public int similarReviewer(int reviewer) {
+    public int similarReviewer(int reviewer) 
+    {
         return -1;
     }
 }
