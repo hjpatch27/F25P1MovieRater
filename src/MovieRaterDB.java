@@ -3,8 +3,8 @@
  * Implementation for the MovieRater. This is a thin shell over
  * the sparse matrix class that does the work.
  *
- * @author CS3114/5040 Staff
- * @version Summer 2025
+ * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
+ * @version 9.7.2025
  *
  */
 public class MovieRaterDB implements MovieRater {
