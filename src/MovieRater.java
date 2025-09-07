@@ -2,8 +2,8 @@
 /**
  * Interface class for the MovieRater Project
  *
- * @author CS3114/5040 Staff
- * @version Summer 2025
+ * @author Henry Patch (hjpatch27), Nyssa Loeu (nysaal23)
+ * @version 9.7.2925
  *
  */
 public interface MovieRater {
