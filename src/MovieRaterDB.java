@@ -1,19 +1,25 @@
 //-------------------------------------------------------------------------
 /**
  * Implementation for the MovieRater. This is a thin shell over
- * the sparse matrix class that does the work.
+ * the sparse matrix class that does the work. It contains methods for adding
+ * ratings, finding ratings for a movie/reviewer, and calculating similarity scores.
  *
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.7.2025
  *
  */
 public class MovieRaterDB implements MovieRater {
+    private SparseMatrix ratingByReviwer;
+    private SparseMatrix ratingByMovie;
 
     // ----------------------------------------------------------
     /**
      * Create a new MovieRaterDB object.
      */
     MovieRaterDB() {
+        this.ratingByReviwer = new SparseMatrix();
+        this.ratingByMovie = new SparseMatrix();
+        
     }
 
     // ----------------------------------------------------------
