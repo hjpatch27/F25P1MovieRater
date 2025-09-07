@@ -2,8 +2,8 @@ import java.io.IOException;
 import student.TestCase;
 
 /**
- * @author CS3114/5040 Staff
- * @version Summer 2025
+ * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
+ * @version 9.7.2025
  */
 public class MovieRaterTest extends TestCase {
 
