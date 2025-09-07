@@ -9,16 +9,15 @@
  *
  */
 public class MovieRaterDB implements MovieRater {
-    private SparseMatrix ratingByReviwer;
-    private SparseMatrix ratingByMovie;
+    private SparseMatrix sparseMatrix;
 
     // ----------------------------------------------------------
     /**
      * Create a new MovieRaterDB object.
      */
     MovieRaterDB() {
-        this.ratingByReviwer = new SparseMatrix();
-        this.ratingByMovie = new SparseMatrix();
+        this.sparseMatrix = new SparseMatrix();
+        
         
     }
 
@@ -29,6 +28,7 @@ public class MovieRaterDB implements MovieRater {
      */
     public boolean clear() 
     {
+        sparseMatrix = new SparseMatrix();
         return true;
     }
 
@@ -49,6 +49,7 @@ public class MovieRaterDB implements MovieRater {
     public boolean addReview(int reviewer, int movie, int score) 
     {
         // Scores must be in the range 1 to 10.
+        sparseMatrix.insert(reviewer, movie, score);
         return true;
     }
 
