@@ -13,10 +13,7 @@ public interface MovieRater {
      * (Re)initialize the database
      * @return true on clear
      */
-    public boolean clear()
-    {
-        return true;
-    }
+    public boolean clear();
 
 
     // ----------------------------------------------------------
