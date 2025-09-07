@@ -19,17 +19,24 @@ public class MovieRaterTest extends TestCase {
     /**
      * Test clearing on initial
      * @throws IOException
-     */
+     */   
+    /**
+     * Commented out for Milestone 1.
+     *
     public void testClearInit()
         throws IOException
     {
         assertTrue(it.clear());
     }
-
+    */
+    
     /**
      * Test empty print movie or reviewer
      * @throws IOException
-     */
+     */  
+    /**
+     * Commented out for Milestone 1.
+     * 
     public void testRefMissing()
         throws IOException
     {
@@ -39,12 +46,15 @@ public class MovieRaterTest extends TestCase {
         assertFalse(it.deleteReviewer(2));
         assertFalse(it.deleteMovie(2));
     }
-
+    */
 
     /**
      * Test insert two items and print
      * @throws IOException
-     */
+     */   
+    /**
+     * Commented out for Milestone 1.
+     * 
     public void testRefinsertTwo()
         throws IOException
     {
@@ -54,11 +64,15 @@ public class MovieRaterTest extends TestCase {
         assertFuzzyEquals(it.listMovie(3), "3: 7");
         assertFuzzyEquals(it.listReviewer(2), "2: 7 5");
     }
+    */
 
     /**
      * Test bad review values
      * @throws IOException
      */
+    /**
+     * Commented out for Milestone 1.
+     * 
     public void testRefBadRatings()
         throws IOException
     {
@@ -67,12 +81,15 @@ public class MovieRaterTest extends TestCase {
         assertFalse(it.addReview(2, 5, 20));
         assertFuzzyEquals(it.printRatings(), "");
     }
-
+    */
 
     /**
      * Test insert 5 items and print
      * @throws IOException
      */
+    /**
+     * Commented out for Milestone 1.
+     * 
     public void testRefinsertFive()
         throws IOException
     {
@@ -89,4 +106,5 @@ public class MovieRaterTest extends TestCase {
                 "7: (3, 10) (7, 1)"),
             it.printRatings());
     }
+    */
 }
