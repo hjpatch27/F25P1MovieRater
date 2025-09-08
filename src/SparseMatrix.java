@@ -1,4 +1,5 @@
 import java.util.*;
+import linkedlist.SinglyLinkedList.Node;
 /**
  * Implementation of a sparse matrix. This will be used as the data structure
  * for our MovieRater. 
@@ -8,17 +9,23 @@ import java.util.*;
  */
 public class SparseMatrix 
 {
+    private Node[] rowHeader;
+    private Node[] colHeader;
+    private int size1; // Number of entries
+    
+    public SparseMatrix(int numRow, int numCol, int score)
+    {
+        this.rowHeader = new Node[numRow];
+        this.colHeader = new Node[numCol];
+        this.size1 = 0;
+    }
     public class SparseEntry
     {
-        private Node[] rowHeader;
-        private Node[] colHeader;
-        private int size; // Number of entries
+        
         
         public SparseEntry(int numRow, int numCol, int score)
         {
-            this.rowHeader = new Node[numRow];
-            this.colHeader = new Node[numCol];
-            this.size = 0;
+            
         }
         
         /**
@@ -168,7 +175,7 @@ public class SparseMatrix
         
         // Insert into Col list
         
-        size++;
+        size1++;
     }
     
     /**
@@ -178,7 +185,7 @@ public class SparseMatrix
      */
     public boolean isEmpty()
     {
-        return (size == 0);
+        return (size1 == 0);
     }
     /**
      * Adds the object to the end of the list.
@@ -204,13 +211,13 @@ public class SparseMatrix
      */
     public boolean removeRow(int row)
     {
-        size--;
+        size1--;
         return true;
     }
     
     public boolean removeCol(int col)
     {
-        size--;
+        size1--;
         return true;
     }
     
@@ -228,7 +235,7 @@ public class SparseMatrix
      */
     public boolean removeIndex(int row, int col)
     {
-        size--;
+        size1--;
         return true;
     }
     
@@ -241,10 +248,21 @@ public class SparseMatrix
      * @throws IndexOutOfBoundsException
      *             if no node at the given index
      */
-    public int get(int row, int col)
+    public SparseEntry get(int row, int col)
     {
-        while
-        return 0;
+        Node current = rowHeader[row];
+        while (current != null)
+        {
+            if (current.getData().getCol() == col)
+            {
+                // If current data is equal to the wanted than return current
+                return current.getData();
+            }
+            
+            current = current.nextRow;
+        }
+
+        return null;
     }
     
     /**
