@@ -75,44 +75,22 @@ public class SparseMatrix
         /**
          * Sets the node column after this node.
          *
-         * @param n is the node column after the current one.
+         * @param n is the node after the current one.
          */
-        public void setNextCol(Node n)
+        public void setNext(Node n)
         {
-            nextCol = n;
-        }
-        
-        /**
-         * Sets the node row after this node.
-         *
-         * @param n is the node row after the current one.
-         */
-        public void setNextRow(Node n)
-        {
-            nextRow = n;
+            next = n;
         }
 
-
         /**
-         * Gets the next node row
+         * Gets the next node.
          *
-         * @return the next node row
+         * @return the next node.
          */
-        public Node nextRow()
+        public Node next()
         {
-            return nextRow;
+            return next;
         }
-        
-        /**
-         * Gets the next node column
-         *
-         * @return the next node row
-         */
-        public Node nextCol()
-        {
-            return nextCol;
-        }
-
 
         /**
          * Gets the data in the node
@@ -125,11 +103,7 @@ public class SparseMatrix
         }
     }
 
-    private Node head;
-    private int numCol;
-    private int numRow;
-
-    // the size of the linked list
+    // The size of the Linked List
     private int size;
 
     
