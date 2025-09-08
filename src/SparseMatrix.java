@@ -1,4 +1,3 @@
-package linkedlist;
 import java.util.HashMap;
 
 /**
@@ -8,14 +7,14 @@ import java.util.HashMap;
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.7.2025
  */
-public class SparseMatrix<E> 
+public class SparseMatrix 
 {
     public int size()
     {
         return 0;
     }
     
-    public void add(int index, E obj)
+    public void add(int index, int obj)
     {
         
     }
@@ -25,28 +24,27 @@ public class SparseMatrix<E>
         return true;
     }
     
-    public void add(E obj)
+    public void add(int obj)
     {
         
     }
     
-    public boolean remove(E obj)
+    public boolean removeObject(int obj)
     {
         return true;
     }
     
-    public boolean remove(int index)
+    public boolean removeIndex(int index)
     {
         return true;
     }
     
-    public E get(int index)
+    public int get(int index)
     {
-        E object = null;
-        return object;
+        return 0;
     }
     
-    public boolean contains(E obj)
+    public boolean contains(int obj)
     {
         return true;
     }
