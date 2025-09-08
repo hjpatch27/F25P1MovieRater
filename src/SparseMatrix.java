@@ -7,6 +7,46 @@
  */
 public class SparseMatrix 
 {
+    public class sparseEntry
+    {
+        private int row;
+        private int col;
+        private int score;
+        
+        public sparseEntry(int row, int col, int score)
+        {
+            this.row = row;
+            this.col = col;
+            this.score = score;
+        }
+        
+        /**
+         * Returns the row number of the entry in the Sparse Matrix.
+         * @return row, the number of the row the entry is in.
+         */
+        public int getRow()
+        {
+            return row;
+        }
+        
+        /**
+         * Returns the column number of the entry in the Sparse Matrix.
+         * @return col, the number of the column the entry is in.
+         */
+        public int getCol()
+        {
+            return col;
+        }
+        
+        /**
+         * Returns the value of the entry in the Sparse Matrix.
+         * @return score, the integer value the entry contains.
+         */
+        public int getScore()
+        {
+            return score;
+        }
+    }
     
     public static class Node<SparseMatrix>
     {
