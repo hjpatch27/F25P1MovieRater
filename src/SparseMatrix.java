@@ -71,25 +71,44 @@ public class SparseMatrix
 
 
         /**
-         * Sets the node after this node
+         * Sets the node column after this node.
          *
-         * @param n
-         *            the node after this one
+         * @param n is the node column after the current one.
          */
-        public void setNext(Node<SparseEntry> n)
+        public void setNextCol(Node<SparseEntry> n)
         {
-            next = n;
+            nextCol = n;
+        }
+        
+        /**
+         * Sets the node row after this node.
+         *
+         * @param n is the node row after the current one.
+         */
+        public void setNextRow(Node<SparseEntry> n)
+        {
+            nextRow = n;
         }
 
 
         /**
-         * Gets the next node
+         * Gets the next node row
          *
-         * @return the next node
+         * @return the next node row
          */
-        public Node<SparseEntry> next()
+        public Node<SparseEntry> nextRow()
         {
-            return next;
+            return nextRow;
+        }
+        
+        /**
+         * Gets the next node column
+         *
+         * @return the next node row
+         */
+        public Node<SparseEntry> nextCol()
+        {
+            return nextCol;
         }
 
 
