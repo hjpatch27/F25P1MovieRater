@@ -48,14 +48,15 @@ public class SparseMatrix
         }
     }
     
-    public static class Node<SparseEntry>
+    private static class Node<SparseEntry>
     {
 
         // The data element stored in the node.
         private SparseEntry data;
 
         // The next node in the sequence.
-        private Node<SparseEntry> next;
+        private Node<SparseEntry> nextCol;
+        private Node<SparseEntry> nextRow;
 
         /**
          * Creates a new node with the given data
@@ -104,6 +105,8 @@ public class SparseMatrix
     }
 
     private Node<SparseEntry> head;
+    private int numCol;
+    private int numRow;
 
     // the size of the linked list
     private int size;
@@ -138,9 +141,9 @@ public class SparseMatrix
     }
     
     /**
-     * Checks if the array is empty of all entries
+     * Checks if the array is empty
      *
-     * @return True if the array is empty. Return false if there are entries.
+     * @return true if the array is empty
      */
     public boolean isEmpty()
     {
