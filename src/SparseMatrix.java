@@ -138,9 +138,9 @@ public class SparseMatrix
     }
     
     /**
-     * Checks if the array is empty
+     * Checks if the array is empty of all entries
      *
-     * @return true if the array is empty
+     * @return True if the array is empty. Return false if there are entries.
      */
     public boolean isEmpty()
     {
