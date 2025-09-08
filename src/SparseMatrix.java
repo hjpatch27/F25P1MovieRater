@@ -7,7 +7,7 @@
  */
 public class SparseMatrix 
 {
-    public class sparseEntry
+    public class SparseEntry
     {
         private int row;
         private int col;
@@ -48,14 +48,14 @@ public class SparseMatrix
         }
     }
     
-    public static class Node<SparseMatrix>
+    public static class Node<SparseEntry>
     {
 
         // The data element stored in the node.
-        private SparseMatrix data;
+        private SparseEntry data;
 
         // The next node in the sequence.
-        private Node<SparseMatrix> next;
+        private Node<SparseEntry> next;
 
         /**
          * Creates a new node with the given data
@@ -63,7 +63,7 @@ public class SparseMatrix
          * @param d
          *            the data to put inside the node
          */
-        public Node(SparseMatrix d)
+        public Node(SparseEntry d)
         {
             data = d;
         }
@@ -75,7 +75,7 @@ public class SparseMatrix
          * @param n
          *            the node after this one
          */
-        public void setNext(Node<SparseMatrix> n)
+        public void setNext(Node<SparseEntry> n)
         {
             next = n;
         }
@@ -86,7 +86,7 @@ public class SparseMatrix
          *
          * @return the next node
          */
-        public Node<SparseMatrix> next()
+        public Node<SparseEntry> next()
         {
             return next;
         }
@@ -97,13 +97,13 @@ public class SparseMatrix
          *
          * @return the data in the node
          */
-        public SparseMatrix getData()
+        public SparseEntry getData()
         {
             return data;
         }
     }
 
-    private Node<SparseMatrix> head;
+    private Node<SparseEntry> head;
 
     // the size of the linked list
     private int size;
