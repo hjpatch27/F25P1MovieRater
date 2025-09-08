@@ -13,7 +13,7 @@ public class SparseMatrix
         private int col;
         private int score;
         
-        public sparseEntry(int row, int col, int score)
+        public SparseEntry(int row, int col, int score)
         {
             this.row = row;
             this.col = col;
