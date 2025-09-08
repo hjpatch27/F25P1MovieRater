@@ -31,12 +31,30 @@ public class SparseMatrix
         }
         
         /**
+         * Sets the row number to a new row in the Sparse Matrix.
+         * @param newRow is the row number to be changed to.
+         */
+        public void setRow(int newRow)
+        {
+            row = newRow;
+        }
+        
+        /**
          * Returns the column number of the entry in the Sparse Matrix.
          * @return col, the number of the column the entry is in.
          */
         public int getCol()
         {
             return col;
+        }
+        
+        /**
+         * Sets the column number to a new column in the Sparse Matrix.
+         * @param newCol is the column number to be changed to.
+         */
+        public void setCol(int newCol)
+        {
+            col = newCol;
         }
         
         /**
@@ -47,6 +65,15 @@ public class SparseMatrix
         {
             return score;
         }
+        
+        /**
+         * Sets the score to a new value in the Sparse Matrix.
+         * @param newScore is the score value to be changed to.
+         */
+        public void setScore(int newScore)
+        {
+            score = newScore;
+        }
     }
     
     private static class Node
@@ -54,10 +81,6 @@ public class SparseMatrix
 
         // The data element stored in the node.
         private SparseEntry data;
-
-        private int row;
-        private int col;
-        private int score;
         Node next;
 
         /**
