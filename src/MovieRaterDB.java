@@ -5,7 +5,7 @@
  * ratings, finding ratings for a movie/reviewer, and calculating similarity scores.
  *
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
- * @version 9.7.2025
+ * @version 9.8.2025
  *
  */
 public class MovieRaterDB implements MovieRater {

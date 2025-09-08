@@ -3,7 +3,7 @@ import student.TestCase;
 
 /**
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
- * @version 9.7.2025
+ * @version 9.8.2025
  */
 public class MovieRaterTest extends TestCase {
 

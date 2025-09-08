@@ -3,7 +3,7 @@
  * Interface class for the MovieRater Project
  *
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nysaal23)
- * @version 9.7.2925
+ * @version 9.8.2025
  *
  */
 public interface MovieRater {
