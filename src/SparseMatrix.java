@@ -203,7 +203,7 @@ public class SparseMatrix
      * @throws IndexOutOfBoundsException
      *             if there is not an element at the index
      */
-    public boolean removeIndex(int index)
+    public boolean removeIndex(int row, int col)
     {
         return true;
     }
