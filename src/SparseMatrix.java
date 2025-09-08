@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * Implementation of a sparse matrix. This will be used as the data structure
  * for our MovieRater. 
@@ -48,15 +49,16 @@ public class SparseMatrix
         }
     }
     
-    private static class Node<SparseEntry>
+    private static class Node
     {
 
         // The data element stored in the node.
         private SparseEntry data;
 
-        // The next node in the sequence.
-        private Node<SparseEntry> nextCol;
-        private Node<SparseEntry> nextRow;
+        private int row;
+        private int col;
+        private int score;
+        Node next;
 
         /**
          * Creates a new node with the given data
@@ -75,7 +77,7 @@ public class SparseMatrix
          *
          * @param n is the node column after the current one.
          */
-        public void setNextCol(Node<SparseEntry> n)
+        public void setNextCol(Node n)
         {
             nextCol = n;
         }
@@ -85,7 +87,7 @@ public class SparseMatrix
          *
          * @param n is the node row after the current one.
          */
-        public void setNextRow(Node<SparseEntry> n)
+        public void setNextRow(Node n)
         {
             nextRow = n;
         }
@@ -96,7 +98,7 @@ public class SparseMatrix
          *
          * @return the next node row
          */
-        public Node<SparseEntry> nextRow()
+        public Node nextRow()
         {
             return nextRow;
         }
@@ -106,7 +108,7 @@ public class SparseMatrix
          *
          * @return the next node row
          */
-        public Node<SparseEntry> nextCol()
+        public Node nextCol()
         {
             return nextCol;
         }
@@ -123,7 +125,7 @@ public class SparseMatrix
         }
     }
 
-    private Node<SparseEntry> head;
+    private Node head;
     private int numCol;
     private int numRow;
 
@@ -154,7 +156,7 @@ public class SparseMatrix
      * @throws IllegalArgumentException
      *             if obj is null
      */
-    public void add(int index, int obj)
+    public void add(int row, int col, int score)
     {
         
     }
@@ -218,7 +220,7 @@ public class SparseMatrix
      * @throws IndexOutOfBoundsException
      *             if no node at the given index
      */
-    public int get(int index)
+    public int get(int row, int col)
     {
         return 0;
     }
