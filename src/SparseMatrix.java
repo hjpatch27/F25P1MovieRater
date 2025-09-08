@@ -160,6 +160,7 @@ public class SparseMatrix
     {
         
     }
+    
     /**
      * Removes the first instance of the given object from the list
      *
@@ -171,6 +172,7 @@ public class SparseMatrix
     {
         return true;
     }
+    
     /**
      * Removes the object at the given position
      *
@@ -198,6 +200,7 @@ public class SparseMatrix
     {
         return 0;
     }
+    
     /**
      * Checks if the list contains the given object
      *
