@@ -10,15 +10,15 @@ public class SparseMatrix
 {
     public class SparseEntry
     {
-        private int row;
-        private int col;
-        private int score;
+        private Node[] rowHeader;
+        private Node[] colHeader;
+        private int size; // Number of entries
         
-        public SparseEntry(int row, int col, int score)
+        public SparseEntry(int numRow, int numCol, int score)
         {
-            this.row = row;
-            this.col = col;
-            this.score = score;
+            this.rowHeader = new Node[numRow];
+            this.colHeader = new Node[numCol];
+            this.size = 0;
         }
         
         /**
@@ -81,7 +81,8 @@ public class SparseMatrix
 
         // The data element stored in the node.
         private SparseEntry data;
-        Node next;
+        Node nextRow;
+        Node nextCol;
 
         /**
          * Creates a new node with the given data
@@ -91,7 +92,10 @@ public class SparseMatrix
          */
         public Node(SparseEntry d)
         {
-            data = d;
+            this.data = d;
+            this.nextRow = null;
+            this.nextCol = null;
+            
         }
 
 
@@ -155,7 +159,16 @@ public class SparseMatrix
      */
     public void add(int row, int col, int score)
     {
+        // Check for existing entry and update score if found
         
+        // Create new node with new SparseEntry
+        Node newNode = new Node(new SparseEntry(row, col, score));
+        
+        // Insert into Row list
+        
+        // Insert into Col list
+        
+        size++;
     }
     
     /**
@@ -189,13 +202,23 @@ public class SparseMatrix
      *            the object to remove
      * @return true if successful
      */
-    public boolean removeObject(int obj)
+    public boolean removeRow(int row)
     {
+        size--;
+        return true;
+    }
+    
+    public boolean removeCol(int col)
+    {
+        size--;
         return true;
     }
     
     /**
      * Removes the object at the given position
+     * This method will find the specific node at (row, col) and 
+     * remove it from both the row and column linked lists by updating 
+     * the pointers of the nodes before and after it.
      *
      * @param index
      *            the position of the object
@@ -205,6 +228,7 @@ public class SparseMatrix
      */
     public boolean removeIndex(int row, int col)
     {
+        size--;
         return true;
     }
     
@@ -219,6 +243,7 @@ public class SparseMatrix
      */
     public int get(int row, int col)
     {
+        while
         return 0;
     }
     
