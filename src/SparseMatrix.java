@@ -9,6 +9,68 @@ import java.util.HashMap;
  */
 public class SparseMatrix 
 {
+    
+    public static class Node<SparseMatrix>
+    {
+
+        // The data element stored in the node.
+        private SparseMatrix data;
+
+        // The next node in the sequence.
+        private Node<SparseMatrix> next;
+
+        /**
+         * Creates a new node with the given data
+         *
+         * @param d
+         *            the data to put inside the node
+         */
+        public Node(SparseMatrix d)
+        {
+            data = d;
+        }
+
+
+        /**
+         * Sets the node after this node
+         *
+         * @param n
+         *            the node after this one
+         */
+        public void setNext(Node<SparseMatrix> n)
+        {
+            next = n;
+        }
+
+
+        /**
+         * Gets the next node
+         *
+         * @return the next node
+         */
+        public Node<SparseMatrix> next()
+        {
+            return next;
+        }
+
+
+        /**
+         * Gets the data in the node
+         *
+         * @return the data in the node
+         */
+        public SparseMatrix getData()
+        {
+            return data;
+        }
+    }
+
+    private Node<SparseMatrix> head;
+
+    // the size of the linked list
+    private int size;
+
+    
     /**
      * Gets the number of elements in the list
      *
