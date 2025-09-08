@@ -49,7 +49,6 @@ public class MovieRaterDB implements MovieRater {
     public boolean addReview(int reviewer, int movie, int score) 
     {
         // Scores must be in the range 1 to 10.
-        sparseMatrix.insert(reviewer, movie, score);
         return true;
     }
 
