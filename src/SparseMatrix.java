@@ -11,6 +11,8 @@ public class SparseMatrix
     private SparseEntry data;
     private Node curr;
     private Node prev;
+    private Node tail;
+    private Node head;
     private int listSize; // Number of entries in the Sparse Matrix.
     
     public SparseMatrix()
@@ -249,10 +251,20 @@ public class SparseMatrix
      *            the object to remove
      * @return true if successful
      */
-    public boolean removeRow(int row)
+    public SparseEntry remove()
     {
-        size--;
-        return true;
+        if (curr == tail) // Nothing to remove
+        {
+            return null;
+        }
+        SparseEntry it = curr.getData(); // Remember Value
+        // Remove from list
+        curr.prev().setNext(curr.next()); 
+        curr.next().setPrev(curr.prev());
+        curr = curr.next();
+        listSize--; // Decrement node count
+        return it; // Return the value removed
+      
     }
     
     /**
@@ -316,6 +328,8 @@ public class SparseMatrix
      */
     public void clear()
     {
-        
+        curr = tail = new Node(null , null); // Create trailer
+        head = new Node(null, tail); // Create header
+        listSize = 0;
     }
 }
