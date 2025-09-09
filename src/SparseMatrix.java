@@ -98,23 +98,17 @@ public class SparseMatrix
          * @param d
          *            the data to put inside the node
          */
-        public Node(SparseEntry d)
+        public Node(SparseEntry e, Node p, Node n)
         {
-            this.data = d;
-            this.nextRow = null;
-            this.nextCol = null;
-            
+            e = data;
+            p = prev;
+            n = next;
         }
 
-
-        /**
-         * Sets the node column after this node.
-         *
-         * @param n is the node after the current one.
-         */
-        public void setNext(Node n)
+        public Node(Node p, Node n)
         {
-            next = n;
+            p = prev;
+            n = next;
         }
 
         /**
@@ -126,6 +120,26 @@ public class SparseMatrix
         {
             return next;
         }
+        
+        /**
+         * Sets the node column after this node.
+         *
+         * @param n is the node after the current one.
+         */
+        public Node setNext(Node n)
+        {
+            return next = n;
+        }
+        
+        public Node prev()
+        {
+            return prev;
+        }
+        
+        public Node setPrev(Node p)
+        {
+            return prev = p;
+        }
 
         /**
          * Gets the data in the node
@@ -135,6 +149,11 @@ public class SparseMatrix
         public SparseEntry getData()
         {
             return data;
+        }
+        
+        public SparseEntry setData(SparseEntry e)
+        {
+            return data = e;
         }
     }
 
