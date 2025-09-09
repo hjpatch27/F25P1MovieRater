@@ -1,3 +1,4 @@
+import doublylinkedlist.DLList;
 import java.util.*;
 /**
  * Implementation of a sparse matrix. This will be used as the data structure
@@ -8,17 +9,7 @@ import java.util.*;
  */
 public class SparseMatrix 
 {
-    private SparseEntry data;
-    private Node curr;
-    private Node prev;
-    private Node tail;
-    private Node head;
-    private int listSize; // Number of entries in the Sparse Matrix.
-    
-    public SparseMatrix()
-    {
-        this.listSize = 0;
-    }
+   
     public class SparseEntry
     {
         private int row;
@@ -173,7 +164,28 @@ public class SparseMatrix
         }
     }
 
+    private SparseEntry data;
+    private Node curr;
+    private Node prev;
+    private Node tail;
+    private Node head;
+    private int listSize; // Number of entries in the Sparse Matrix.
     
+    public SparseMatrix()
+    {
+        init();
+    }
+    /**
+     * Initializes the object to have the head and tail nodes
+     */
+    private void init()
+    {
+        head = new DLList.Node<E>(null);
+        tail = new DLList.Node<E>(null);
+        head.setNext(tail);
+        tail.setPrevious(head);
+        size = 0;
+    }
     /**
      * Gets the number of elements in the list
      *
