@@ -344,9 +344,19 @@ public class SparseMatrix
      *            the object to check for
      * @return true if it contains the object
      */
-    public boolean contains(int obj)
+    public boolean contains(int row, int col)
     {
-        return true;
+        Node current = head.next();
+        while (current != tail)
+        {
+            SparseEntry entry = current.getData();
+            if (entry.getRow() == row && entry.getCol() == col)
+            {
+                return true;
+            }
+            current = current.next();
+        }
+        return false;
     }
     
     /**
