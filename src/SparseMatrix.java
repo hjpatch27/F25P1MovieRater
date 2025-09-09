@@ -318,6 +318,62 @@ public class SparseMatrix
         return false;
     }
     
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     * @param reviewer
+     * @return 
+     */
+    public boolean removeReviewer(int reviewer)
+    {
+        boolean found = false;
+        Node current = head.next();
+        
+        while(current != tail)
+        {
+            SparseEntry entry = current.getData();
+            
+            if (entry.getRow() == reviewer)
+            {
+                current.prev().setNext(current.next());
+                current.next().setPrev(current.prev());
+                listSize --;
+                found = true;
+            }
+            current = current.next();
+                
+        }
+        return found;
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     * @param movie
+     * @return
+     */
+    public boolean removeMovie(int movie)
+    {
+        boolean found = false;
+        Node current = head.next();
+        
+        while(current != tail)
+        {
+            SparseEntry entry = current.getData();
+            
+            if (entry.getCol() == movie)
+            {
+                current.prev().setNext(current.next());
+                current.next().setPrev(current.prev());
+                listSize --;
+                found = true;
+            }
+            current = current.next();
+                
+        }
+        return found;
+    }
+    
     /**
      * Gets the object at the given position
      * @param row 

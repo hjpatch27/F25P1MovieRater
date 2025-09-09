@@ -68,6 +68,7 @@ public class MovieRaterDB implements MovieRater {
      */
     public boolean deleteReviewer(int reviewer) 
     {
+        
         return sparseMatrix.removeIndex(reviewer, 0);
         
     }
