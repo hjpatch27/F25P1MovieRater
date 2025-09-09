@@ -11,8 +11,8 @@ import SparseMatrix.SparseEntry;
  */
 public class SparseMatrixTest extends TestCase {
 
-    private SparseMatrix matrix;
-    private SparseMatrix.SparseEntry entry;
+    private SparseMatrix matrix; 
+    private SparseMatrix entryTest;
     
     /**
      * Sets up the tests that follow. Used to initialize a SparseMatrix
@@ -21,7 +21,8 @@ public class SparseMatrixTest extends TestCase {
     public void setUp()
     {
         matrix = new SparseMatrix(); // Initialize SparseMatrix object.
-        entry = new SparseMatrix.SparseEntry(1, 1, 10); // Initialize SparseEntry object.
+        entryTest = new SparseMatrix();
+        entryTest.insert(new SparseEntry(1, 1, 10));
     }
     
     /**
@@ -31,7 +32,7 @@ public class SparseMatrixTest extends TestCase {
     public void testRow()
     {
         // SparseEntry object, entry, has row set to 1 in constructor
-        assertEquals(entry.getRow(), 1);
+        assertEquals(entryTest.get(1, 1).getRow(), 1);
     }
     
 }
