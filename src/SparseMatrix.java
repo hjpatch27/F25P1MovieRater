@@ -193,7 +193,7 @@ public class SparseMatrix
      */
     public int size()
     {
-        return 0;
+        return listSize;
     }
     
     public boolean insert(SparseEntry e)
