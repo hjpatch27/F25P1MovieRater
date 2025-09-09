@@ -69,7 +69,23 @@ public class SparseMatrixTest extends TestCase {
     {
         // Call the method, add 3 entries to the Sparse Matrix.
         matrix.add(1, 1, 10);
-        matrix.add
+        matrix.add(5, 3, 5);
+        matrix.add(3, 2, 7);
+        
+        // Check if Entry 1 (1, 1, 10) is accurate.
+        assertEquals(matrix.get(1, 1).getRow(), 1);
+        assertEquals(matrix.get(1, 1).getCol(), 1);
+        assertEquals(matrix.get(1, 1).getScore(), 10);
+        
+        // Check if Entry 2 (5, 3, 5) is accurate.
+        assertEquals(matrix.get(5, 3).getRow(), 5);
+        assertEquals(matrix.get(5, 3).getCol(), 3);
+        assertEquals(matrix.get(5, 3).getScore(), 5);
+        
+        // Check if Entry 3 (3, 2, 7) is accurate.
+        assertEquals(matrix.get(3, 2).getRow(), 3);
+        assertEquals(matrix.get(3, 2).getCol(), 2);
+        assertEquals(matrix.get(3, 2).getScore(), 7);
     }
     
 }
