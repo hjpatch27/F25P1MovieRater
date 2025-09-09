@@ -297,7 +297,7 @@ public class SparseMatrix
      */
     public boolean removeIndex(int row, int col)
     {
-        size--;
+        listSize--;
         return true;
     }
     
