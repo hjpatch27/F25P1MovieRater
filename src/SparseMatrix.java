@@ -9,11 +9,10 @@ import java.util.*;
 public class SparseMatrix 
 {
   
-    private int size; // Number of entries
+    private int size; // Number of entries in the Sparse Matrix.
     
-    public SparseMatrix(int numRow, int numCol, int score)
+    public SparseMatrix()
     {
-    
         this.size = 0;
     }
     public class SparseEntry
@@ -86,7 +85,6 @@ public class SparseMatrix
     
     private static class Node
     {
-
         // The data element stored in the node.
         private SparseEntry data; // value for this node
         private Node next; // Pointer to next node
@@ -122,7 +120,7 @@ public class SparseMatrix
         }
         
         /**
-         * Sets the node column after this node.
+         * Sets the next node to a new node.
          *
          * @param n is the node after the current one.
          */
@@ -131,11 +129,20 @@ public class SparseMatrix
             return next = n;
         }
         
+        /**
+         * Gets and returns the previous node.
+         * @return prev, the previous node.
+         */
         public Node prev()
         {
             return prev;
         }
         
+        /**
+         * Sets the previous node to a new node.
+         * @param p is what we'll change the previous node to.
+         * @return prev which should now be Node p.
+         */
         public Node setPrev(Node p)
         {
             return prev = p;
@@ -151,6 +158,11 @@ public class SparseMatrix
             return data;
         }
         
+        /**
+         * Sets the SparseEntry data with a node to have new values.
+         * @param e is the SparseEntry to replace the current one.
+         * @return data with the new SparseEntry object in it.
+         */
         public SparseEntry setData(SparseEntry e)
         {
             return data = e;
