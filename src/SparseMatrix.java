@@ -8,15 +8,13 @@ import java.util.*;
  */
 public class SparseMatrix 
 {
-    private Node[] rowHeader;
-    private Node[] colHeader;
-    private int size1; // Number of entries
+  
+    private int size; // Number of entries
     
     public SparseMatrix(int numRow, int numCol, int score)
     {
-        this.rowHeader = new Node[numRow];
-        this.colHeader = new Node[numCol];
-        this.size1 = 0;
+    
+        this.size = 0;
     }
     public class SparseEntry
     {
@@ -90,9 +88,9 @@ public class SparseMatrix
     {
 
         // The data element stored in the node.
-        private SparseEntry data;
-        Node nextRow;
-        Node nextCol;
+        private SparseEntry data; // value for this node
+        private Node next; // Pointer to next node
+        private Node prev; // Pointer to previous node
 
         /**
          * Creates a new node with the given data
@@ -140,9 +138,6 @@ public class SparseMatrix
         }
     }
 
-    // The size of the Linked List
-    private int size;
-
     
     /**
      * Gets the number of elements in the list
@@ -178,7 +173,7 @@ public class SparseMatrix
         
         // Insert into Col list
         
-        size1++;
+        size++;
     }
     
     /**
@@ -188,7 +183,7 @@ public class SparseMatrix
      */
     public boolean isEmpty()
     {
-        return (size1 == 0);
+        return (size == 0);
     }
     /**
      * Adds the object to the end of the list.
@@ -214,13 +209,13 @@ public class SparseMatrix
      */
     public boolean removeRow(int row)
     {
-        size1--;
+        size--;
         return true;
     }
     
     public boolean removeCol(int col)
     {
-        size1--;
+        size--;
         return true;
     }
     
@@ -238,7 +233,7 @@ public class SparseMatrix
      */
     public boolean removeIndex(int row, int col)
     {
-        size1--;
+        size--;
         return true;
     }
     
@@ -253,7 +248,7 @@ public class SparseMatrix
      */
     public SparseEntry get(int row, int col)
     {
-        Node current = rowHeader[row];
+  
         while (current != null)
         {
             if (current.getData().getCol() == col)
