@@ -12,7 +12,6 @@ import SparseMatrix.SparseEntry;
 public class SparseMatrixTest extends TestCase {
 
     private SparseMatrix matrix; 
-    private SparseMatrix entryTest;
     
     /**
      * Sets up the tests that follow. Used to initialize a SparseMatrix
@@ -21,18 +20,22 @@ public class SparseMatrixTest extends TestCase {
     public void setUp()
     {
         matrix = new SparseMatrix(); // Initialize SparseMatrix object.
-        entryTest = new SparseMatrix();
-        entryTest.insert(new SparseEntry(1, 1, 10));
     }
     
     /**
-     * Test case for the getter and setter method of the row variable
-     * in the SparseEntry object.
+     * Test case for the init() method. Ensures that the SparseMatrix
+     * object is initalized correctly.
      */
     public void testRow()
     {
-        // SparseEntry object, entry, has row set to 1 in constructor
-        assertEquals(entryTest.get(1, 1).getRow(), 1);
+        // SparseObject, matrix, was made in setUp() so init() was used
+        // already in matrix.
+        
+        // listSize should equal 0.
+        assertEquals(matrix.size(), 0);
+        
+        // The
+        
     }
     
 }
