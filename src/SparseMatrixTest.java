@@ -1,6 +1,5 @@
 import student.TestCase;
-import java.util.*;
-import SparseMatrix.SparseEntry;
+
 /**
  * This class runs a suite of test cases for the SparseMatrix class,
  * including the Node and SparseEntry classes as well.

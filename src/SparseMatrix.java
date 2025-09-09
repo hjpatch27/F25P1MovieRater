@@ -1,4 +1,3 @@
-import java.util.*;
 /**
  * Implementation of a sparse matrix. This will be used as the data structure
  * for our MovieRater. 
@@ -318,7 +317,6 @@ public class SparseMatrix
         return false;
     }
     
-    // ----------------------------------------------------------
     /**
      * Place a description of your method here.
      * @param reviewer
@@ -346,7 +344,6 @@ public class SparseMatrix
         return found;
     }
     
-    // ----------------------------------------------------------
     /**
      * Place a description of your method here.
      * @param movie
