@@ -180,11 +180,11 @@ public class SparseMatrix
      */
     private void init()
     {
-        head = new DLList.Node<E>(null);
-        tail = new DLList.Node<E>(null);
+        head = new SparseMatrix.Node(null, null);
+        tail = new SparseMatrix.Node(null, null);
         head.setNext(tail);
-        tail.setPrevious(head);
-        size = 0;
+        tail.setPrev(head);
+        listSize = 0;
     }
     /**
      * Gets the number of elements in the list

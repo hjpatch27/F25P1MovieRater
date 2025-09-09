@@ -12,7 +12,7 @@ import SparseMatrix.SparseEntry;
 public class SparseMatrixTest extends TestCase {
 
     private SparseMatrix matrix;
-    private SparseEntry entry;
+    private SparseMatrix.SparseEntry entry;
     
     /**
      * Sets up the tests that follow. Used to initialize a SparseMatrix
@@ -21,7 +21,7 @@ public class SparseMatrixTest extends TestCase {
     public void setUp()
     {
         matrix = new SparseMatrix(); // Initialize SparseMatrix object.
-        entry = new SparseEntry(1, 1, 10); // Initialize SparseEntry object.
+        entry = new SparseMatrix.SparseEntry(1, 1, 10); // Initialize SparseEntry object.
     }
     
     /**
