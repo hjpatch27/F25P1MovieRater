@@ -99,8 +99,8 @@ public class SparseMatrix
 
         public Node(Node p, Node n)
         {
-            p = prev;
-            n = next;
+            this.prev = p;
+            this.next = n;
         }
 
         /**
@@ -238,7 +238,7 @@ public class SparseMatrix
      */
     public boolean isEmpty()
     {
-        return (size == 0);
+        return (listSize == 0);
     }
     /**
      * Adds the object to the end of the list.
