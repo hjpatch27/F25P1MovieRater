@@ -246,6 +246,7 @@ public class SparseMatrix
     {
         return (listSize == 0);
     }
+    
     /**
      * Adds the object to the end of the list.
      *
@@ -255,7 +256,6 @@ public class SparseMatrix
      * @throws IllegalArgumentException
      *             if obj is null
      */
-    
     public void add(int obj)
     {
         

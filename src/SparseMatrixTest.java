@@ -31,12 +31,7 @@ public class SparseMatrixTest extends TestCase {
         // already in matrix.
         
         // listSize should equal 0.
-        assertEquals(matrix.size(), 0);
-        
-        // The head and tail nodes should both be null
-        //assertNull(matrix.getPrev());
-        //assertNull(matrix.get());
-        
+        assertEquals(matrix.size(), 0);      
     }
     
     /**
@@ -60,31 +55,32 @@ public class SparseMatrixTest extends TestCase {
     }
     
     /**
-     * Tests the add() method. In this test case, there are several
-     * additions to the Sparse Matrix so there are multiple entries
-     * in the Sparse Matrix.
+     * Tests the clear() method. We will test this by adding
+     * entries to the Sparse Matrix, using the clear() method,
+     * and then ensuring the expected results happen.
      */
-    public void testAddMultiple()
+    public void testClear()
     {
-        // Call the method, add 3 entries to the Sparse Matrix.
+        // Set up initial conditions, add 3 entries to the Sparse Matrix.
         matrix.add(1, 1, 10);
         matrix.add(5, 3, 5);
         matrix.add(3, 2, 7);
         
-        // Check if Entry 1 (1, 1, 10) is accurate.
-        assertEquals(matrix.get(1, 1).getRow(), 1);
-        assertEquals(matrix.get(1, 1).getCol(), 1);
-        assertEquals(matrix.get(1, 1).getScore(), 10);
+        // size should be 3 at the moment.
+        assertEquals(matrix.size(), 3);
         
-        // Check if Entry 2 (5, 3, 5) is accurate.
-        assertEquals(matrix.get(5, 3).getRow(), 5);
-        assertEquals(matrix.get(5, 3).getCol(), 3);
-        assertEquals(matrix.get(5, 3).getScore(), 5);
+        // Call the method
+        matrix.clear();
         
-        // Check if Entry 3 (3, 2, 7) is accurate.
-        assertEquals(matrix.get(3, 2).getRow(), 3);
-        assertEquals(matrix.get(3, 2).getCol(), 2);
-        assertEquals(matrix.get(3, 2).getScore(), 7);
+        // size should now be zero
+        assertEquals(matrix.size(), 0);
+        assertTrue(matrix.isEmpty());
+        
+        // If we used the get() method on a entry previously added,
+        // then nothing should come up so get() should return null.
+        assertNull(matrix.get(1, 1));
+        assertNull(matrix.get(5, 3));
+        assertNull(matrix.get(3, 2));
     }
     
 }
