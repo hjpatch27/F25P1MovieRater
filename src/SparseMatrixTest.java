@@ -26,7 +26,7 @@ public class SparseMatrixTest extends TestCase {
      * Test case for the init() method. Ensures that the SparseMatrix
      * object is initalized correctly.
      */
-    public void testRow()
+    public void testInit()
     {
         // SparseObject, matrix, was made in setUp() so init() was used
         // already in matrix.
@@ -34,8 +34,25 @@ public class SparseMatrixTest extends TestCase {
         // listSize should equal 0.
         assertEquals(matrix.size(), 0);
         
-        // The
+        // The head and tail nodes should both be null
+        //assertNull(matrix.getPrev());
+        //assertNull(matrix.get());
         
+    }
+    
+    public void testAdd()
+    {    
+        // Call the method
+        matrix.add(1, 1, 10);
+        
+        // listSize should've incremented to 1.
+        assertEquals(matrix.size(), 1);
+        
+        // There should now be a new Node in the Sparse Matrix
+        // where it is in Row 1, Column 1, with a score of 10. 
+        assertEquals(matrix.get(1, 1).getRow(), 1);
+        assertEquals(matrix.get(1, 1).getCol(), 1);
+        assertEquals(matrix.get(1, 1).getScore(), 10);
     }
     
 }
