@@ -8,12 +8,14 @@ import java.util.*;
  */
 public class SparseMatrix 
 {
-  
-    private int size; // Number of entries in the Sparse Matrix.
+    private SparseEntry data;
+    private Node curr;
+    private Node prev;
+    private int listSize; // Number of entries in the Sparse Matrix.
     
     public SparseMatrix()
     {
-        this.size = 0;
+        this.listSize = 0;
     }
     public class SparseEntry
     {
@@ -180,6 +182,15 @@ public class SparseMatrix
         return 0;
     }
     
+    public boolean insert(SparseEntry e)
+    {
+        curr = new Node(e, curr.prev(), curr);
+        curr.prev().setNext(curr);
+        curr.next().setNext(curr);
+        listSize++;
+        return true;
+        
+    }
     /**
      * Adds the object to the position in the list
      *
@@ -239,12 +250,6 @@ public class SparseMatrix
      * @return true if successful
      */
     public boolean removeRow(int row)
-    {
-        size--;
-        return true;
-    }
-    
-    public boolean removeCol(int col)
     {
         size--;
         return true;
