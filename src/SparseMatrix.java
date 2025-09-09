@@ -305,8 +305,23 @@ public class SparseMatrix
      */
     public boolean removeIndex(int row, int col)
     {
-        listSize--;
-        return true;
+        Node current = head.next();
+        
+        while (current != tail)
+        {
+            SparseEntry entry = current.getData();
+            if (entry.getRow() == row && entry.getCol() == col)
+            {
+                // Disconnect the node from the list
+                current.prev().setNext(current.next());
+                current.next().setPrev(current.prev());
+                listSize--;
+                return true;
+            }
+            current = current.next();
+        }
+        // No entry found in that position
+        return false;
     }
     
     /**
