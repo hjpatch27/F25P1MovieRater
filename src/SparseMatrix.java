@@ -20,11 +20,15 @@ public class SparseMatrix
     }
     public class SparseEntry
     {
-        
+        private int row;
+        private int col;
+        private int score;
         
         public SparseEntry(int numRow, int numCol, int score)
         {
-            
+            this.row = numRow;
+            this.col = numCol;
+            this.score = score;
         }
         
         /**
