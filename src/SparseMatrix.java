@@ -219,16 +219,21 @@ public class SparseMatrix
      */
     public void add(int row, int col, int score)
     {
-        // Check for existing entry and update score if found
+        Node current = head.next();
+        while (current != tail)
+        {
+            SparseEntry entry = current.getData();
+            if (entry.getRow() == row && entry.getCol() == col)
+            {
+                entry.setScore(score);
+                return;
+            }
+               current = current.next();
+        }
         
-        // Create new node with new SparseEntry
-        Node newNode = new Node(new SparseEntry(row, col, score));
+        // If not found
         
-        // Insert into Row list
-        
-        // Insert into Col list
-        
-        size++;
+       
     }
     
     /**
@@ -298,6 +303,8 @@ public class SparseMatrix
     
     /**
      * Gets the object at the given position
+     * @param row 
+     * @param col 
      *
      * @param index
      *            where the object is located
@@ -307,18 +314,18 @@ public class SparseMatrix
      */
     public SparseEntry get(int row, int col)
     {
-  
-        while (current != null)
+        Node current = head.next();
+        while (current != tail)
         {
-            if (current.getData().getCol() == col)
-            {
-                // If current data is equal to the wanted than return current
-                return current.getData();
-            }
-            
-            current = current.nextRow;
+           
+        SparseEntry entry = current.getData();
+        if (entry.getRow() == row && entry.getCol() == col)
+        {
+            // If current data is equal to the wanted than return current
+            return current.getData();
         }
-
+            current = current.next();
+        }
         return null;
     }
     
