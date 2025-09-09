@@ -92,9 +92,9 @@ public class SparseMatrix
          */
         public Node(SparseEntry e, Node p, Node n)
         {
-            e = data;
-            p = prev;
-            n = next;
+            this.data = e;
+            this.prev = p;
+            this.next = n;
         }
 
         public Node(Node p, Node n)
