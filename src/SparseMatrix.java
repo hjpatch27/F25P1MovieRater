@@ -1,5 +1,4 @@
 import java.util.*;
-import linkedlist.SinglyLinkedList.Node;
 /**
  * Implementation of a sparse matrix. This will be used as the data structure
  * for our MovieRater. 
