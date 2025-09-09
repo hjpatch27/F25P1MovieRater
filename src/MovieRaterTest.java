@@ -2,6 +2,9 @@ import java.io.IOException;
 import student.TestCase;
 
 /**
+ * This class runs a suite of test cases on the MovieRaterDB class and it's methods. 
+ * Overall, the tests strive to have complete code and mutation coverage.
+ * 
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.8.2025
  */
