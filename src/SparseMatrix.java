@@ -195,6 +195,9 @@ public class SparseMatrix
         return listSize;
     }
     
+    /**
+     * Adds an existing SparseEntry to the list
+     */
     public boolean insert(SparseEntry e)
     {
         curr = new Node(e, curr.prev(), curr);
@@ -205,7 +208,7 @@ public class SparseMatrix
         
     }
     /**
-     * Adds the object to the position in the list
+     * Adds an entry in the matrix
      *
      * @precondition obj cannot be null
      * @param index
@@ -231,8 +234,13 @@ public class SparseMatrix
                current = current.next();
         }
         
-        // If not found
-        
+        // If entry is not found
+        SparseEntry newEntry = new SparseEntry(row, col, score);
+        Node newNode = new Node(newEntry, tail.prev(), tail);
+        tail.prev().setNext(newNode);
+        tail.setPrev(newNode);
+        // Increment the size by 1
+        listSize++;
        
     }
     
