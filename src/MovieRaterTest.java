@@ -90,4 +90,48 @@ public class MovieRaterTest extends TestCase {
                 "7: (3, 10) (7, 1)"),
             it.printRatings());
     }
+    
+    /**
+     * Test the addReview() method
+     */
+    public void testAddReview()
+    {
+        assertTrue(it.addReview(1, 2, 8));
+        assertFalse(it.addReview(-1, 2, 8));
+        assertFalse(it.addReview(1, -1, 8));
+        assertFalse(it.addReview(1, 2, 0));
+    }
+    
+    public void testDeleteReviwer()
+    {
+       it.addReview(7, 3, 10);
+       it.addReview(7, 3, 7);
+       it.addReview(3, 5, 8);
+       
+       assertTrue(it.deleteReviewer(7));
+       assertFalse(it.deleteReviewer(7));
+       assertTrue(it.deleteReviewer(3));  
+    }
+    
+    public void testDeleteMovie()
+    {
+       it.addReview(3, 7, 10);
+       it.addReview(2, 7, 7);
+       it.addReview(5, 3, 8);
+       
+       assertTrue(it.deleteMovie(7));
+       assertFalse(it.deleteMovie(7));
+       assertTrue(it.deleteMovie(3));
+    }
+    
+    public void testDeleteScore()
+    {
+       it.addReview(3, 7, 10);
+       it.addReview(3, 3, 6);
+       it.addReview(5, 3, 8);
+       
+       assertTrue(it.deleteScore(3, 7));
+       assertFalse(it.deleteScore(3, 7));
+       assertTrue(it.deleteScore(5,3));
+    }
 }
