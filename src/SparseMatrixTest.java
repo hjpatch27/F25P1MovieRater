@@ -40,7 +40,12 @@ public class SparseMatrixTest extends TestCase {
         
     }
     
-    public void testAdd()
+    /**
+     * Tests the add() method. In this test case, this is the first
+     * addition to the Sparse Matrix so there are no other entries
+     * in the Sparse Matrix.
+     */
+    public void testAddSingle()
     {    
         // Call the method
         matrix.add(1, 1, 10);
@@ -53,6 +58,18 @@ public class SparseMatrixTest extends TestCase {
         assertEquals(matrix.get(1, 1).getRow(), 1);
         assertEquals(matrix.get(1, 1).getCol(), 1);
         assertEquals(matrix.get(1, 1).getScore(), 10);
+    }
+    
+    /**
+     * Tests the add() method. In this test case, there are several
+     * additions to the Sparse Matrix so there are multiple entries
+     * in the Sparse Matrix.
+     */
+    public void testAddMultiple()
+    {
+        // Call the method, add 3 entries to the Sparse Matrix.
+        matrix.add(1, 1, 10);
+        matrix.add
     }
     
 }

@@ -208,17 +208,11 @@ public class SparseMatrix
         
     }
     /**
-     * Adds an entry in the matrix
+     * Adds an entry in the matrix.
      *
-     * @precondition obj cannot be null
-     * @param index
-     *            where to add the object
-     * @param obj
-     *            the object to add
-     * @throws IndexOutOfBoundsException
-     *             if index is less than zero or greater than size
-     * @throws IllegalArgumentException
-     *             if obj is null
+     * @param row is what row the entry will be added to.
+     * @param col is what column the entry will be addded to.
+     * @param score is what rating the entry will have.
      */
     public void add(int row, int col, int score)
     {
