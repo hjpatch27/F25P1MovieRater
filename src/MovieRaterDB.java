@@ -69,7 +69,7 @@ public class MovieRaterDB implements MovieRater {
     public boolean deleteReviewer(int reviewer) 
     {
         
-        return sparseMatrix.removeIndex(reviewer, 0);
+        return sparseMatrix.removeReviewer(reviewer);
         
     }
 
@@ -84,8 +84,8 @@ public class MovieRaterDB implements MovieRater {
      */
     public boolean deleteMovie(int movie) 
     {
-        return sparseMatrix.removeIndex(0, movie);
-        //Make sure to change SparseMatrix.java 
+        return sparseMatrix.removeMovie(movie);
+        
     }
 
 
@@ -113,6 +113,7 @@ public class MovieRaterDB implements MovieRater {
      */
     public String printRatings() 
     {
+        
         return "";
     }
 
