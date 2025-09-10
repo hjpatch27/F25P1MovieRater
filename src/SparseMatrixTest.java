@@ -68,6 +68,7 @@ public class SparseMatrixTest extends TestCase {
         
         // size should be 3 at the moment.
         assertEquals(matrix.size(), 3);
+        assertFalse(matrix.isEmpty());
         
         // Call the method
         matrix.clear();
@@ -82,5 +83,7 @@ public class SparseMatrixTest extends TestCase {
         assertNull(matrix.get(5, 3));
         assertNull(matrix.get(3, 2));
     }
+    
+    
     
 }
