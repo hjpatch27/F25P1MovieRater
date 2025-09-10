@@ -354,10 +354,13 @@ public class SparseMatrix {
 
 
     /**
-     * Place a description of your method here.
+     * This method with locate a movie in the Sparse
+     * Matrix that is set to be removed, remove it, and 
+     * then report true or false based on its success.
      * 
-     * @param movie
-     * @return
+     * @param movie is what's to be removed
+     * @return found, or true, if the reviewer to be
+     * removed is found and successfully removed.
      */
     public boolean removeMovie(int movie) 
     {
@@ -385,14 +388,13 @@ public class SparseMatrix {
     /**
      * Gets the object at the given position
      * 
-     * @param row
-     * @param col
+     * @param row is the number of row to look at.
+     * @param col is the number of column to look at.
      *
-     * @param index
-     *            where the object is located
+     * @param index is where the object is located
      * @return The object at the given position
-     * @throws IndexOutOfBoundsException
-     *             if no node at the given index
+     * @throws IndexOutOfBoundsException if no node is 
+     * at the given index.
      */
     public SparseEntry get(int row, int col) 
     {
@@ -423,7 +425,9 @@ public class SparseMatrix {
         listSize = 0;
     }
 
-
+    /**
+     * 
+     */
     public String toString() 
     {
         // Check if empty

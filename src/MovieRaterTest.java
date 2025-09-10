@@ -307,8 +307,6 @@ public class MovieRaterTest extends TestCase {
         assertEquals(matrix.size(), 2);
     }
 
-
-    // ----------------------------------------------------------
     /**
      * Test the removeIndex() method when false
      */
@@ -330,8 +328,9 @@ public class MovieRaterTest extends TestCase {
 
     /**
      * 
-     *
-    public void testPrintReviewer() {
+     */
+    public void testPrintReviewer() 
+    {
         it.addReview(2, 3, 7);
         it.addReview(3, 5, 8);
         it.addReview(7, 3, 10);
@@ -342,5 +341,5 @@ public class MovieRaterTest extends TestCase {
         String actual = it.printRatings();
         assertEquals(expected, actual);
     }
-    */
+    
 }
