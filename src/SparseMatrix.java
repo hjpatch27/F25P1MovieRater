@@ -251,43 +251,6 @@ public class SparseMatrix
     }
     
     /**
-     * Adds the object to the end of the list.
-     *
-     * @precondition obj cannot be null
-     * @param obj
-     *            the object to add
-     * @throws IllegalArgumentException
-     *             if obj is null
-     */
-    public void add(int obj)
-    {
-        
-    }
-    
-    /**
-     * Removes the first instance of the given object from the list
-     *
-     * @param obj
-     *            the object to remove
-     * @return true if successful
-     */
-    public SparseEntry remove()
-    {
-        if (curr == tail) // Nothing to remove
-        {
-            return null;
-        }
-        SparseEntry it = curr.getData(); // Remember Value
-        // Remove from list
-        curr.prev().setNext(curr.next()); 
-        curr.next().setPrev(curr.prev());
-        curr = curr.next();
-        listSize--; // Decrement node count
-        return it; // Return the value removed
-      
-    }
-    
-    /**
      * Removes the object at the given position
      * This method will find the specific node at (row, col) and 
      * remove it from both the row and column linked lists by updating 
