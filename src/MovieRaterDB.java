@@ -1,4 +1,6 @@
 //-------------------------------------------------------------------------
+
+
 /**
  * Implementation for the MovieRater. This is a thin shell over
  * the sparse matrix class that does the work. It contains methods for adding
@@ -113,8 +115,7 @@ public class MovieRaterDB implements MovieRater {
      */
     public String printRatings() 
     {
-        
-        return "";
+        return toString();
     }
 
 
