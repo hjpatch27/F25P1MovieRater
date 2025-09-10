@@ -152,7 +152,6 @@ public class MovieRaterTest extends TestCase {
        assertTrue(it.deleteScore(5,3));
     }
     
-<<<<<<< Updated upstream
     /**
      * Test case for the init() method. Ensures that the SparseMatrix
      * object is initalized correctly.
