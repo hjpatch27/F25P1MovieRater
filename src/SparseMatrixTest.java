@@ -84,6 +84,26 @@ public class SparseMatrixTest extends TestCase {
         assertNull(matrix.get(3, 2));
     }
     
-    
+    /**
+     * Tests the removeIndex() method. In this scenario, the method
+     * will successfully remove an entry from the Sparse Matrix and
+     * return true.
+     */
+    public void testRemoveIndexTrue()
+    {
+        // Set initial conditions. Add three entries to Sparse Matrix
+        matrix.add(1, 1, 10);
+        matrix.add(5, 3, 5);
+        matrix.add(3, 2, 7);
+        
+        // Call the method. Remove from (5, 3).
+        matrix.removeIndex(5, 3);
+        
+        // The entry at (5, 3) should now be gone.
+        assertNull(matrix.get(5, 3));
+        
+        // The size of the Sparse Matrix should be 2 now.
+        assertEquals(matrix.size(), 2);
+    }
     
 }

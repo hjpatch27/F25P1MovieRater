@@ -2,8 +2,9 @@ import java.io.IOException;
 import student.TestCase;
 
 /**
- * This class runs a suite of test cases on the MovieRaterDB class and it's methods. 
- * Overall, the tests strive to have complete code and mutation coverage.
+ * This class runs a suite of test cases on the MovieRaterDB class as well as
+ * the SparseMatrix class. Overall, the tests strive to have complete problem 
+ * and mutation coverage.
  * 
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.8.2025
@@ -11,12 +12,14 @@ import student.TestCase;
 public class MovieRaterTest extends TestCase {
 
     private MovieRaterDB it;
+    private SparseMatrix matrix;
 
     /**
      * Sets up the tests that follow. In general, used for initialization
      */
     public void setUp() {
         it = new MovieRaterDB();
+        matrix = new SparseMatrix();
     }
 
     /**
@@ -147,5 +150,131 @@ public class MovieRaterTest extends TestCase {
        assertTrue(it.deleteScore(3, 7));
        assertFalse(it.deleteScore(3, 7));
        assertTrue(it.deleteScore(5,3));
+    }
+    
+    /**
+     * Test case for the init() method. Ensures that the SparseMatrix
+     * object is initalized correctly.
+     */
+    public void testInit()
+    {
+        // SparseObject, matrix, was made in setUp() so init() was used
+        // already in matrix.
+        
+        // listSize should equal 0.
+        assertEquals(matrix.size(), 0);      
+    }
+    
+    /**
+     * Tests the add() method. In this test case, this is the first
+     * addition to the Sparse Matrix so there are no other entries
+     * in the Sparse Matrix.
+     */
+    public void testAddSingle()
+    {    
+        // Call the method
+        matrix.add(1, 1, 10);
+        
+        // listSize should've incremented to 1.
+        assertEquals(matrix.size(), 1);
+        
+        // There should now be a new Node in the Sparse Matrix
+        // where it is in Row 1, Column 1, with a score of 10. 
+        assertEquals(matrix.get(1, 1).getRow(), 1);
+        assertEquals(matrix.get(1, 1).getCol(), 1);
+        assertEquals(matrix.get(1, 1).getScore(), 10);
+    }
+    
+    /**
+     * Tests the add() method. In this test case, we are adding a 
+     * entry to the row and column of an existing entry in
+     * the Sparse Matrix.
+     */
+    public void testAddDuplicate()
+    {
+        // Set up initial conditions, add 1 entry to the Sparse Matrix.
+        matrix.add(3, 3, 10);
+        
+        // Size should be 1 and the score should equal 10
+        assertEquals(matrix.size(), 1);
+        assertEquals(matrix.get(3, 3).getScore(), 10);
+        
+        // Call the method, add to the same row and column
+        // with a new score of 5.
+        matrix.add(3, 3, 5);
+        
+        // Size should still be 1.
+        assertEquals(matrix.size(), 1);
+        
+        // The score at (3, 3) should now be 5.
+        assertEquals(matrix.get(3, 3).getScore(), 5);
+    }
+    
+    /**
+     * Tests the clear() method. We will test this by adding
+     * entries to the Sparse Matrix, using the clear() method,
+     * and then ensuring the expected results happen.
+     */
+    public void testClear()
+    {
+        // Set up initial conditions, add 3 entries to the Sparse Matrix.
+        matrix.add(1, 1, 10);
+        matrix.add(5, 3, 5);
+        matrix.add(3, 2, 7);
+        
+        // size should be 3 at the moment.
+        assertEquals(matrix.size(), 3);
+        assertFalse(matrix.isEmpty());
+        
+        // Call the method
+        matrix.clear();
+        
+        // size should now be zero
+        assertEquals(matrix.size(), 0);
+        assertTrue(matrix.isEmpty());
+        
+        // If we used the get() method on a entry previously added,
+        // then nothing should come up so get() should return null.
+        assertNull(matrix.get(1, 1));
+        assertNull(matrix.get(5, 3));
+        assertNull(matrix.get(3, 2));
+    }
+    
+    /**
+     * Tests the removeIndex() method. In this scenario, the method
+     * will successfully remove an entry from the Sparse Matrix and
+     * return true.
+     */
+    public void testRemoveIndexTrue()
+    {
+        // Set initial conditions. Add three entries to Sparse Matrix
+        matrix.add(1, 1, 10);
+        matrix.add(5, 3, 5);
+        matrix.add(3, 2, 7);
+        
+        // Call the method. Remove from (5, 3). Should return true.
+        assertTrue(matrix.removeIndex(5, 3));
+        
+        // The entry at (5, 3) should now be gone.
+        assertNull(matrix.get(5, 3));
+        
+        // The size of the Sparse Matrix should be 2 now.
+        assertEquals(matrix.size(), 2);
+    }
+    
+    public void testRemoveIndexFalse()
+    {
+     // Set initial conditions. Add three entries to Sparse Matrix
+        matrix.add(1, 1, 10);
+        matrix.add(5, 3, 5);
+        matrix.add(3, 2, 7);
+        
+        // Call the method. Remove from (6, 6). Should return false.
+        assertFalse(matrix.removeIndex(6, 6));
+        assertFalse(matrix.removeIndex(5, 5));
+        assertFalse(matrix.removeIndex(3, 3));
+        
+        // The size of the Sparse Matrix should remain unchanged at 3.
+        assertEquals(matrix.size(), 3);
     }
 }
