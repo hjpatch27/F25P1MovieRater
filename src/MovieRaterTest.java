@@ -28,7 +28,8 @@ public class MovieRaterTest extends TestCase {
      * 
      * @throws IOException
      */
-    public void testClearInit() throws IOException {
+    public void testClearInit() throws IOException 
+    {
         assertTrue(it.clear());
     }
 
@@ -115,7 +116,8 @@ public class MovieRaterTest extends TestCase {
     /**
      * Test the addReview() method
      */
-    public void testAddReview() {
+    public void testAddReview() 
+    {
         assertTrue(it.addReview(1, 2, 8));
         assertFalse(it.addReview(-1, 2, 8));
         assertFalse(it.addReview(1, -1, 8));
@@ -124,7 +126,12 @@ public class MovieRaterTest extends TestCase {
     }
 
 
-    public void testDeleteReviwer() {
+    // ----------------------------------------------------------
+    /**
+     * Test the deleteReviewer() mehtod
+     */
+    public void testDeleteReviewer() 
+    {
         it.addReview(7, 3, 10);
         it.addReview(7, 3, 7);
         it.addReview(3, 5, 8);
@@ -135,7 +142,12 @@ public class MovieRaterTest extends TestCase {
     }
 
 
-    public void testDeleteMovie() {
+    // ----------------------------------------------------------
+    /**
+     * Test the deleteMovie() method
+     */
+    public void testDeleteMovie() 
+    {
         it.addReview(3, 7, 10);
         it.addReview(2, 7, 7);
         it.addReview(5, 3, 8);
@@ -146,7 +158,12 @@ public class MovieRaterTest extends TestCase {
     }
 
 
-    public void testDeleteScore() {
+    // ----------------------------------------------------------
+    /**
+     * Test the deleteScore() method
+     */
+    public void testDeleteScore() 
+    {
         it.addReview(3, 7, 10);
         it.addReview(3, 3, 6);
         it.addReview(5, 3, 8);
@@ -161,7 +178,8 @@ public class MovieRaterTest extends TestCase {
      * Test case for the init() method. Ensures that the SparseMatrix
      * object is initalized correctly.
      */
-    public void testInit() {
+    public void testInit() 
+    {
         // SparseObject, matrix, was made in setUp() so init() was used
         // already in matrix.
 
@@ -175,7 +193,8 @@ public class MovieRaterTest extends TestCase {
      * addition to the Sparse Matrix so there are no other entries
      * in the Sparse Matrix.
      */
-    public void testAddSingle() {
+    public void testAddSingle() 
+    {
         // Call the method
         matrix.add(1, 1, 10);
 
@@ -195,7 +214,8 @@ public class MovieRaterTest extends TestCase {
      * several scenarios where we add more than one entry to
      * the Sparse Matrix
      */
-    public void testAddMultiple() {
+    public void testAddMultiple() 
+    {
         // Set up the initial condition. Add 1 entry to the Sparse Matrix.
         matrix.add(2, 2, 5);
     }
@@ -206,7 +226,8 @@ public class MovieRaterTest extends TestCase {
      * entry to the row and column of an existing entry in
      * the Sparse Matrix.
      */
-    public void testAddDuplicate() {
+    public void testAddDuplicate() 
+    {
         // Set up initial conditions, add 1 entry to the Sparse Matrix.
         matrix.add(3, 3, 10);
 
@@ -238,7 +259,8 @@ public class MovieRaterTest extends TestCase {
      * entries to the Sparse Matrix, using the clear() method,
      * and then ensuring the expected results happen.
      */
-    public void testClear() {
+    public void testClear() 
+    {
         // Set up initial conditions, add 3 entries to the Sparse Matrix.
         matrix.add(1, 1, 10);
         matrix.add(5, 3, 5);
@@ -268,7 +290,8 @@ public class MovieRaterTest extends TestCase {
      * will successfully remove an entry from the Sparse Matrix and
      * return true.
      */
-    public void testRemoveIndexTrue() {
+    public void testRemoveIndexTrue() 
+    {
         // Set initial conditions. Add three entries to Sparse Matrix
         matrix.add(1, 1, 10);
         matrix.add(5, 3, 5);
@@ -285,7 +308,12 @@ public class MovieRaterTest extends TestCase {
     }
 
 
-    public void testRemoveIndexFalse() {
+    // ----------------------------------------------------------
+    /**
+     * Test the removeIndex() method when false
+     */
+    public void testRemoveIndexFalse() 
+    {
         // Set initial conditions. Add three entries to Sparse Matrix
         matrix.add(1, 1, 10);
         matrix.add(5, 3, 5);

@@ -17,7 +17,8 @@ public class MovieRaterDB implements MovieRater {
     /**
      * Create a new MovieRaterDB object.
      */
-    MovieRaterDB() {
+    MovieRaterDB() 
+    {
         this.sparseMatrix = new SparseMatrix();
 
     }
@@ -29,7 +30,8 @@ public class MovieRaterDB implements MovieRater {
      * 
      * @return true on clear
      */
-    public boolean clear() {
+    public boolean clear() 
+    {
         sparseMatrix = new SparseMatrix();
         return true;
     }
@@ -51,9 +53,11 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the review was successfully added.
      *         False otherwise (for bad input values)
      */
-    public boolean addReview(int reviewer, int movie, int score) {
+    public boolean addReview(int reviewer, int movie, int score) 
+    {
         // Scores must be in the range 1 to 10.
-        if (reviewer < 0 || movie < 0 || score < 1 || score > 10) {
+        if (reviewer < 0 || movie < 0 || score < 1 || score > 10) 
+        {
             return false;
         }
         sparseMatrix.add(reviewer, movie, score);
@@ -71,7 +75,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the reviewer was successfully deleted.
      *         False if no such reviewer in the database.
      */
-    public boolean deleteReviewer(int reviewer) {
+    public boolean deleteReviewer(int reviewer) 
+    {
 
         return sparseMatrix.removeReviewer(reviewer);
 
@@ -88,7 +93,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the movie was successfully deleted.
      *         False if no such movie in the database.
      */
-    public boolean deleteMovie(int movie) {
+    public boolean deleteMovie(int movie) 
+    {
         return sparseMatrix.removeMovie(movie);
 
     }
@@ -106,7 +112,8 @@ public class MovieRaterDB implements MovieRater {
      * @return True if the score was successfully deleted.
      *         False if no such score in the database.
      */
-    public boolean deleteScore(int reviewer, int movie) {
+    public boolean deleteScore(int reviewer, int movie) 
+    {
         return sparseMatrix.removeIndex(reviewer, movie);
     }
 
@@ -119,7 +126,8 @@ public class MovieRaterDB implements MovieRater {
      * 
      * @return String representing the listing, empty string if there are none
      */
-    public String printRatings() {
+    public String printRatings() 
+    {
         return sparseMatrix.toString();
     }
 
@@ -133,7 +141,8 @@ public class MovieRaterDB implements MovieRater {
      *            The reviewer to list ratings for
      * @return String representing the listing, null if no such reviewer
      */
-    public String listReviewer(int reviewer) {
+    public String listReviewer(int reviewer) 
+    {
         return "";
     }
 
@@ -147,7 +156,8 @@ public class MovieRaterDB implements MovieRater {
      *            The movie to list ratings for
      * @return String representing the listing, null if no such movie
      */
-    public String listMovie(int movie) {
+    public String listMovie(int movie) 
+    {
         return "";
     }
 
@@ -162,7 +172,8 @@ public class MovieRaterDB implements MovieRater {
      *         Return -1 if this movie does not exist or if there is no
      *         suitable match
      */
-    public int similarMovie(int movie) {
+    public int similarMovie(int movie) 
+    {
         return -1;
     }
 
@@ -177,7 +188,8 @@ public class MovieRaterDB implements MovieRater {
      *         Return -1 if this reviewer does not exist or if there is no
      *         suitable match
      */
-    public int similarReviewer(int reviewer) {
+    public int similarReviewer(int reviewer) 
+    {
         return -1;
     }
 }
