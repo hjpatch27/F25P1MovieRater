@@ -196,19 +196,7 @@ public class SparseMatrix
     {
         return listSize;
     }
-    
-    /**
-     * Adds an existing SparseEntry to the list
-     */
-    public boolean insert(SparseEntry e)
-    {
-        curr = new Node(e, curr.prev(), curr);
-        curr.prev().setNext(curr);
-        curr.next().setNext(curr);
-        listSize++;
-        return true;
-        
-    }
+
     /**
      * Adds an entry in the matrix.
      *
