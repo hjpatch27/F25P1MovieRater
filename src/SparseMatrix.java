@@ -400,38 +400,40 @@ public class SparseMatrix
     
     public String toString()
     {
-        StringBuilder builder = new StringBuilder("{");
-        int currentReviewer = -1;
-        if (!isEmpty())
+        // Check if empty
+        if (isEmpty())
         {
-            Node currNode = head.next();
-            while (currNode != tail)
-            {
-                SparseEntry entry = currNode.getData();
-                
-                // If new reviewer row, start a new line
-                if (entry.getRow() != currentReviewer)
-                {
-                    if (currentReviewer != -1)
-                    {
-                        builder.append("\n"); // newline before next reviewer
-                    }
-                    currentReviewer = entry.getRow();
-                    builder.append("Reviewer ").append(currentReviewer).append(": ");
-                }
-                
-                builder.append(entry.toString());
-                // add space if next entry is the same reviewer
-                if (currNode.next != tail && currNode.next().getData().getRow() == currentReviewer)
-                {
-                    builder.append(" ");
-                }
-                currNode = currNode.next();
-            }
+            return " ";
         }
-
-        builder.append("}");
+        StringBuilder builder = new StringBuilder();
+        Node curr = head.next();
+        int currentReviewer = -1;
+        
+        while (curr != tail)
+        {
+            SparseEntry entry = curr.getData();
+                
+            // new reviewer
+            if (entry.getRow() != currentReviewer)
+            {
+                if (currentReviewer != -1)
+                {
+                    builder.append("\n"); // newline before next reviewer
+                }
+                currentReviewer = entry.getRow();
+                builder.append(currentReviewer).append(": ");
+            }
+            else
+            {
+                builder.append(" ");
+            }
+            builder.append("(").append(entry.getCol()).append(", ").append(entry.getScore()).append(")");
+            curr = curr.next();
+        }
         return builder.toString();
     }
-
 }
+       
+ 
+
+
