@@ -210,15 +210,27 @@ public class SparseMatrix
         while (current != tail)
         {
             SparseEntry entry = current.getData();
+            if (entry.getRow() > row || (entry.getRow() == row && entry.getCol() > col))
+            {
+                // Insert before current
+                SparseEntry newEntry = new SparseEntry(row,col,score);
+                Node newNode = new Node(newEntry, current.prev(), current);
+                current.prev().setNext(newNode);
+                current.setPrev(newNode);
+                listSize++;
+                return;
+            }
+            // If an entry already exists with same row and col, update socre
             if (entry.getRow() == row && entry.getCol() == col)
             {
                 entry.setScore(score);
                 return;
             }
-               current = current.next();
+            
+            current = current.next();
         }
         
-        // If entry is not found
+        // If entry is not found insert at the end
         SparseEntry newEntry = new SparseEntry(row, col, score);
         Node newNode = new Node(newEntry, tail.prev(), tail);
         tail.prev().setNext(newNode);
@@ -389,16 +401,30 @@ public class SparseMatrix
     public String toString()
     {
         StringBuilder builder = new StringBuilder("{");
+        int currentReviewer = -1;
         if (!isEmpty())
         {
             Node currNode = head.next();
             while (currNode != tail)
             {
                 SparseEntry entry = currNode.getData();
-                builder.append(entry.toString());
-                if (currNode.next != tail)
+                
+                // If new reviewer row, start a new line
+                if (entry.getRow() != currentReviewer)
                 {
-                    builder.append(", ");
+                    if (currentReviewer != -1)
+                    {
+                        builder.append("\n"); // newline before next reviewer
+                    }
+                    currentReviewer = entry.getRow();
+                    builder.append("Reviewer ").append(currentReviewer).append(": ");
+                }
+                
+                builder.append(entry.toString());
+                // add space if next entry is the same reviewer
+                if (currNode.next != tail && currNode.next().getData().getRow() == currentReviewer)
+                {
+                    builder.append(" ");
                 }
                 currNode = currNode.next();
             }
