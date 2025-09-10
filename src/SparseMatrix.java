@@ -294,7 +294,8 @@ public class SparseMatrix {
      * remove it from both the row and column linked lists by updating
      * the pointers of the nodes before and after it.
      *
-     * @param index the position of the object.
+     * @param row is the number of the row to look to remove from.
+     * @param col is the number of the column to look to remove from.
      * @return true if the removal was successful.
      * @throws IndexOutOfBoundsException if there is not an element 
      * at the index.
@@ -390,8 +391,6 @@ public class SparseMatrix {
      * 
      * @param row is the number of row to look at.
      * @param col is the number of column to look at.
-     *
-     * @param index is where the object is located
      * @return The object at the given position
      * @throws IndexOutOfBoundsException if no node is 
      * at the given index.
@@ -429,6 +428,8 @@ public class SparseMatrix {
      * This methods reformats the Sparse Matrix data
      * structure and it's entries and prints it out 
      * into a string format.
+     * @return builder.toString() which is the final
+     * format of the Sparse Matrix in string format/
      */
     public String toString() 
     {
