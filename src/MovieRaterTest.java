@@ -295,6 +295,10 @@ public class MovieRaterTest extends TestCase {
         // The size of the Sparse Matrix should remain unchanged at 3.
         assertEquals(matrix.size(), 3);
     }
+    
+    /**
+     * 
+     */
     public void testPrintReviewer()
     {
         it.addReview(2, 3, 7);
