@@ -1,83 +1,89 @@
 /**
  * Implementation of a sparse matrix. This will be used as the data structure
- * for our MovieRater. 
+ * for our MovieRater.
  * 
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.8.2025
  */
-public class SparseMatrix 
-{
-   
-    public class SparseEntry
-    {
+public class SparseMatrix {
+
+    public class SparseEntry {
         private int row;
         private int col;
         private int score;
-        
-        public SparseEntry(int numRow, int numCol, int score)
-        {
+
+        public SparseEntry(int numRow, int numCol, int score) {
             this.row = numRow;
             this.col = numCol;
             this.score = score;
         }
-        
+
+
         /**
          * Returns the row number of the entry in the Sparse Matrix.
+         * 
          * @return row, the number of the row the entry is in.
          */
-        public int getRow()
-        {
+        public int getRow() {
             return row;
         }
-        
+
+
         /**
          * Sets the row number to a new row in the Sparse Matrix.
-         * @param newRow is the row number to be changed to.
+         * 
+         * @param newRow
+         *            is the row number to be changed to.
          */
-        public void setRow(int newRow)
-        {
+        public void setRow(int newRow) {
             row = newRow;
         }
-        
+
+
         /**
          * Returns the column number of the entry in the Sparse Matrix.
+         * 
          * @return col, the number of the column the entry is in.
          */
-        public int getCol()
-        {
+        public int getCol() {
             return col;
         }
-        
+
+
         /**
          * Sets the column number to a new column in the Sparse Matrix.
-         * @param newCol is the column number to be changed to.
+         * 
+         * @param newCol
+         *            is the column number to be changed to.
          */
-        public void setCol(int newCol)
-        {
+        public void setCol(int newCol) {
             col = newCol;
         }
-        
+
+
         /**
          * Returns the value of the entry in the Sparse Matrix.
+         * 
          * @return score, the integer value the entry contains.
          */
-        public int getScore()
-        {
+        public int getScore() {
             return score;
         }
-        
+
+
         /**
          * Sets the score to a new value in the Sparse Matrix.
-         * @param newScore is the score value to be changed to.
+         * 
+         * @param newScore
+         *            is the score value to be changed to.
          */
-        public void setScore(int newScore)
-        {
+        public void setScore(int newScore) {
             score = newScore;
         }
     }
-    
-    private static class Node
-    {
+
+
+    private static class Node {
         // The data element stored in the node.
         private SparseEntry data; // value for this node
         private Node next; // Pointer to next node
@@ -89,77 +95,82 @@ public class SparseMatrix
          * @param d
          *            the data to put inside the node
          */
-        public Node(SparseEntry e, Node p, Node n)
-        {
+        public Node(SparseEntry e, Node p, Node n) {
             this.data = e;
             this.prev = p;
             this.next = n;
         }
 
-        public Node(Node p, Node n)
-        {
+
+        public Node(Node p, Node n) {
             this.prev = p;
             this.next = n;
         }
+
 
         /**
          * Gets the next node.
          *
          * @return the next node.
          */
-        public Node next()
-        {
+        public Node next() {
             return next;
         }
-        
+
+
         /**
          * Sets the next node to a new node.
          *
-         * @param n is the node after the current one.
+         * @param n
+         *            is the node after the current one.
          */
-        public Node setNext(Node n)
-        {
+        public Node setNext(Node n) {
             next = n;
             return next;
         }
-        
+
+
         /**
          * Gets and returns the previous node.
+         * 
          * @return prev, the previous node.
          */
-        public Node prev()
-        {
+        public Node prev() {
             return prev;
         }
-        
+
+
         /**
          * Sets the previous node to a new node.
-         * @param p is what we'll change the previous node to.
+         * 
+         * @param p
+         *            is what we'll change the previous node to.
          * @return prev which should now be Node p.
          */
-        public Node setPrev(Node p)
-        {
+        public Node setPrev(Node p) {
             prev = p;
             return prev;
         }
+
 
         /**
          * Gets the data in the node
          *
          * @return the data in the node
          */
-        public SparseEntry getData()
-        {
+        public SparseEntry getData() {
             return data;
         }
-        
+
+
         /**
          * Sets the SparseEntry data with a node to have new values.
-         * @param e is the SparseEntry to replace the current one.
+         * 
+         * @param e
+         *            is the SparseEntry to replace the current one.
          * @return data with the new SparseEntry object in it.
          */
-        public SparseEntry setData(SparseEntry e)
-        {
+        public SparseEntry setData(SparseEntry e) {
             data = e;
             return data;
         }
@@ -171,49 +182,52 @@ public class SparseMatrix
     private Node tail;
     private Node head;
     private int listSize; // Number of entries in the Sparse Matrix.
-    
-    public SparseMatrix()
-    {
+
+    public SparseMatrix() {
         init();
     }
+
+
     /**
      * Initializes the object to have the head and tail nodes
      */
-    private void init()
-    {
+    private void init() {
         head = new SparseMatrix.Node(null, null);
         tail = new SparseMatrix.Node(null, null);
         head.setNext(tail);
         tail.setPrev(head);
         listSize = 0;
-    } 
+    }
+
+
     /**
      * Gets the number of elements in the list
      *
      * @return the number of elements
      */
-    public int size()
-    {
+    public int size() {
         return listSize;
     }
+
 
     /**
      * Adds an entry in the matrix.
      *
-     * @param row is what row the entry will be added to.
-     * @param col is what column the entry will be addded to.
-     * @param score is what rating the entry will have.
+     * @param row
+     *            is what row the entry will be added to.
+     * @param col
+     *            is what column the entry will be addded to.
+     * @param score
+     *            is what rating the entry will have.
      */
-    public void add(int row, int col, int score)
-    {
+    public void add(int row, int col, int score) {
         Node current = head.next();
-        while (current != tail)
-        {
+        while (current != tail) {
             SparseEntry entry = current.getData();
-            if (entry.getRow() > row || (entry.getRow() == row && entry.getCol() > col))
-            {
+            if (entry.getRow() > row || (entry.getRow() == row && entry
+                .getCol() > col)) {
                 // Insert before current
-                SparseEntry newEntry = new SparseEntry(row,col,score);
+                SparseEntry newEntry = new SparseEntry(row, col, score);
                 Node newNode = new Node(newEntry, current.prev(), current);
                 current.prev().setNext(newNode);
                 current.setPrev(newNode);
@@ -221,15 +235,14 @@ public class SparseMatrix
                 return;
             }
             // If an entry already exists with same row and col, update socre
-            if (entry.getRow() == row && entry.getCol() == col)
-            {
+            if (entry.getRow() == row && entry.getCol() == col) {
                 entry.setScore(score);
                 return;
             }
-            
+
             current = current.next();
         }
-        
+
         // If entry is not found insert at the end
         SparseEntry newEntry = new SparseEntry(row, col, score);
         Node newNode = new Node(newEntry, tail.prev(), tail);
@@ -237,23 +250,24 @@ public class SparseMatrix
         tail.setPrev(newNode);
         // Increment the size by 1
         listSize++;
-       
+
     }
-    
+
+
     /**
      * Checks if the array is empty
      *
      * @return true if the array is empty
      */
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return (listSize == 0);
     }
-    
+
+
     /**
      * Removes the object at the given position
-     * This method will find the specific node at (row, col) and 
-     * remove it from both the row and column linked lists by updating 
+     * This method will find the specific node at (row, col) and
+     * remove it from both the row and column linked lists by updating
      * the pointers of the nodes before and after it.
      *
      * @param index
@@ -262,15 +276,12 @@ public class SparseMatrix
      * @throws IndexOutOfBoundsException
      *             if there is not an element at the index
      */
-    public boolean removeIndex(int row, int col)
-    {
+    public boolean removeIndex(int row, int col) {
         Node current = head.next();
-        
-        while (current != tail)
-        {
+
+        while (current != tail) {
             SparseEntry entry = current.getData();
-            if (entry.getRow() == row && entry.getCol() == col)
-            {
+            if (entry.getRow() == row && entry.getCol() == col) {
                 // Disconnect the node from the list
                 current.prev().setNext(current.next());
                 current.next().setPrev(current.prev());
@@ -282,65 +293,65 @@ public class SparseMatrix
         // No entry found in that position
         return false;
     }
-    
+
+
     /**
      * Place a description of your method here.
+     * 
      * @param reviewer
-     * @return 
+     * @return
      */
-    public boolean removeReviewer(int reviewer)
-    {
+    public boolean removeReviewer(int reviewer) {
         boolean found = false;
         Node current = head.next();
-        
-        while(current != tail)
-        {
+
+        while (current != tail) {
             SparseEntry entry = current.getData();
-            
-            if (entry.getRow() == reviewer)
-            {
+
+            if (entry.getRow() == reviewer) {
                 current.prev().setNext(current.next());
                 current.next().setPrev(current.prev());
-                listSize --;
+                listSize--;
                 found = true;
             }
             current = current.next();
-                
+
         }
         return found;
     }
-    
+
+
     /**
      * Place a description of your method here.
+     * 
      * @param movie
      * @return
      */
-    public boolean removeMovie(int movie)
-    {
+    public boolean removeMovie(int movie) {
         boolean found = false;
         Node current = head.next();
-        
-        while(current != tail)
-        {
+
+        while (current != tail) {
             SparseEntry entry = current.getData();
-            
-            if (entry.getCol() == movie)
-            {
+
+            if (entry.getCol() == movie) {
                 current.prev().setNext(current.next());
                 current.next().setPrev(current.prev());
-                listSize --;
+                listSize--;
                 found = true;
             }
             current = current.next();
-                
+
         }
         return found;
     }
-    
+
+
     /**
      * Gets the object at the given position
-     * @param row 
-     * @param col 
+     * 
+     * @param row
+     * @param col
      *
      * @param index
      *            where the object is located
@@ -348,70 +359,59 @@ public class SparseMatrix
      * @throws IndexOutOfBoundsException
      *             if no node at the given index
      */
-    public SparseEntry get(int row, int col)
-    {
+    public SparseEntry get(int row, int col) {
         Node current = head.next();
-        while (current != tail)
-        {
-           
-        SparseEntry entry = current.getData();
-        if (entry.getRow() == row && entry.getCol() == col)
-        {
-            // If current data is equal to the wanted than return current
-            return current.getData();
-        }
+        while (current != tail) {
+
+            SparseEntry entry = current.getData();
+            if (entry.getRow() == row && entry.getCol() == col) {
+                // If current data is equal to the wanted than return current
+                return current.getData();
+            }
             current = current.next();
         }
         return null;
     }
-    
+
+
     /**
      * Removes all of the elements from the list
      */
-    public void clear()
-    {
-        tail = new Node(null , null); // Create trailer
+    public void clear() {
+        tail = new Node(null, null); // Create trailer
         curr = tail;
         head = new Node(null, tail); // Create header
         listSize = 0;
     }
-    
-    public String toString()
-    {
+
+
+    public String toString() {
         // Check if empty
-        if (isEmpty())
-        {
+        if (isEmpty()) {
             return " ";
         }
         StringBuilder builder = new StringBuilder();
         Node curr = head.next();
         int currentReviewer = -1;
-        
-        while (curr != tail)
-        {
+
+        while (curr != tail) {
             SparseEntry entry = curr.getData();
-                
+
             // new reviewer
-            if (entry.getRow() != currentReviewer)
-            {
-                if (currentReviewer != -1)
-                {
+            if (entry.getRow() != currentReviewer) {
+                if (currentReviewer != -1) {
                     builder.append("\n"); // newline before next reviewer
                 }
                 currentReviewer = entry.getRow();
                 builder.append(currentReviewer).append(": ");
             }
-            else
-            {
+            else {
                 builder.append(" ");
             }
-            builder.append("(").append(entry.getCol()).append(", ").append(entry.getScore()).append(")");
+            builder.append("(").append(entry.getCol()).append(", ").append(entry
+                .getScore()).append(")");
             curr = curr.next();
         }
         return builder.toString();
     }
 }
-       
- 
-
-

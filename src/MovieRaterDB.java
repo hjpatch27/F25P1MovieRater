@@ -1,10 +1,10 @@
-//-------------------------------------------------------------------------
-
+// -------------------------------------------------------------------------
 
 /**
  * Implementation for the MovieRater. This is a thin shell over
  * the sparse matrix class that does the work. It contains methods for adding
- * ratings, finding ratings for a movie/reviewer, and calculating similarity scores.
+ * ratings, finding ratings for a movie/reviewer, and calculating similarity
+ * scores.
  *
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.8.2025
@@ -19,17 +19,17 @@ public class MovieRaterDB implements MovieRater {
      */
     MovieRaterDB() {
         this.sparseMatrix = new SparseMatrix();
-        
-        
+
     }
+
 
     // ----------------------------------------------------------
     /**
      * (Re)initialize the database
+     * 
      * @return true on clear
      */
-    public boolean clear() 
-    {
+    public boolean clear() {
         sparseMatrix = new SparseMatrix();
         return true;
     }
@@ -40,19 +40,20 @@ public class MovieRaterDB implements MovieRater {
      * Add a score to the database. If there already is a score for this
      * reviewer and movie pair, then update it.
      *
-     * @param reviewer The reviewer giving the rating
-     *   (must be a positive integer)
-     * @param movie The movie being rated
-     *   (must be a positive integer)
-     * @param score The rating score (1-10)
+     * @param reviewer
+     *            The reviewer giving the rating
+     *            (must be a positive integer)
+     * @param movie
+     *            The movie being rated
+     *            (must be a positive integer)
+     * @param score
+     *            The rating score (1-10)
      * @return True if the review was successfully added.
      *         False otherwise (for bad input values)
      */
-    public boolean addReview(int reviewer, int movie, int score) 
-    {
+    public boolean addReview(int reviewer, int movie, int score) {
         // Scores must be in the range 1 to 10.
-        if (reviewer < 0 || movie < 0 || score < 1 || score > 10)
-        {
+        if (reviewer < 0 || movie < 0 || score < 1 || score > 10) {
             return false;
         }
         sparseMatrix.add(reviewer, movie, score);
@@ -63,45 +64,49 @@ public class MovieRaterDB implements MovieRater {
     // ----------------------------------------------------------
     /**
      * Delete the specified reviewer. This will delete all associated ratings.
-     * @param reviewer The reviewer to delete
+     * 
+     * @param reviewer
+     *            The reviewer to delete
      *
      * @return True if the reviewer was successfully deleted.
      *         False if no such reviewer in the database.
      */
-    public boolean deleteReviewer(int reviewer) 
-    {
-        
+    public boolean deleteReviewer(int reviewer) {
+
         return sparseMatrix.removeReviewer(reviewer);
-        
+
     }
 
 
     // ----------------------------------------------------------
     /**
      * Delete the specified movie. This will delete all associated ratings.
-     * @param movie The movie to delete
+     * 
+     * @param movie
+     *            The movie to delete
      *
      * @return True if the movie was successfully deleted.
      *         False if no such movie in the database.
      */
-    public boolean deleteMovie(int movie) 
-    {
+    public boolean deleteMovie(int movie) {
         return sparseMatrix.removeMovie(movie);
-        
+
     }
 
 
     // ----------------------------------------------------------
     /**
      * Delete the specified score.
-     * @param reviewer The reviewer of the score to delete
-     * @param movie The movie of the score to delete
+     * 
+     * @param reviewer
+     *            The reviewer of the score to delete
+     * @param movie
+     *            The movie of the score to delete
      *
      * @return True if the score was successfully deleted.
      *         False if no such score in the database.
      */
-    public boolean deleteScore(int reviewer, int movie) 
-    {
+    public boolean deleteScore(int reviewer, int movie) {
         return sparseMatrix.removeIndex(reviewer, movie);
     }
 
@@ -111,10 +116,10 @@ public class MovieRaterDB implements MovieRater {
      * Dump out all the ratings. Each reviewer's rating should be in a
      * separate line (in ascending order by reviewer index), with
      * movie/score pairs listed in ascending order of movie index.
+     * 
      * @return String representing the listing, empty string if there are none
      */
-    public String printRatings() 
-    {
+    public String printRatings() {
         return sparseMatrix.toString();
     }
 
@@ -123,11 +128,12 @@ public class MovieRaterDB implements MovieRater {
     /**
      * List all ratings for a given reviewer, with scores listed in
      * ascending order of movie index.
-     * @param reviewer The reviewer to list ratings for
+     * 
+     * @param reviewer
+     *            The reviewer to list ratings for
      * @return String representing the listing, null if no such reviewer
      */
-    public String listReviewer(int reviewer) 
-    {
+    public String listReviewer(int reviewer) {
         return "";
     }
 
@@ -136,11 +142,12 @@ public class MovieRaterDB implements MovieRater {
     /**
      * List all ratings for a given movie, with scores listed in
      * ascending order of reviewer index.
-     * @param movie The movie to list ratings for
+     * 
+     * @param movie
+     *            The movie to list ratings for
      * @return String representing the listing, null if no such movie
      */
-    public String listMovie(int movie) 
-    {
+    public String listMovie(int movie) {
         return "";
     }
 
@@ -148,13 +155,14 @@ public class MovieRaterDB implements MovieRater {
     // ----------------------------------------------------------
     /**
      * Return the index for the movie most similar to the specified one.
-     * @param movie the movie to find match for.
+     * 
+     * @param movie
+     *            the movie to find match for.
      * @return The best matching index.
      *         Return -1 if this movie does not exist or if there is no
-     *           suitable match
+     *         suitable match
      */
-    public int similarMovie(int movie) 
-    {
+    public int similarMovie(int movie) {
         return -1;
     }
 
@@ -162,13 +170,14 @@ public class MovieRaterDB implements MovieRater {
     // ----------------------------------------------------------
     /**
      * Return the index for the reviewer most similar to the specified one.
-     * @param reviewer the reviewer to find match for.
+     * 
+     * @param reviewer
+     *            the reviewer to find match for.
      * @return The best matching index.
      *         Return -1 if this reviewer does not exist or if there is no
-     *           suitable match
+     *         suitable match
      */
-    public int similarReviewer(int reviewer) 
-    {
+    public int similarReviewer(int reviewer) {
         return -1;
     }
 }
