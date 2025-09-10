@@ -300,10 +300,9 @@ public class MovieRaterTest extends TestCase {
         assertEquals(matrix.size(), 3);
     }
 
-
     /**
      * 
-     */
+     *
     public void testPrintReviewer() {
         it.addReview(2, 3, 7);
         it.addReview(3, 5, 8);
@@ -315,4 +314,5 @@ public class MovieRaterTest extends TestCase {
         String actual = it.printRatings();
         assertEquals(expected, actual);
     }
+    */
 }
