@@ -6,12 +6,23 @@
  * @version 9.8.2025
  */
 public class SparseMatrix {
-
+    
+    /**
+     * SparseEntry class represents the object/data entries
+     * that are entered into the Sparse Matrix. Each
+     * SparseEntry has an assigned row, column and score.
+     */
     public class SparseEntry {
         private int row;
         private int col;
         private int score;
 
+        /**
+         * Constructor for the SparseEntry object.
+         * @param numRow the row of the object in the Sparse Matrix.
+         * @param numCol the column of the object in the Sparse Matrix.
+         * @param score the score of the object in the Sparse Matrix.
+         */
         public SparseEntry(int numRow, int numCol, int score) {
             this.row = numRow;
             this.col = numCol;
@@ -183,6 +194,13 @@ public class SparseMatrix {
     private Node head;
     private int listSize; // Number of entries in the Sparse Matrix.
 
+    /**
+     * The SparseMatrix class uses the SparseEntry and Node classes
+     * in order to operate a Sparse Matrix data structure. The class
+     * has barebones capabilities such as adding, removing, and getting
+     * objects within the Sparse Matrix, checking its size, and printing
+     * it's contents in a string format.
+     */
     public SparseMatrix() 
     {
         init();
@@ -228,7 +246,8 @@ public class SparseMatrix {
         while (current != tail) 
         {
             SparseEntry entry = current.getData();
-            if (entry.getRow() > row || (entry.getRow() == row && entry.getCol() > col)) 
+            if (entry.getRow() > row || (entry.getRow() == row && 
+                entry.getCol() > col)) 
             {
                 // Insert before current
                 SparseEntry newEntry = new SparseEntry(row, col, score);
@@ -270,16 +289,15 @@ public class SparseMatrix {
 
 
     /**
-     * Removes the object at the given position
+     * Removes the object at the given position.
      * This method will find the specific node at (row, col) and
      * remove it from both the row and column linked lists by updating
      * the pointers of the nodes before and after it.
      *
-     * @param index
-     *            the position of the object
-     * @return true if the removal was successful
-     * @throws IndexOutOfBoundsException
-     *             if there is not an element at the index
+     * @param index the position of the object.
+     * @return true if the removal was successful.
+     * @throws IndexOutOfBoundsException if there is not an element 
+     * at the index.
      */
     public boolean removeIndex(int row, int col) 
     {
@@ -304,10 +322,13 @@ public class SparseMatrix {
 
 
     /**
-     * Place a description of your method here.
+     * This method with locate a reviewer in the Sparse
+     * Matrix that is set to be removed, remove it, and 
+     * then report true or false based on its success.
      * 
-     * @param reviewer
-     * @return
+     * @param reviewer is what's to be removed
+     * @return found, or true, if the reviewer to be
+     * removed is found and successfully removed.
      */
     public boolean removeReviewer(int reviewer) 
     {
