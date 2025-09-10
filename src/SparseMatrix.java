@@ -439,12 +439,12 @@ public class SparseMatrix {
             return " ";
         }
         StringBuilder builder = new StringBuilder();
-        Node curr = head.next();
+        Node current = head.next();
         int currentReviewer = -1;
 
-        while (curr != tail) 
+        while (current != tail) 
         {
-            SparseEntry entry = curr.getData();
+            SparseEntry entry = current.getData();
 
             // new reviewer
             if (entry.getRow() != currentReviewer) 
@@ -462,7 +462,7 @@ public class SparseMatrix {
             }
             builder.append("(").append(entry.getCol()).append(", ").append(entry
                 .getScore()).append(")");
-            curr = curr.next();
+            current = current.next();
         }
         return builder.toString();
     }
