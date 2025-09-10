@@ -124,7 +124,11 @@ public class MovieRaterTest extends TestCase {
     }
 
 
-    public void testDeleteReviwer() {
+    // ----------------------------------------------------------
+    /**
+     * Test the deleteReviewer() mehtod
+     */
+    public void testDeleteReviewer() {
         it.addReview(7, 3, 10);
         it.addReview(7, 3, 7);
         it.addReview(3, 5, 8);
@@ -135,6 +139,10 @@ public class MovieRaterTest extends TestCase {
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * Test the deleteMovie() method
+     */
     public void testDeleteMovie() {
         it.addReview(3, 7, 10);
         it.addReview(2, 7, 7);
@@ -146,6 +154,10 @@ public class MovieRaterTest extends TestCase {
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * Test the deleteScore() method
+     */
     public void testDeleteScore() {
         it.addReview(3, 7, 10);
         it.addReview(3, 3, 6);
@@ -285,6 +297,10 @@ public class MovieRaterTest extends TestCase {
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * Test the removeIndex() method when false
+     */
     public void testRemoveIndexFalse() {
         // Set initial conditions. Add three entries to Sparse Matrix
         matrix.add(1, 1, 10);
