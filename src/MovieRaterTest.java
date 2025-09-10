@@ -100,6 +100,7 @@ public class MovieRaterTest extends TestCase {
         assertFalse(it.addReview(-1, 2, 8));
         assertFalse(it.addReview(1, -1, 8));
         assertFalse(it.addReview(1, 2, 0));
+        assertFalse(it.addReview(1, 1, 11));
     }
     
     public void testDeleteReviwer()
