@@ -152,6 +152,7 @@ public class MovieRaterTest extends TestCase {
        assertTrue(it.deleteScore(5,3));
     }
     
+<<<<<<< Updated upstream
     /**
      * Test case for the init() method. Ensures that the SparseMatrix
      * object is initalized correctly.
@@ -276,5 +277,20 @@ public class MovieRaterTest extends TestCase {
         
         // The size of the Sparse Matrix should remain unchanged at 3.
         assertEquals(matrix.size(), 3);
+    }
+    public void testPrintReviewer()
+    {
+        it.addReview(2, 3, 7);
+        it.addReview(3, 5, 8);
+        it.addReview(7, 3, 10);
+        it.addReview(7, 7, 1);
+        it.addReview(5, 7, 9);
+        String expected = 
+            "2: (3, 7)\n" +
+        "3: (5, 8)\n" +
+                "5: (7, 9)\n" +
+        "7: (3, 10) (7, 1)";
+        String actual = it.printRatings();
+        assertEquals(expected, actual);
     }
 }
