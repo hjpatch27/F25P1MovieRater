@@ -186,7 +186,7 @@ public class SparseMatrix
         head.setNext(tail);
         tail.setPrev(head);
         listSize = 0;
-    }
+    } 
     /**
      * Gets the number of elements in the list
      *
@@ -397,4 +397,27 @@ public class SparseMatrix
         head = new Node(null, tail); // Create header
         listSize = 0;
     }
+    
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder("{");
+        if (!isEmpty())
+        {
+            Node currNode = head.next();
+            while (currNode != tail)
+            {
+                SparseEntry entry = currNode.getData();
+                builder.append(entry.toString());
+                if (currNode.next != tail)
+                {
+                    builder.append(", ");
+                }
+                currNode = currNode.next();
+            }
+        }
+
+        builder.append("}");
+        return builder.toString();
+    }
+
 }
