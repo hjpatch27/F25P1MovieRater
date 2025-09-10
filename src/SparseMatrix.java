@@ -426,7 +426,9 @@ public class SparseMatrix {
     }
 
     /**
-     * 
+     * This methods reformats the Sparse Matrix data
+     * structure and it's entries and prints it out 
+     * into a string format.
      */
     public String toString() 
     {
