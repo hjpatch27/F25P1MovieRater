@@ -119,7 +119,8 @@ public class SparseMatrix
          */
         public Node setNext(Node n)
         {
-            return next = n;
+            next = n;
+            return next;
         }
         
         /**
@@ -138,7 +139,8 @@ public class SparseMatrix
          */
         public Node setPrev(Node p)
         {
-            return prev = p;
+            prev = p;
+            return prev;
         }
 
         /**
@@ -158,7 +160,8 @@ public class SparseMatrix
          */
         public SparseEntry setData(SparseEntry e)
         {
-            return data = e;
+            data = e;
+            return data;
         }
     }
 
@@ -426,7 +429,8 @@ public class SparseMatrix
      */
     public void clear()
     {
-        curr = tail = new Node(null , null); // Create trailer
+        tail = new Node(null , null); // Create trailer
+        curr = tail;
         head = new Node(null, tail); // Create header
         listSize = 0;
     }
