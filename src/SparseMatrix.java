@@ -366,28 +366,6 @@ public class SparseMatrix
     }
     
     /**
-     * Checks if the list contains the given object
-     *
-     * @param obj
-     *            the object to check for
-     * @return true if it contains the object
-     */
-    public boolean contains(int row, int col)
-    {
-        Node current = head.next();
-        while (current != tail)
-        {
-            SparseEntry entry = current.getData();
-            if (entry.getRow() == row && entry.getCol() == col)
-            {
-                return true;
-            }
-            current = current.next();
-        }
-        return false;
-    }
-    
-    /**
      * Removes all of the elements from the list
      */
     public void clear()

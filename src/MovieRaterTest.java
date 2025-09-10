@@ -186,6 +186,17 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
+     * Tests the add method. In this test case, there will be
+     * several scenarios where we add more than one entry to 
+     * the Sparse Matrix
+     */
+    public void testAddMultiple()
+    {
+        // Set up the initial condition. Add 1 entry to the Sparse Matrix.
+        matrix.add(2, 2, 5);
+    }
+    
+    /**
      * Tests the add() method. In this test case, we are adding a 
      * entry to the row and column of an existing entry in
      * the Sparse Matrix.
@@ -207,6 +218,13 @@ public class MovieRaterTest extends TestCase {
         assertEquals(matrix.size(), 1);
         
         // The score at (3, 3) should now be 5.
+        assertEquals(matrix.get(3, 3).getScore(), 5);
+        
+        // New Scenario: We add on exact duplicate of the current entry,
+        // same row, col, and score. Score should remain 5 and size 1.
+        matrix.add(3, 3, 5);
+        
+        assertEquals(matrix.size(), 1);
         assertEquals(matrix.get(3, 3).getScore(), 5);
     }
     
