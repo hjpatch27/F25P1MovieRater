@@ -327,9 +327,10 @@ public class MovieRaterTest extends TestCase {
     }
 
     /**
-     * 
+     * Tests the printRatings() method. Ensures that it works in a
+     * scenario where multiple entries need to be formatted and printed.
      */
-    public void testPrintReviewer() 
+    public void testPrintRatings() 
     {
         it.addReview(2, 3, 7);
         it.addReview(3, 5, 8);
@@ -342,4 +343,19 @@ public class MovieRaterTest extends TestCase {
         assertEquals(expected, actual);
     }
     
+    /**
+     * Tests the printRatings() method. In this scenario, the Sparse
+     * Matrix is empty so an empty string should be printed.
+     */
+    public void testPrintEmpty()
+    {
+        // Initial condition. No entries added to the Sparse Matrix.
+        
+        // Call the method.
+        String expected = " ";
+        String actual = it.printRatings();
+        
+        // Since the Sparse Matrix is empty, " " should be returned.
+        assertEquals(expected, actual);
+    }
 }
