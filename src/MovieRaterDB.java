@@ -137,8 +137,7 @@ public class MovieRaterDB implements MovieRater {
      * List all ratings for a given reviewer, with scores listed in
      * ascending order of movie index.
      * 
-     * @param reviewer
-     *            The reviewer to list ratings for
+     * @param reviewer is the reviewer to list ratings for
      * @return String representing the listing, null if no such reviewer
      */
     public String listReviewer(int reviewer) 
@@ -152,8 +151,7 @@ public class MovieRaterDB implements MovieRater {
      * List all ratings for a given movie, with scores listed in
      * ascending order of reviewer index.
      * 
-     * @param movie
-     *            The movie to list ratings for
+     * @param movie is the movie to list ratings for
      * @return String representing the listing, null if no such movie
      */
     public String listMovie(int movie) 
@@ -166,8 +164,7 @@ public class MovieRaterDB implements MovieRater {
     /**
      * Return the index for the movie most similar to the specified one.
      * 
-     * @param movie
-     *            the movie to find match for.
+     * @param movie is the movie to find match for.
      * @return The best matching index.
      *         Return -1 if this movie does not exist or if there is no
      *         suitable match
@@ -182,8 +179,7 @@ public class MovieRaterDB implements MovieRater {
     /**
      * Return the index for the reviewer most similar to the specified one.
      * 
-     * @param reviewer
-     *            the reviewer to find match for.
+     * @param reviewer is the reviewer to find match for.
      * @return The best matching index.
      *         Return -1 if this reviewer does not exist or if there is no
      *         suitable match
