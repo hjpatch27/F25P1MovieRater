@@ -128,7 +128,7 @@ public class MovieRaterDB implements MovieRater {
      */
     public String printRatings() 
     {
-        return sparseMatrix.toString();
+        return sparseMatrix.printRating();
     }
 
 

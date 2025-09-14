@@ -431,7 +431,7 @@ public class SparseMatrix {
      * @return builder.toString() which is the final
      * format of the Sparse Matrix in string format/
      */
-    public String toString() 
+    public String printRating() 
     {
         // Check if empty
         if (isEmpty()) 
