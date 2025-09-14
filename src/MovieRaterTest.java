@@ -125,10 +125,8 @@ public class MovieRaterTest extends TestCase {
         assertFalse(it.addReview(1, 1, 11));
     }
 
-
-    // ----------------------------------------------------------
     /**
-     * Test the deleteReviewer() mehtod
+     * Test the deleteReviewer() method
      */
     public void testDeleteReviewer() 
     {
@@ -141,8 +139,6 @@ public class MovieRaterTest extends TestCase {
         assertTrue(it.deleteReviewer(3));
     }
 
-
-    // ----------------------------------------------------------
     /**
      * Test the deleteMovie() method
      */
@@ -157,8 +153,6 @@ public class MovieRaterTest extends TestCase {
         assertTrue(it.deleteMovie(3));
     }
 
-
-    // ----------------------------------------------------------
     /**
      * Test the deleteScore() method
      */
