@@ -146,7 +146,7 @@ public class MovieRaterDB implements MovieRater {
         {
             return null;
         }
-        return sparseMatrix.printList(reviewer);
+        return sparseMatrix.printReviewer(reviewer);
     }
 
 
@@ -160,7 +160,11 @@ public class MovieRaterDB implements MovieRater {
      */
     public String listMovie(int movie) 
     {
-        return "";
+        if (movie < 0)
+        {
+            return null;
+        }
+        return sparseMatrix.printMovie(movie);
     }
 
 

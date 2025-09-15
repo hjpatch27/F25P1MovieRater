@@ -475,18 +475,51 @@ public class SparseMatrix {
      * @return builder.toString() which is the final
      * format of the Sparse Matrix in string format/
      */
-    public String printList(int reviewer) 
+    public String printReviewer(int reviewer) 
     {
+        
         StringBuilder builder = new StringBuilder();
         
         Node current = head.next();
         builder.append(reviewer).append(":");
         int count = 0;
+        
         while (current != tail) 
         {
             SparseEntry entry = current.getData();
             
             if (entry.getRow() == reviewer && entry.getCol() > -1) 
+            {
+                builder.append(" (").append(entry.getCol()).append(", ").append(entry
+                    .getScore()).append(")");
+                count++;
+                
+            }
+            current = current.next();
+        }
+        return builder.toString();
+    }
+    
+    /**
+     * This methods reformats the Sparse Matrix data
+     * structure and it's entries and prints it out 
+     * into a string format.
+     * @param movie The reviewer to list ratings for
+     * @return builder.toString() which is the final
+     * format of the Sparse Matrix in string format/
+     */
+    public String printMovie(int movie) 
+    {
+        StringBuilder builder = new StringBuilder();
+        
+        Node current = head.next();
+        builder.append(movie).append(":");
+        int count = 0;
+        while (current != tail) 
+        {
+            SparseEntry entry = current.getData();
+            
+            if (entry.getCol() == movie && entry.getRow() > -1) 
             {
                 builder.append(" (").append(entry.getCol()).append(", ").append(entry
                     .getScore()).append(")");
