@@ -535,26 +535,37 @@ public class SparseMatrix {
     }  
     
     /**
-     * 1)For each reviewer Y, look at each movie.
-     * 2)If reviewers X and Y both rated a given movie, then
-     *      add the absolute value of the difference to a sum.
-     * 3)Once you sum up the difference for all movies
-     *      that are rated by both reviewers, divide by the total number of movies sharing a review.
-     * 4)This is the similarity score for the two reviewers. The “most similar” reviewer
-     *      is the one with the lowest similarity score.
-     * 5)If there are no movies that both rated, then define the similarity score to be -1.
+     * 1) For each reviewer Y, look at each movie.
+     * 2) If reviewers X and Y both rated a given movie, then add 
+     * the absolute value of the difference to a sum.
+     * 3) Once you sum up the difference for all movies that are 
+     * rated by both reviewers, divide by the total number of 
+     * movies sharing a review.
+     * 4) This is the similarity score for the two reviewers. The 
+     * “most similar” reviewer is the one with the lowest 
+     * similarity score.
+     * 5) If there are no movies that both rated, then define the 
+     * similarity score to be -1.
+     * 
+     * @param reviewer is the row number in the Sparse Matrix, or
+     * reviewer to be comparing to
+     * @return similarIndex which will be the index of the row,
+     * or reviewer which is the most similar to one we're provided.
      */
     public int similarReviewer(int reviewer)
     {
         Node current = head.next();
         int numMovie = 0;
-        double currSimilarityScore = 0.0;
+        double scoreDifference = 0.0;
+        double currSimilarityScore = -1.0;
         double bestSimilarityScore = -1.0;
-        int similarIndex = -1;
+        int otherReviewer = 0;
+        int similarReviewer = -1;
         while (current != tail)
         {
             SparseEntry reviewerEntry = current.getData();
-            if (reviewerEntry.getRow() == reviewer && reviewerEntry.getCol() > -1)
+            if (reviewerEntry.getRow() == reviewer && 
+                reviewerEntry.getCol() > -1)
             {
                 // Get the movie that was reviewed
                 int movie = reviewerEntry.getCol();
@@ -565,18 +576,19 @@ public class SparseMatrix {
                 while (innerCur != tail)
                 {
                     SparseEntry otherEntry = innerCur.getData();
-                    if (otherEntry.getCol() == movie && otherEntry.getRow() != reviewer) 
+                    if (otherEntry.getCol() == movie && 
+                        otherEntry.getRow() != reviewer) 
                     {
                         // Save the other reviewer and their score
-                        int otherReviewer = otherEntry.getRow();
+                        otherReviewer = otherEntry.getRow();
                         double otherRating = otherEntry.getScore();
                     
                         // Calculate absolute difference
-                        double scoreDifference = Math.abs(rating - otherRating);
+                        scoreDifference += Math.abs(rating - otherRating);
                         numMovie++;
                         
                         // Calculate similarity score
-                        currSimilarityScore = scoreDifference/numMovie;
+                        currSimilarityScore = scoreDifference / numMovie;
                     }
                     innerCur = innerCur.next();
                 }
@@ -585,14 +597,15 @@ public class SparseMatrix {
                 {
                     // Replace best score with the current score.
                     bestSimilarityScore = currSimilarityScore;
-                    // Set int to be returned as index of similar reviewer
-                    similarIndex = reviewerEntry.getRow();
+                    // Set similarIndex to index of otherReviewer.
+                    similarReviewer = otherReviewer;
                 }
                 // Reset numMovie and currSimilarityScore
-                
+                numMovie = 0;
+                scoreDifference = 0.0;
             }
             current = current.next(); 
         }
-        return similarIndex;
+        return similarReviewer;
     }
 }

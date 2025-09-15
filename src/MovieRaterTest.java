@@ -152,8 +152,66 @@ public class MovieRaterTest extends TestCase {
         assertFalse(it.deleteScore(3, 7));
         assertTrue(it.deleteScore(5, 3));
     }
+    
+    /**
+     * Tests the removeReviewer() method. In this test case,
+     * we're working on mutation coverage for the line with:
+     * listSize--
+     * Specifically, replacing the int operation with the first
+     * and second member.
+     */
+    public void testRemoveReviewerListSize()
+    {
+        // Set initial conditions:
+        // Add 3 entries for reviewer 1
+        matrix.add(1, 1, 5);
+        matrix.add(1, 2, 7);
+        matrix.add(1, 3, 9);
+        // Add 1 entry for reviewer 2
+        matrix.add(2, 1, 6);
 
+        // Total size of the Sparse Matrix should be 4.
+        assertEquals(matrix.size(), 4);
 
+        // Call the method:
+        // Remove reviewer #1, should return true.
+        assertTrue(matrix.removeReviewer(1));
+        
+        // Only reviewer #2 and it's one entry should remain.
+        assertEquals(matrix.size(), 1);
+
+        // Use printRating() to confirm the remaining entry
+        // comes from reviewer #2.
+        String expected = "2: (1, 6)";
+        assertEquals(expected, matrix.printRating());
+    }
+
+    public void testRemoveMovieListSize()
+    {
+        // Set up initial conditions:
+        // Add 2 entries for movie 1
+        matrix.add(1, 1, 8);
+        matrix.add(2, 1, 9);
+        // Add 1 entry for movie 2
+        matrix.add(1, 2, 7);
+
+        // After adding 3 entries, size should be 3.
+        assertEquals(matrix.size(), 3);
+        
+        // Call the method:
+        // Remove movie #1, should return true.
+        assertTrue(matrix.removeMovie(1));
+        
+        // Only one entry should now be in the Sparse Matrix.
+        assertEquals(matrix.size(), 1);
+
+        // Ensure the remaining entry comes from movie #2.
+        SparseMatrix.SparseEntry remaining = matrix.get(1, 2);
+        assertNotNull(remaining);
+        assertEquals(remaining.getScore(), 7);
+
+    }
+    
     /**
      * Test case for the init() method. Ensures that the SparseMatrix
      * object is initalized correctly.
