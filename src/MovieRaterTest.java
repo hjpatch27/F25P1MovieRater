@@ -75,7 +75,7 @@ public class MovieRaterTest extends TestCase {
         assertFalse(it.addReview(2, 4, 0));
         assertFalse(it.addReview(2, 5, 20));
         assertFuzzyEquals(it.printRatings(), "");
-     }
+    }
      
 
     /**
@@ -323,6 +323,11 @@ public class MovieRaterTest extends TestCase {
         assertEquals(expected, actual);
     }
     
+    /**
+     * Tests the listReviwer() method. Test case adds reviews,
+     * calls the method, and expects that a list of the reviewer
+     * with his movie and scores in ascending order are returned.
+     */
     public void testListReviewer()
     {
         it.addReview(2, 3, 7);
@@ -331,6 +336,11 @@ public class MovieRaterTest extends TestCase {
         assertEquals(expected, it.listReviewer(2));
     }
     
+    /**
+     * Tests the listMovie() method. Test case adds reviews, calls
+     * the method, and expects a list of all reviewers of the movie and
+     * their score in ascending order is returned.
+     */
     public void testListMovie()
     {
         it.addReview(10, 3, 8);
