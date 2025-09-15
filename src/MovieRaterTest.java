@@ -335,7 +335,7 @@ public class MovieRaterTest extends TestCase {
     {
         it.addReview(2, 3, 10);
         it.addReview(3, 3, 8);
-        String expected = "3: 2 3";
+        String expected = "3: 8 10";
         assertEquals(expected, it.listMovie(3));
     }
     /**
