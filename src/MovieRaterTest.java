@@ -190,16 +190,23 @@ public class MovieRaterTest extends TestCase {
 
 
     /**
-     * Tests the add method. In this test case, there will be
-     * several scenarios where we add more than one entry to
-     * the Sparse Matrix
+     * Tests the add method. In this test case, we'll test a scenario
+     * where we lower the row and column as we add elements to cover
+     * mutation coverage in the situation where the equality/comparison
+     * checks of our logical expression are false.
      */
     public void testAddMultiple() 
     {
-        // Scenario 1: Add entries where each 
-        matrix.add(2, 2, 5);
+        // Set up initial conditions, add 3 entries
+        // to Sparse Matrix
+        matrix.add(2, 5, 1);
+        matrix.add(1, 5, 2); // Lower Row
+        matrix.add(2, 4, 3); // Lower Column
+        
+        // Check that entries are in the correct order.
+        String expected = "1: (5, 2)\n2: (4, 3) (5, 1)";
+        assertEquals(expected, matrix.printRating());
     }
-
 
     /**
      * Tests the add() method. In this test case, we are adding a

@@ -532,6 +532,5 @@ public class SparseMatrix {
             return null;
         }
         return builder.toString();
-    }
-       
+    }     
 }
