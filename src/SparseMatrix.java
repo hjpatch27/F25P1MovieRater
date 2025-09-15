@@ -154,8 +154,7 @@ public class SparseMatrix {
         /**
          * Sets the previous node to a new node.
          * 
-         * @param p
-         *            is what we'll change the previous node to.
+         * @param p is what we'll change the previous node to.
          * @return prev which should now be Node p.
          */
         public Node setPrev(Node p) {

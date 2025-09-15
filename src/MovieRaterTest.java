@@ -196,7 +196,7 @@ public class MovieRaterTest extends TestCase {
      */
     public void testAddMultiple() 
     {
-        // Set up the initial condition. Add 1 entry to the Sparse Matrix.
+        // Scenario 1: Add entries where each 
         matrix.add(2, 2, 5);
     }
 
@@ -334,8 +334,8 @@ public class MovieRaterTest extends TestCase {
         it.addReview(2, 5, 8);
         String expected = "2: 7 8";
         assertEquals(expected, it.listReviewer(2));
-        assertEquals(null, it.listReviewer(-1));
-        assertEquals(null, it.listReviewer(10));
+        assertNull(it.listReviewer(-1));
+        assertNull(it.listReviewer(10));
     }
     
     /**
@@ -345,14 +345,31 @@ public class MovieRaterTest extends TestCase {
      */
     public void testListMovie()
     {
+        // Scenario 1: Successfully prints all reviews
         it.addReview(10, 3, 8);
         it.addReview(2, 3, 10);
         it.addReview(3, 3, 8);
-        String expected = "3: 10 8 8";
-        assertEquals(expected, it.listMovie(3));
-        assertEquals(null, it.listMovie(-1));
-        assertEquals(null, it.listMovie(10));
+        
+        String expected1 = "3: 10 8 8";
+        assertEquals(expected1, it.listMovie(3));
+        
+        // Scenario 2: Some values in the movie are not valid
+        it.addReview(-1, 1, 7);
+        it.addReview(3, 1, 6);
+        it.addReview(0, 1, -1);
+        it.addReview(5, 2, 5);
+        
+        String expected2 = "1: 6";
+        assertEquals(expected2, it.listMovie(1));
+        
+        it.deleteScore(3, 1);
+        assertNull(it.listMovie(1));
+       
+        // Scenario 3: Movie is less than 0 so returns null
+        it.addReview(1, -1, 7);
+        assertNull(it.listMovie(-1));
     }
+    
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
      * Matrix is empty so an empty string should be printed.
