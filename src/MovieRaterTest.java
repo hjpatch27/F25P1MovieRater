@@ -298,7 +298,6 @@ public class MovieRaterTest extends TestCase {
         assertEquals(matrix.get(3, 3).getScore(), 5);
     }
 
-
     /**
      * Tests the clear() method. We will test this by adding
      * entries to the Sparse Matrix, using the clear() method,
