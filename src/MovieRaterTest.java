@@ -328,6 +328,38 @@ public class MovieRaterTest extends TestCase {
         assertNull(matrix.get(5, 3));
         assertNull(matrix.get(3, 2));
     }
+    
+    /**
+     * Tests the get() method. Test scenarios where
+     * you get entry that exists and several entries 
+     * that don't exist in the Sparse Matrix.
+     */
+    public void testGet()
+    {
+        // Set initial conditions:
+        // Add three entries to the Sparse Matrix.
+        matrix.add(1, 1, 1);
+        matrix.add(2, 2, 2);
+        matrix.add(3, 3, 3);
+
+        // Check that get() will not return null for
+        // an existing entry.
+        SparseMatrix.SparseEntry entry = matrix.get(2, 2);
+        assertNotNull(entry);
+        assertEquals(2, entry.getScore());
+
+        // Check that get() will return null for
+        // an entry with a nonexistent row.
+        assertNull(matrix.get(1, 2));
+
+        // Check that get() will return null for
+        // an entry with a nonexistent column.
+        assertNull(matrix.get(2, 1));
+
+        // Check that get() will return null for
+        // an entry with a nonexistent row and column.
+        assertNull(matrix.get(4, 4));
+    }
 
 
     /**
