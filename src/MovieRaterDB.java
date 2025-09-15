@@ -142,7 +142,11 @@ public class MovieRaterDB implements MovieRater {
      */
     public String listReviewer(int reviewer) 
     {
-        return "";
+        if (reviewer < 0)
+        {
+            return null;
+        }
+        return sparseMatrix.printList(reviewer);
     }
 
 
