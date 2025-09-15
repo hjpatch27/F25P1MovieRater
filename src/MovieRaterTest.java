@@ -186,6 +186,13 @@ public class MovieRaterTest extends TestCase {
         assertEquals(expected, matrix.printRating());
     }
 
+    /**
+     * Tests the removeMovie() method. In this test case,
+     * we're working on mutation coverage for the line with:
+     * listSize--
+     * Specifically, replacing the int operation with the first
+     * and second member.
+     */
     public void testRemoveMovieListSize()
     {
         // Set up initial conditions:
