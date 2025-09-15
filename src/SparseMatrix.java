@@ -43,8 +43,7 @@ public class SparseMatrix {
         /**
          * Sets the row number to a new row in the Sparse Matrix.
          * 
-         * @param newRow
-         *            is the row number to be changed to.
+         * @param newRow is the row number to be changed to.
          */
         public void setRow(int newRow) {
             row = newRow;
@@ -64,8 +63,7 @@ public class SparseMatrix {
         /**
          * Sets the column number to a new column in the Sparse Matrix.
          * 
-         * @param newCol
-         *            is the column number to be changed to.
+         * @param newCol is the column number to be changed to.
          */
         public void setCol(int newCol) {
             col = newCol;
@@ -85,8 +83,7 @@ public class SparseMatrix {
         /**
          * Sets the score to a new value in the Sparse Matrix.
          * 
-         * @param newScore
-         *            is the score value to be changed to.
+         * @param newScore is the score value to be changed to.
          */
         public void setScore(int newScore) {
             score = newScore;
@@ -103,8 +100,7 @@ public class SparseMatrix {
         /**
          * Creates a new node with the given data
          *
-         * @param d
-         *            the data to put inside the node
+         * @param d is the data to put inside the node
          */
         public Node(SparseEntry e, Node p, Node n) {
             this.data = e;
@@ -132,8 +128,7 @@ public class SparseMatrix {
         /**
          * Sets the next node to a new node.
          *
-         * @param n
-         *            is the node after the current one.
+         * @param n is the node after the current one.
          */
         public Node setNext(Node n) {
             next = n;
