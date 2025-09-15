@@ -456,7 +456,7 @@ public class SparseMatrix {
                 currentReviewer = entry.getRow();
                 builder.append(currentReviewer).append(": ");
             }
-            else 
+            else
             {
                 builder.append(" ");
             }
@@ -480,15 +480,18 @@ public class SparseMatrix {
         StringBuilder builder = new StringBuilder();
         
         Node current = head.next();
-
+        builder.append(reviewer).append(":");
+        int count = 0;
         while (current != tail) 
         {
             SparseEntry entry = current.getData();
             
-            builder.append(reviewer).append(":");
             if (entry.getRow() == reviewer && entry.getCol() > -1) 
             {
-                builder.append(" ").append(entry);
+                builder.append(" (").append(entry.getCol()).append(", ").append(entry
+                    .getScore()).append(")");
+                count++;
+                
             }
             current = current.next();
         }

@@ -337,6 +337,13 @@ public class MovieRaterTest extends TestCase {
         assertEquals(expected, actual);
     }
     
+    public void testListReviewer()
+    {
+        it.addReview(2, 3, 7);
+        it.addReview(2, 5, 8);
+        String expected = "2: (3, 7) (5, 8)";
+        assertEquals(expected, it.listReviewer(2));
+    }
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
      * Matrix is empty so an empty string should be printed.
