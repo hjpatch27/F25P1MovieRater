@@ -557,8 +557,8 @@ public class SparseMatrix {
         Node current = head.next();
         int numMovie = 0;
         double scoreDifference = 0.0;
-        double currSimilarityScore = -1.0;
-        double bestSimilarityScore = -1.0;
+        double currSimilarityScore = 0.0;
+        double bestSimilarityScore = 0.0;
         int otherReviewer = 0;
         int similarReviewer = -1;
         while (current != tail)
