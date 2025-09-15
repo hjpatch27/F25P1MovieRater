@@ -327,7 +327,7 @@ public class MovieRaterTest extends TestCase {
     {
         it.addReview(2, 3, 7);
         it.addReview(2, 5, 8);
-        String expected = "2: (3, 7) (5, 8)";
+        String expected = "2: 7 8";
         assertEquals(expected, it.listReviewer(2));
     }
     
@@ -335,8 +335,8 @@ public class MovieRaterTest extends TestCase {
     {
         it.addReview(2, 3, 10);
         it.addReview(3, 3, 8);
-        String expected = "3: (2, 10) (3, 8)";
-        assertEquals(expected, it.listReviewer(3));
+        String expected = "3: 2 3";
+        assertEquals(expected, it.listMovie(3));
     }
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
