@@ -482,7 +482,7 @@ public class SparseMatrix {
         
         Node current = head.next();
         builder.append(reviewer).append(":");
-        
+        int count = 0;
         while (current != tail) 
         {
             SparseEntry entry = current.getData();
@@ -492,10 +492,16 @@ public class SparseMatrix {
                 
                 builder.append(" ");
                 builder.append(entry.getScore());
+                count++;
                 
             }
             current = current.next();
         }
+        if (count == 0)
+        {
+            return null;
+        }
+        
         return builder.toString();
     }
     
@@ -513,6 +519,7 @@ public class SparseMatrix {
         
         Node current = head.next();
         builder.append(movie).append(":");
+        int count = 0;
         while (current != tail) 
         {
             SparseEntry entry = current.getData();
@@ -520,11 +527,15 @@ public class SparseMatrix {
             if (entry.getCol() == movie && entry.getRow() > -1) 
             {
                 builder.append(" ");
-                
                 builder.append(entry.getScore());
+                count++;
                 
             }
             current = current.next();
+        }
+        if (count == 0)
+        {
+            return null;
         }
         return builder.toString();
     }
