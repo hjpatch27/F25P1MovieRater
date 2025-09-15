@@ -7,7 +7,7 @@ import student.TestCase;
  * and mutation coverage.
  * 
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
- * @version 9.8.2025
+ * @version 9.15.2025
  */
 public class MovieRaterTest extends TestCase {
 
