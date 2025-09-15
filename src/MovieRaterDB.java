@@ -194,6 +194,6 @@ public class MovieRaterDB implements MovieRater {
      */
     public int similarReviewer(int reviewer) 
     {
-        return -1;
+        return sparseMatrix.similarReviewer(reviewer);
     }
 }

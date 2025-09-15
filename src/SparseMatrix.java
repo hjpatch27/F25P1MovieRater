@@ -547,8 +547,10 @@ public class SparseMatrix {
     public int similarReviewer(int reviewer)
     {
         Node current = head.next();
-        double numMovie = 0;
-        double currSimilarityScore = 0;
+        int numMovie = 0;
+        double currSimilarityScore = 0.0;
+        double bestSimilarityScore = -1.0;
+        int similarIndex = -1;
         while (current != tail)
         {
             SparseEntry reviewerEntry = current.getData();
@@ -570,14 +572,27 @@ public class SparseMatrix {
                         double otherRating = otherEntry.getScore();
                     
                         // Calculate absolute difference
-                        double scoreDiffernece = Math.abs(rating - otherRating);
+                        double scoreDifference = Math.abs(rating - otherRating);
                         numMovie++;
+                        
+                        // Calculate similarity score
+                        currSimilarityScore = scoreDifference/numMovie;
                     }
                     innerCur = innerCur.next();
-                }    
+                }
+                // Check is similarity score was the best.
+                if (currSimilarityScore < bestSimilarityScore)
+                {
+                    // Replace best score with the current score.
+                    bestSimilarityScore = currSimilarityScore;
+                    // Set int to be returned as index of similar reviewer
+                    similarIndex = reviewerEntry.getRow();
+                }
+                // Reset numMovie and currSimilarityScore
+                
             }
             current = current.next(); 
         }
-        return 0;
+        return similarIndex;
     }
 }
