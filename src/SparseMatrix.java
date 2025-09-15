@@ -521,7 +521,7 @@ public class SparseMatrix {
             {
                 builder.append(" ");
                 
-                builder.append(entry.getRow());
+                builder.append(entry.getScore());
                 
             }
             current = current.next();
