@@ -532,5 +532,52 @@ public class SparseMatrix {
             return null;
         }
         return builder.toString();
-    }     
+    }  
+    
+    /**
+     * 1)For each reviewer Y, look at each movie.
+     * 2)If reviewers X and Y both rated a given movie, then
+     *      add the absolute value of the difference to a sum.
+     * 3)Once you sum up the difference for all movies
+     *      that are rated by both reviewers, divide by the total number of movies sharing a review.
+     * 4)This is the similarity score for the two reviewers. The “most similar” reviewer
+     *      is the one with the lowest similarity score.
+     * 5)If there are no movies that both rated, then define the similarity score to be -1.
+     */
+    public int similarReviewer(int reviewer)
+    {
+        Node current = head.next();
+        double numMovie = 0;
+        double currSimilarityScore = 0;
+        while (current != tail)
+        {
+            SparseEntry reviewerEntry = current.getData();
+            if (reviewerEntry.getRow() == reviewer && reviewerEntry.getCol() > -1)
+            {
+                // Get the movie that was reviewed
+                int movie = reviewerEntry.getCol();
+                double rating = reviewerEntry.getScore();
+            
+                // Find another reviewer for the movie that was rated
+                Node innerCur = head.next();
+                while (innerCur != tail)
+                {
+                    SparseEntry otherEntry = innerCur.getData();
+                    if (otherEntry.getCol() == movie && otherEntry.getRow() != reviewer) 
+                    {
+                        // Save the other reviewer and their score
+                        int otherReviewer = otherEntry.getRow();
+                        double otherRating = otherEntry.getScore();
+                    
+                        // Calculate absolute difference
+                        double scoreDiffernece = Math.abs(rating - otherRating);
+                        numMovie++;
+                    }
+                    innerCur = innerCur.next();
+                }    
+            }
+            current = current.next(); 
+        }
+        return 0;
+    }
 }
