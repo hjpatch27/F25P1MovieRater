@@ -464,7 +464,8 @@ public class SparseMatrix {
                     // Find the rating of otherReviewer for the same movie.
                     Node innerOtherReviewerNode = head.next();
                     while (innerOtherReviewerNode != tail) {
-                        SparseEntry innerOtherEntry = innerOtherReviewerNode.getData();
+                        SparseEntry innerOtherEntry = 
+                            innerOtherReviewerNode.getData();
                         if (innerOtherEntry.getRow() == otherReviewer && 
                             innerOtherEntry.getCol() == movie) {
                             double otherRating = innerOtherEntry.getScore();
@@ -479,11 +480,11 @@ public class SparseMatrix {
                 reviewerNode = reviewerNode.next();
             }
 
-            // Calculate similarity score for the current pair if they share movie
+            // Calculate similarityScore for current pair if they share movie
             if (numMovie > 0) {
                 double currSimilarityScore = scoreDifference / numMovie;
 
-                // Check if this is the best score found so far, with tie-breaking for lower index.
+                // Check if this is best score found. A tie goes with lower index.
                 if (currSimilarityScore < bestSimilarityScore || 
                     (currSimilarityScore == bestSimilarityScore && 
                     otherReviewer < similarReviewer)) { 
@@ -523,18 +524,21 @@ public class SparseMatrix {
             int numMovie = 0;
 
             // Find shared movies between reviewer and otherReviewer
-            Node MovieNode = head.next();
-            while (MovieNode != tail) {
-                SparseEntry mainMovieEntry = MovieNode.getData();
-                if (mainMovieEntry.getCol() == movie && mainMovieEntry.getRow() > -1) {
+            Node movieNode = head.next();
+            while (movieNode != tail) {
+                SparseEntry mainMovieEntry = movieNode.getData();
+                if (mainMovieEntry.getCol() == movie && 
+                    mainMovieEntry.getRow() > -1) {
                     int reviewer = mainMovieEntry.getRow();
                     double rating = mainMovieEntry.getScore();
 
                     // Find the rating of otherReviewer for the same movie.
                     Node innerOtherMovieNode = head.next();
                     while (innerOtherMovieNode != tail) {
-                        SparseEntry innerOtherEntry = innerOtherMovieNode.getData();
-                        if (innerOtherEntry.getCol() == otherMovie && innerOtherEntry.getRow() == reviewer) {
+                        SparseEntry innerOtherEntry = 
+                            innerOtherMovieNode.getData();
+                        if (innerOtherEntry.getCol() == otherMovie && 
+                            innerOtherEntry.getRow() == reviewer) {
                             double otherRating = innerOtherEntry.getScore();
 
                             // Compute the difference
@@ -544,17 +548,17 @@ public class SparseMatrix {
                         innerOtherMovieNode = innerOtherMovieNode.next();
                     }
                 }
-                MovieNode = MovieNode.next();
+                movieNode = movieNode.next();
             }
 
-            // Calculate similarity score for the current pair if they share movie
+            // Calculate similarityScore for current pair if they share movie
             if (numMovie > 0) {
                 double currSimilarityScore = scoreDifference / numMovie;
 
-                // Check if this is the best score found so far, with tie-breaking for lower index.
+                // Check if this is best score found. A tie goes with lower index.
                 if (currSimilarityScore < bestSimilarityScore || 
-                    (currSimilarityScore == bestSimilarityScore && otherMovie < similarReviewer)) {
-                    
+                    (currSimilarityScore == bestSimilarityScore 
+                    && otherMovie < similarReviewer)) {         
                     bestSimilarityScore = currSimilarityScore;
                     similarReviewer = otherMovie;
                 }
