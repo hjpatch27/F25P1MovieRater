@@ -474,13 +474,12 @@ public class MovieRaterTest extends TestCase {
         it.addReview(3, 1, 6);
         
         assertEquals(2, it.similarReviewer(1));
-  
     }
     
     
     /**
-     * Tests the similarReviewer() method. In this scenario, reviewer 2 
-     * is most similar to reviewer 1.
+     * Tests the similarMovie() method. In this scenario, movie 2 
+     * is most similar to movie 1.
      */
     public void testSimilarMovie()
     {
@@ -489,10 +488,29 @@ public class MovieRaterTest extends TestCase {
         it.addReview(2, 1, 4);
         it.addReview(2, 2, 3);
         it.addReview(3, 1, 1);
+        it.addReview(4, 5, 8);
         
         assertEquals(2, it.similarMovie(1));
+        assertEquals(-1, it.similarMovie(4));
+        assertEquals(-1, it.similarMovie(10));
     }
-
+    
+    /**
+     * Tests the similarMovie() method. In this scenario, there is a 
+     * tie for most similar. Should return the movie 
+     * with the lowest index.
+     */
+    public void testSimilarMovie2()
+    {
+        it.addReview(1, 1, 5);
+        it.addReview(1, 2, 6);
+        it.addReview(2, 3, 3);
+        it.addReview(2, 2, 2);
+        it.addReview(3, 3, 1);
+        
+        assertEquals(2, it.similarMovie(1));
+  
+    }
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
      * Matrix is empty so an empty string should be printed.
