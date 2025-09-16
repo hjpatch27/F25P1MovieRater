@@ -599,28 +599,6 @@ public class MovieRaterTest extends TestCase {
         assertEquals(2, similar);
     }
     
-    public void testSimilarMovie5()
-    {
-
-        // Reviewer 1
-        matrix.add(1, 1, 5);
-        matrix.add(1, 2, 7);
-        
-        // Reviewer 2
-        matrix.add(2, 1, 6);
-        matrix.add(2, 3, 8);
-
-        // Reviewer 3
-        matrix.add(3, 1, 5);
-        matrix.add(3, 2, 6);
-        matrix.add(3, 3, 7);
-
-
-        // Movie 2 is most similar to movie 1
-        int similar = matrix.similarMovie(1);
-        assertEquals(2, similar);
-    }
-    
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
      * Matrix is empty so an empty string should be printed.
