@@ -474,7 +474,8 @@ public class SparseMatrix {
             Node reviewerNode = head.next();
             while (reviewerNode != tail) {
                 SparseEntry mainReviewerEntry = reviewerNode.getData();
-                if (mainReviewerEntry.getRow() == reviewer && mainReviewerEntry.getCol() > -1) {
+                if (mainReviewerEntry.getRow() == reviewer && 
+                    mainReviewerEntry.getCol() > -1) {
                     int movie = mainReviewerEntry.getCol();
                     double rating = mainReviewerEntry.getScore();
 
@@ -482,7 +483,8 @@ public class SparseMatrix {
                     Node innerOtherReviewerNode = head.next();
                     while (innerOtherReviewerNode != tail) {
                         SparseEntry innerOtherEntry = innerOtherReviewerNode.getData();
-                        if (innerOtherEntry.getRow() == otherReviewer && innerOtherEntry.getCol() == movie) {
+                        if (innerOtherEntry.getRow() == otherReviewer && 
+                            innerOtherEntry.getCol() == movie) {
                             double otherRating = innerOtherEntry.getScore();
 
                             // Compute the difference
@@ -501,8 +503,8 @@ public class SparseMatrix {
 
                 // Check if this is the best score found so far, with tie-breaking for lower index.
                 if (currSimilarityScore < bestSimilarityScore || 
-                    (currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)) {
-                    
+                    (currSimilarityScore == bestSimilarityScore && 
+                    otherReviewer < similarReviewer)) { 
                     bestSimilarityScore = currSimilarityScore;
                     similarReviewer = otherReviewer;
                 }
