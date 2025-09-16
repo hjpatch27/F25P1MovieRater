@@ -426,6 +426,14 @@ public class MovieRaterTest extends TestCase {
         assertEquals(expected, matrix.printReviewer(1));
     }
     /**
+     * Test case to cover reviewer < 0 for the method printReviewer()
+     */
+    public void testListReviewer3()
+    {
+        String result = matrix.printReviewer(-5); 
+        assertNull(result); 
+    }
+    /**
      * Tests the listMovie() method. Test case adds reviews, calls
      * the method, and expects a list of all reviewers of the movie and
      * their score in ascending order is returned.
@@ -469,6 +477,15 @@ public class MovieRaterTest extends TestCase {
         String expected = "1: 5";
         assertEquals(expected, matrix.printMovie(1));
         assertEquals(expected, matrix.printMovie(1));
+    }
+    
+    /**
+     * Test case to cover movie < 0 for the method printMovie()
+     */
+    public void testListMovie3()
+    {
+        String result = matrix.printMovie(-5); 
+        assertNull(result); 
     }
     /**
      * Tests the similarReviewer() method. In this scenario, reviewer 2 

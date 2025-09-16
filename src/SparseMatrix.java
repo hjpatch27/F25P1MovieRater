@@ -364,6 +364,11 @@ public class SparseMatrix {
      * format of the Sparse Matrix in string format/
      */
     public String printReviewer(int reviewer) {
+        if (reviewer < 0)
+        {
+            return null;
+        }
+        
         StringBuilder builder = new StringBuilder();
         
         Node current = head.next();
@@ -395,6 +400,10 @@ public class SparseMatrix {
      * format of the Sparse Matrix in string format.
      */
     public String printMovie(int movie) {
+        if (movie < 0)
+        {
+            return null;
+        }
         StringBuilder builder = new StringBuilder();
         
         Node current = head.next();
@@ -407,7 +416,6 @@ public class SparseMatrix {
                 builder.append(" ");
                 builder.append(entry.getScore());
                 count++;
-                
             }
             current = current.next();
         }
