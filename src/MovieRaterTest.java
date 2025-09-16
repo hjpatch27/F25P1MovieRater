@@ -550,17 +550,36 @@ public class MovieRaterTest extends TestCase {
         // Set up initial condition
         it.addReview(1, 1, 6);
         it.addReview(-1, 1, 6); // getRow() < 0 gets skipped
+        it.addReview(2, -1, 7); // getCol() <= -1 get skipped
         
         // Scenario 1: The previous score is better than the current
         // one so no changes occur
-        it.addReview(2, 2, 7);
+        it.addReview(2, 1, 5);
+        it.addReview(2, 2, 5);
         assertEquals(2, it.similarMovie(1));
         it.addReview(3, 3, 8);
         // similarMovie() should still go with reviewer 2.
-        assertEquals(2, it.similarMovie(1));
-       
-        
-        
+        assertEquals(2, it.similarMovie(1));    
+    }
+    
+    public void testSimilarMovie4()
+    {
+
+        // Reviewer 1 rates movie 1 and 2
+        matrix.add(1, 1, 5); // movie 1
+        matrix.add(1, 2, 6); // movie 2
+
+        // Reviewer 2 rates movie 1 and 3
+        matrix.add(2, 1, 4); // movie 1
+        matrix.add(2, 3, 5); // movie 3
+
+        // Reviewer 3 rates movie 2 and 3
+        matrix.add(3, 2, 6); // movie 2
+        matrix.add(3, 3, 6); // movie 3
+
+        // Movie 1 is most similar to movie 2 (reviewer 1 overlap, score diff = 1)
+        int similar = matrix.similarMovie(1);
+        assertEquals(2, similar);
     }
     
     /**
