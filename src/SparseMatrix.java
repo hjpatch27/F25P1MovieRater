@@ -509,7 +509,6 @@ public class SparseMatrix {
             }
             otherReviewerNode = otherReviewerNode.next();
         }
- 
         return similarReviewer;    
     }
     
@@ -533,62 +532,63 @@ public class SparseMatrix {
      */
     public int similarMovie(int movie)
     {
-        Node current = head.next();
-        int numReviewer = 0;
-        double scoreDifference = 0.0;
-        double currSimilarityScore = 0.0;
-        double bestSimilarityScore = 0.0;
-        int otherMovie = 0;
-        int similarMovie = -1;
-        while (current != tail)
-        {
-            SparseEntry movieEntry = current.getData();
-            if (movieEntry.getCol() == movie && 
-                movieEntry.getRow() > -1)
-            {
-                // Get the reviewer of the movie
-                int reviewer = movieEntry.getRow();
-                double rating = movieEntry.getScore();
-            
-                // Find another movie for the reviewer that was rated
-                Node innerCur = head.next();
-                while (innerCur != tail)
-                {
-                    SparseEntry otherEntry = innerCur.getData();
-                    if (otherEntry.getRow() == reviewer && 
-                        otherEntry.getCol() != movie) 
-                    {
-                        // Save the other movie and their score
-                        otherMovie = otherEntry.getCol();
-                        double otherRating = otherEntry.getScore();
-                    
-                        // Calculate absolute difference
-                        scoreDifference += Math.abs(rating - otherRating);
-                        numReviewer++;
-                        
-                        // Calculate similarity score
-                        currSimilarityScore = scoreDifference / numReviewer;
-                    }
-                    innerCur = innerCur.next();
-                }
-                // Check is similarity score was the best.
-                if (currSimilarityScore < bestSimilarityScore || 
-                    (bestSimilarityScore == 0.0 && 
-                    currSimilarityScore != 0.0) ||
-                    (currSimilarityScore == bestSimilarityScore 
-                    && otherMovie < similarMovie))
-                {
-                    // Replace best score with the current score.
-                    bestSimilarityScore = currSimilarityScore;
-                    // Set similarIndex to index of otherMovie.
-                    similarMovie = otherMovie;
-                }
-                // Reset numReviewer and currSimilarityScore
-                numReviewer = 0;
-                scoreDifference = 0.0;
+        double bestSimilarityScore = Double.MAX_VALUE;
+        int similarReviewer = -1;
+
+        // Iterate through all possible other reviewers
+        Node otherMovieNode = head.next();
+        while (otherMovieNode != tail) {
+            SparseEntry otherMovieEntry = otherMovieNode.getData();
+            int otherMovie = otherMovieEntry.getCol();
+
+            // Skip the main reviewer and any entries that are empty
+            if (otherMovie == movie || otherMovieEntry.getRow() < 0) {
+                otherMovieNode = otherMovieNode.next();
+                continue;
             }
-            current = current.next(); 
+
+            double scoreDifference = 0.0;
+            int numMovie = 0;
+
+            // Find shared movies between reviewer and otherReviewer
+            Node MovieNode = head.next();
+            while (MovieNode != tail) {
+                SparseEntry mainMovieEntry = MovieNode.getData();
+                if (mainMovieEntry.getCol() == movie && mainMovieEntry.getRow() > -1) {
+                    int reviewer = mainMovieEntry.getRow();
+                    double rating = mainMovieEntry.getScore();
+
+                    // Find the rating of otherReviewer for the same movie.
+                    Node innerOtherMovieNode = head.next();
+                    while (innerOtherMovieNode != tail) {
+                        SparseEntry innerOtherEntry = innerOtherMovieNode.getData();
+                        if (innerOtherEntry.getCol() == otherMovie && innerOtherEntry.getRow() == reviewer) {
+                            double otherRating = innerOtherEntry.getScore();
+
+                            // Compute the difference
+                            scoreDifference += Math.abs(rating - otherRating);
+                            numMovie++;
+                        }
+                        innerOtherMovieNode = innerOtherMovieNode.next();
+                    }
+                }
+                MovieNode = MovieNode.next();
+            }
+
+            // Calculate similarity score for the current pair if they share movie
+            if (numMovie > 0) {
+                double currSimilarityScore = scoreDifference / numMovie;
+
+                // Check if this is the best score found so far, with tie-breaking for lower index.
+                if (currSimilarityScore < bestSimilarityScore || 
+                    (currSimilarityScore == bestSimilarityScore && otherMovie < similarReviewer)) {
+                    
+                    bestSimilarityScore = currSimilarityScore;
+                    similarReviewer = otherMovie;
+                }
+            }
+            otherMovieNode = otherMovieNode.next();
         }
-        return similarMovie;
+        return similarReviewer; 
     }
 }
