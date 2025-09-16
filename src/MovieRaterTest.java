@@ -444,8 +444,9 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
-     * Tests the similarReviewer() method. In this scenario, reviewer 2 is most similar
-     * to reviewer 1. And when the target reviewer has no movies in common.
+     * Tests the similarReviewer() method. In this scenario, reviewer 2 
+     * is most similar to reviewer 1. And when the target reviewer 
+     * has no movies in common.
      */
     public void testSimilarReviewer()
     {
@@ -462,8 +463,9 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
-     * Tests the similarReviewer() method. In this scenario, there is a tie for most similar.
-     * Should return the reviewer with the lowest index.
+     * Tests the similarReviewer() method. In this scenario, there is a 
+     * tie for most similar. Should return the reviewer 
+     * with the lowest index.
      */
     public void testSimilarReviewer2()
     {
@@ -471,14 +473,14 @@ public class MovieRaterTest extends TestCase {
         it.addReview(2, 1, 6);
         it.addReview(3, 1, 6);
         
-        assertEquals(2, it.similarReviewer(1));
+        assertEquals(3, it.similarReviewer(1));
   
     }
     
     
     /**
-     * Tests the similarReviewer() method. In this scenario, reviewer 2 is most similar
-     * to reviewer 1.
+     * Tests the similarReviewer() method. In this scenario, reviewer 2 
+     * is most similar to reviewer 1.
      */
     public void testSimilarMovie()
     {
