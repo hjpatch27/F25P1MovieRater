@@ -473,6 +473,10 @@ public class MovieRaterTest extends TestCase {
         assertNull(it.listMovie(-1));
     }
     
+    /**
+     * Tests the similarReviewer() method. In this scenario, reviewer 2 is most similar
+     * to reviewer 1.
+     */
     public void testSimilarReviewer()
     {
         it.addReview(1, 1, 5);
