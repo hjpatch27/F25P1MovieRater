@@ -179,7 +179,7 @@ public class MovieRaterDB implements MovieRater {
      */
     public int similarMovie(int movie) 
     {
-        return -1;
+        return sparseMatrix.similarMovie(movie);
     }
 
 
