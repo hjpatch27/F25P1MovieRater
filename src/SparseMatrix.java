@@ -586,4 +586,79 @@ public class SparseMatrix {
         }
         return similarReviewer;
     }
+    
+    /**
+     * 1) For each reviewer Y, look at each movie.
+     * 2) If reviewers X and Y both rated a given movie, then add 
+     * the absolute value of the difference to a sum.
+     * 3) Once you sum up the difference for all movies that are 
+     * rated by both reviewers, divide by the total number of 
+     * movies sharing a review.
+     * 4) This is the similarity score for the two reviewers. The 
+     * “most similar” reviewer is the one with the lowest 
+     * similarity score.
+     * 5) If there are no movies that both rated, then define the 
+     * similarity score to be -1.
+     * 
+     * @param movie is the column number in the Sparse Matrix, or
+     * movie to be comparing to.
+     * @return similarIndex which will be the index of the row,
+     * or reviewer which is the most similar to one we're provided.
+     */
+    public int similarMovie(int movie)
+    {
+        Node current = head.next();
+        int numReviewer = 0;
+        double scoreDifference = 0.0;
+        double currSimilarityScore = 0.0;
+        double bestSimilarityScore = 0.0;
+        int otherMovie = 0;
+        int similarMovie = -1;
+        while (current != tail)
+        {
+            SparseEntry movieEntry = current.getData();
+            if (movieEntry.getCol() == movie && 
+                movieEntry.getRow() > -1)
+            {
+                // Get the reviewer of the movie
+                int reviewer = movieEntry.getRow();
+                double rating = movieEntry.getScore();
+            
+                // Find another reviewer for the movie that was rated
+                Node innerCur = head.next();
+                while (innerCur != tail)
+                {
+                    SparseEntry otherEntry = innerCur.getData();
+                    if (otherEntry.getRow() == reviewer && 
+                        otherEntry.getCol() != movie) 
+                    {
+                        // Save the other reviewer and their score
+                        otherMovie = otherEntry.getCol();
+                        double otherRating = otherEntry.getScore();
+                    
+                        // Calculate absolute difference
+                        scoreDifference += Math.abs(rating - otherRating);
+                        numReviewer++;
+                        
+                        // Calculate similarity score
+                        currSimilarityScore = scoreDifference / numReviewer;
+                    }
+                    innerCur = innerCur.next();
+                }
+                // Check is similarity score was the best.
+                if (currSimilarityScore < bestSimilarityScore || bestSimilarityScore == 0.0)
+                {
+                    // Replace best score with the current score.
+                    bestSimilarityScore = currSimilarityScore;
+                    // Set similarIndex to index of otherMovie.
+                    similarMovie = otherMovie;
+                }
+                // Reset numReviewer and currSimilarityScore
+                numReviewer = 0;
+                scoreDifference = 0.0;
+            }
+            current = current.next(); 
+        }
+        return similarMovie;
+    }
 }
