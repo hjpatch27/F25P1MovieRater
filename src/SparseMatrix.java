@@ -452,45 +452,40 @@ public class SparseMatrix {
      */
     public int similarReviewer(int reviewer)
     {
-        double bestSimilarityScore = Double.MAX_VALUE; 
+        double bestSimilarityScore = Double.MAX_VALUE;
         int similarReviewer = -1;
 
-        // Iterate through all other reviewers
+        // Iterate through all possible other reviewers
         Node otherReviewerNode = head.next();
-        while (otherReviewerNode != tail) 
-        {
+        while (otherReviewerNode != tail) {
             SparseEntry otherReviewerEntry = otherReviewerNode.getData();
             int otherReviewer = otherReviewerEntry.getRow();
 
-            // Skip the main reviewer and any entries that don't exist
-            if (otherReviewer == reviewer || otherReviewerEntry.getCol() < 0) 
-            {
+            // Skip the main reviewer and any entries that are empty
+            if (otherReviewer == reviewer || otherReviewerEntry.getCol() < 0) {
                 otherReviewerNode = otherReviewerNode.next();
                 continue;
             }
+
             double scoreDifference = 0.0;
             int numMovie = 0;
 
-            // Find shared movies between reviewer and other reviewer
+            // Find shared movies between reviewer and otherReviewer
             Node reviewerNode = head.next();
-            while (reviewerNode != tail) 
-            {
+            while (reviewerNode != tail) {
                 SparseEntry mainReviewerEntry = reviewerNode.getData();
-                if (mainReviewerEntry.getRow() == reviewer && mainReviewerEntry.getCol() > -1) 
-                {
+                if (mainReviewerEntry.getRow() == reviewer && mainReviewerEntry.getCol() > -1) {
                     int movie = mainReviewerEntry.getCol();
                     double rating = mainReviewerEntry.getScore();
 
-                    // Find the rating of the other reviewer for the same movie.
+                    // Find the rating of otherReviewer for the same movie.
                     Node innerOtherReviewerNode = head.next();
-                    while (innerOtherReviewerNode != tail) 
-                    {
+                    while (innerOtherReviewerNode != tail) {
                         SparseEntry innerOtherEntry = innerOtherReviewerNode.getData();
-                        if (innerOtherEntry.getRow() == otherReviewer && innerOtherEntry.getCol() == movie) 
-                        {
+                        if (innerOtherEntry.getRow() == otherReviewer && innerOtherEntry.getCol() == movie) {
                             double otherRating = innerOtherEntry.getScore();
 
-                            // Add to sum and count if a shared movie is found.
+                            // Compute the difference
                             scoreDifference += Math.abs(rating - otherRating);
                             numMovie++;
                         }
@@ -500,30 +495,22 @@ public class SparseMatrix {
                 reviewerNode = reviewerNode.next();
             }
 
-            // Calculate similarity score for the current pair if there are shared movies
+            // Calculate similarity score for the current pair if they share movie
             if (numMovie > 0) {
                 double currSimilarityScore = scoreDifference / numMovie;
 
                 // Check if this is the best score found so far, with tie-breaking for lower index.
                 if (currSimilarityScore < bestSimilarityScore || 
-<<<<<<< Updated upstream
-                    (bestSimilarityScore == 0.0 && 
-                    currSimilarityScore != 0.0) ||
-                    (currSimilarityScore == bestSimilarityScore 
-                    && otherReviewer < similarReviewer))
-                {
-                    // Replace best score with the current score.
-=======
                     (currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)) {
                     
->>>>>>> Stashed changes
                     bestSimilarityScore = currSimilarityScore;
                     similarReviewer = otherReviewer;
                 }
             }
             otherReviewerNode = otherReviewerNode.next();
         }
-        return similarReviewer;        
+ 
+        return similarReviewer;    
     }
     
     /**

@@ -473,7 +473,7 @@ public class MovieRaterTest extends TestCase {
         it.addReview(2, 1, 6);
         it.addReview(3, 1, 6);
         
-        assertEquals(3, it.similarReviewer(1));
+        assertEquals(2, it.similarReviewer(1));
   
     }
     
