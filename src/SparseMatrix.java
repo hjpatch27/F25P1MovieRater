@@ -571,7 +571,8 @@ public class SparseMatrix {
                     innerCur = innerCur.next();
                 }
                 // Check is similarity score was the best.
-                if (currSimilarityScore < bestSimilarityScore || bestSimilarityScore == 0.0)
+                if (currSimilarityScore < bestSimilarityScore || 
+                    (bestSimilarityScore == 0.0 && currSimilarityScore != 0.0))
                 {
                     // Replace best score with the current score.
                     bestSimilarityScore = currSimilarityScore;
@@ -646,7 +647,9 @@ public class SparseMatrix {
                     innerCur = innerCur.next();
                 }
                 // Check is similarity score was the best.
-                if (currSimilarityScore < bestSimilarityScore || bestSimilarityScore == 0.0)
+                if (currSimilarityScore < bestSimilarityScore || 
+                    (bestSimilarityScore == 0.0 && currSimilarityScore != 0.0) ||
+                    (currSimilarityScore == bestSimilarityScore && otherMovie < similarMovie))
                 {
                     // Replace best score with the current score.
                     bestSimilarityScore = currSimilarityScore;
