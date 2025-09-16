@@ -473,6 +473,17 @@ public class MovieRaterTest extends TestCase {
         assertNull(it.listMovie(-1));
     }
     
+    public void testSimilarReviewer()
+    {
+        it.addReview(1, 1, 5);
+        it.addReview(1, 2, 4);
+        it.addReview(2, 1, 4);
+        it.addReview(2, 2, 3);
+        it.addReview(3, 1, 1);
+        
+        assertEquals(2, it.similarReviewer(1));
+    }
+
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
      * Matrix is empty so an empty string should be printed.
