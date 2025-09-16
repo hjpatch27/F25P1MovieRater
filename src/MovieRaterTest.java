@@ -304,36 +304,6 @@ public class MovieRaterTest extends TestCase {
         assertEquals(matrix.size(), 1);
         assertEquals(matrix.get(3, 3).getScore(), 5);
     }
-
-    /**
-     * Tests the clear() method. We will test this by adding
-     * entries to the Sparse Matrix, using the clear() method,
-     * and then ensuring the expected results happen.
-     */
-    public void testClear() 
-    {
-        // Set up initial conditions, add 3 entries to the Sparse Matrix.
-        matrix.add(1, 1, 10);
-        matrix.add(5, 3, 5);
-        matrix.add(3, 2, 7);
-
-        // size should be 3 at the moment.
-        assertEquals(matrix.size(), 3);
-        assertFalse(matrix.isEmpty());
-
-        // Call the method
-        matrix.clear();
-
-        // size should now be zero
-        assertEquals(matrix.size(), 0);
-        assertTrue(matrix.isEmpty());
-
-        // If we used the get() method on a entry previously added,
-        // then nothing should come up so get() should return null.
-        assertNull(matrix.get(1, 1));
-        assertNull(matrix.get(5, 3));
-        assertNull(matrix.get(3, 2));
-    }
     
     /**
      * Tests the get() method. Test scenarios where
