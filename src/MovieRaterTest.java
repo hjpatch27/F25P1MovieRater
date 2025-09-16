@@ -537,8 +537,32 @@ public class MovieRaterTest extends TestCase {
         it.addReview(3, 3, 1);
         
         assertEquals(2, it.similarMovie(1));
-  
     }
+    
+    /**
+     * Tests the similarMovie() method. In this scenario, we skip
+     * over entries that have rows and column less than zero.
+     * In addition, we test scenarios where we set up the similar score
+     * as the best score.
+     */
+    public void testSimilarMovie3()
+    {
+        // Set up initial condition
+        it.addReview(1, 1, 6);
+        it.addReview(-1, 1, 6); // getRow() < 0 gets skipped
+        
+        // Scenario 1: The previous score is better than the current
+        // one so no changes occur
+        it.addReview(2, 2, 7);
+        assertEquals(2, it.similarMovie(1));
+        it.addReview(3, 3, 8);
+        // similarMovie() should still go with reviewer 2.
+        assertEquals(2, it.similarMovie(1));
+       
+        
+        
+    }
+    
     /**
      * Tests the printRatings() method. In this scenario, the Sparse
      * Matrix is empty so an empty string should be printed.
