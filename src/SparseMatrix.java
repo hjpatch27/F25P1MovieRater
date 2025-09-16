@@ -625,7 +625,7 @@ public class SparseMatrix {
                 int reviewer = movieEntry.getRow();
                 double rating = movieEntry.getScore();
             
-                // Find another reviewer for the movie that was rated
+                // Find another movie for the reviewer that was rated
                 Node innerCur = head.next();
                 while (innerCur != tail)
                 {
@@ -633,7 +633,7 @@ public class SparseMatrix {
                     if (otherEntry.getRow() == reviewer && 
                         otherEntry.getCol() != movie) 
                     {
-                        // Save the other reviewer and their score
+                        // Save the other movie and their score
                         otherMovie = otherEntry.getCol();
                         double otherRating = otherEntry.getScore();
                     
