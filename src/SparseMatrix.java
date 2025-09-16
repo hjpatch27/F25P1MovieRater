@@ -29,7 +29,6 @@ public class SparseMatrix {
             this.score = score;
         }
 
-
         /**
          * Returns the row number of the entry in the Sparse Matrix.
          * 
@@ -38,7 +37,6 @@ public class SparseMatrix {
         public int getRow() {
             return row;
         }
-
 
         /**
          * Sets the row number to a new row in the Sparse Matrix.
@@ -49,7 +47,6 @@ public class SparseMatrix {
             row = newRow;
         }
 
-
         /**
          * Returns the column number of the entry in the Sparse Matrix.
          * 
@@ -58,7 +55,6 @@ public class SparseMatrix {
         public int getCol() {
             return col;
         }
-
 
         /**
          * Sets the column number to a new column in the Sparse Matrix.
@@ -69,7 +65,6 @@ public class SparseMatrix {
             col = newCol;
         }
 
-
         /**
          * Returns the value of the entry in the Sparse Matrix.
          * 
@@ -78,7 +73,6 @@ public class SparseMatrix {
         public int getScore() {
             return score;
         }
-
 
         /**
          * Sets the score to a new value in the Sparse Matrix.
@@ -89,7 +83,6 @@ public class SparseMatrix {
             score = newScore;
         }
     }
-
 
     private static class Node {
         // The data element stored in the node.
@@ -108,12 +101,10 @@ public class SparseMatrix {
             this.next = n;
         }
 
-
         public Node(Node p, Node n) {
             this.prev = p;
             this.next = n;
         }
-
 
         /**
          * Gets the next node.
@@ -123,7 +114,6 @@ public class SparseMatrix {
         public Node next() {
             return next;
         }
-
 
         /**
          * Sets the next node to a new node.
@@ -135,7 +125,6 @@ public class SparseMatrix {
             return next;
         }
 
-
         /**
          * Gets and returns the previous node.
          * 
@@ -144,7 +133,6 @@ public class SparseMatrix {
         public Node prev() {
             return prev;
         }
-
 
         /**
          * Sets the previous node to a new node.
@@ -157,7 +145,6 @@ public class SparseMatrix {
             return prev;
         }
 
-
         /**
          * Gets the data in the node
          *
@@ -166,7 +153,6 @@ public class SparseMatrix {
         public SparseEntry getData() {
             return data;
         }
-
 
         /**
          * Sets the SparseEntry data with a node to have new values.
@@ -200,7 +186,6 @@ public class SparseMatrix {
         init();
     }
 
-
     /**
      * Initializes the object to have the head and tail nodes
      */
@@ -213,7 +198,6 @@ public class SparseMatrix {
         listSize = 0;
     }
 
-
     /**
      * Gets the number of elements in the list
      *
@@ -222,7 +206,6 @@ public class SparseMatrix {
     public int size() {
         return listSize;
     }
-
 
     /**
      * Adds an entry in the matrix.
@@ -257,10 +240,8 @@ public class SparseMatrix {
                 entry.setScore(score);
                 return;
             }
-
             current = current.next();
         }
-
         // If entry is not found insert at the end
         SparseEntry newEntry = new SparseEntry(row, col, score);
         Node newNode = new Node(newEntry, tail.prev(), tail);
@@ -268,9 +249,7 @@ public class SparseMatrix {
         tail.setPrev(newNode);
         // Increment the size by 1
         listSize++;
-
     }
-
 
     /**
      * Checks if the array is empty
@@ -280,7 +259,6 @@ public class SparseMatrix {
     public boolean isEmpty() {
         return (listSize == 0);
     }
-
 
     /**
      * Removes the object at the given position.
