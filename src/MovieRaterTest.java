@@ -502,6 +502,7 @@ public class MovieRaterTest extends TestCase {
         
         assertEquals(2, it.similarReviewer(1));
     }
+
     
     
     /**

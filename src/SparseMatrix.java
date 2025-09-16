@@ -37,13 +37,6 @@ public class SparseMatrix {
             return row;
         }
 
-        /**
-         * Sets the row number to a new row in the Sparse Matrix.
-         * @param newRow is the row number to be changed to.
-         */
-        public void setRow(int newRow) {
-            row = newRow;
-        }
 
         /**
          * Returns the column number of the entry in the Sparse Matrix.
@@ -51,14 +44,6 @@ public class SparseMatrix {
          */
         public int getCol() {
             return col;
-        }
-
-        /**
-         * Sets the column number to a new column in the Sparse Matrix.
-         * @param newCol is the column number to be changed to.
-         */
-        public void setCol(int newCol) {
-            col = newCol;
         }
 
         /**
@@ -433,18 +418,6 @@ public class SparseMatrix {
     }  
     
     /**
-     * 1) For each reviewer Y, look at each movie.
-     * 2) If reviewers X and Y both rated a given movie, then add 
-     * the absolute value of the difference to a sum.
-     * 3) Once you sum up the difference for all movies that are 
-     * rated by both reviewers, divide by the total number of 
-     * movies sharing a review.
-     * 4) This is the similarity score for the two reviewers. The 
-     * “most similar” reviewer is the one with the lowest 
-     * similarity score.
-     * 5) If there are no movies that both rated, then define the 
-     * similarity score to be -1.
-     * 
      * @param reviewer is the row number in the Sparse Matrix, or
      * reviewer to be comparing to
      * @return similarIndex which will be the index of the row,
@@ -461,8 +434,9 @@ public class SparseMatrix {
             SparseEntry otherReviewerEntry = otherReviewerNode.getData();
             int otherReviewer = otherReviewerEntry.getRow();
 
-            // Skip the main reviewer and any entries that are empty
-            if (otherReviewer == reviewer || otherReviewerEntry.getCol() < 0) {
+         // Skip the main reviewer
+            if (otherReviewer == reviewer) 
+            {
                 otherReviewerNode = otherReviewerNode.next();
                 continue;
             }
@@ -515,18 +489,6 @@ public class SparseMatrix {
     }
     
     /**
-     * 1) For each reviewer Y, look at each movie.
-     * 2) If reviewers X and Y both rated a given movie, then add 
-     * the absolute value of the difference to a sum.
-     * 3) Once you sum up the difference for all movies that are 
-     * rated by both reviewers, divide by the total number of 
-     * movies sharing a review.
-     * 4) This is the similarity score for the two reviewers. The 
-     * “most similar” reviewer is the one with the lowest 
-     * similarity score.
-     * 5) If there are no movies that both rated, then define the 
-     * similarity score to be -1.
-     * 
      * @param movie is the column number in the Sparse Matrix, or
      * movie to be comparing to.
      * @return similarIndex which will be the index of the row,
@@ -544,7 +506,7 @@ public class SparseMatrix {
             int otherMovie = otherMovieEntry.getCol();
 
             // Skip the main reviewer and any entries that are empty
-            if (otherMovie == movie || otherMovieEntry.getRow() < 0) {
+            if (otherMovie == movie) {
                 otherMovieNode = otherMovieNode.next();
                 continue;
             }
