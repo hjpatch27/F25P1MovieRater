@@ -520,7 +520,29 @@ public class MovieRaterTest extends TestCase {
         assertEquals(2, it.similarReviewer(1));
     }
 
-    
+    /**
+     * Tests the similarReviewer() method.
+     */
+    public void testSimilarReviewer4()
+    {
+
+        // Movie 1 rates reviewer 1 and 2
+        matrix.add(1, 1, 5); // reviewer 1
+        matrix.add(2, 1, 6); // reviewer 2
+
+        // Movie 2 rates reviewer 1 and 3
+        matrix.add(1, 2, 4); // reviewer 1
+        matrix.add(3, 2, 5); // reviewer 3
+
+        // Movie 3 rates reviewer 2 and 3
+        matrix.add(2, 3, 6); // reviewer 2
+        matrix.add(3, 3, 6); // reviewer 3
+
+        // Reviewer 1 is most similar to reviewer 3 
+        //(movie 1 overlap, score diff = 1)
+        int similar = matrix.similarMovie(1);
+        assertEquals(3, similar);
+    }
     
     /**
      * Tests the similarMovie() method. In this scenario, movie 2 
@@ -579,6 +601,9 @@ public class MovieRaterTest extends TestCase {
         assertEquals(2, it.similarMovie(1));    
     }
     
+    /**
+     * Tests the similarMovie() method.
+     */
     public void testSimilarMovie4()
     {
 
@@ -594,7 +619,8 @@ public class MovieRaterTest extends TestCase {
         matrix.add(3, 2, 6); // movie 2
         matrix.add(3, 3, 6); // movie 3
 
-        // Movie 1 is most similar to movie 2 (reviewer 1 overlap, score diff = 1)
+        // Movie 1 is most similar to movie 2 
+        //(reviewer 1 overlap, score diff = 1)
         int similar = matrix.similarMovie(1);
         assertEquals(2, similar);
     }
