@@ -412,6 +412,20 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
+     * Tests the listReviwer() method. Test when entry.getCol() > -1 is false
+     */
+    public void testListReviewer2()
+    {
+        matrix.add(1, 1, 5);
+        matrix.add(1, -1, 0);
+        matrix.add(2, -1, 0);
+        matrix.add(2, 1, 3);
+        matrix.add(2, 2, 3); // false && true
+        String expected = "1: 5";
+        assertEquals(expected, matrix.printReviewer(1));
+        assertEquals(expected, matrix.printReviewer(1));
+    }
+    /**
      * Tests the listMovie() method. Test case adds reviews, calls
      * the method, and expects a list of all reviewers of the movie and
      * their score in ascending order is returned.
@@ -442,7 +456,20 @@ public class MovieRaterTest extends TestCase {
         it.addReview(1, -1, 7);
         assertNull(it.listMovie(-1));
     }
-    
+    /**
+     * Tests the printMovie() method. Test when entry.getCol() > -1 is false
+     */
+    public void testListMovie2()
+    {
+        matrix.add(1, 1, 5);
+        matrix.add(-1, 1, 0);
+        matrix.add(-1, 2, 0);
+        matrix.add(1, 2, 3);
+        matrix.add(2, 2, 3); // false && true
+        String expected = "1: 5";
+        assertEquals(expected, matrix.printMovie(1));
+        assertEquals(expected, matrix.printMovie(1));
+    }
     /**
      * Tests the similarReviewer() method. In this scenario, reviewer 2 
      * is most similar to reviewer 1. And when the target reviewer 
