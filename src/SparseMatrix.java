@@ -571,7 +571,7 @@ public class SparseMatrix {
                     innerCur = innerCur.next();
                 }
                 // Check is similarity score was the best.
-                if (currSimilarityScore < bestSimilarityScore)
+                if (currSimilarityScore < bestSimilarityScore || bestSimilarityScore == 0.0)
                 {
                     // Replace best score with the current score.
                     bestSimilarityScore = currSimilarityScore;
