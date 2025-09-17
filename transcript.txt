@@ -1,4 +1,4 @@
-I have not used AI in the completion of this assignment.
+I have used the LLM Gemini in this project. In SparseMatrix.java for line 434-498 for the method similarReviewer().
 
 User Input:
 My test is returning -1 only for a certain test condition when two candiates have the same lowest similarity score.
@@ -52,6 +52,7 @@ current = current.next();
 }
 return similarReviewer;
 }
+
 LLM Output:
 The provided similarReviewer method still returns -1 because its logic is fundamentally flawed.
 The main issue is that it doesn't correctly aggregate scores for a single otherReviewer. Instead, 
@@ -63,3 +64,64 @@ To correctly implement the logic, you must use a nested-loop structure that iter
 possible pair of reviewers. The outer loop will iterate through all reviewers, and the inner loop 
 will iterate through the movies to compare ratings. A third, inner-most loop is needed to find the 
 ratings of the two reviewers for each movie.
+public int similarReviewer(int reviewer) {
+    double bestSimilarityScore = Double.MAX_VALUE;
+    int similarReviewer = -1;
+
+    // Outer loop: Iterate through all possible 'other' reviewers (Y).
+    Node otherReviewerNode = head.next();
+    while (otherReviewerNode != tail) {
+        SparseEntry otherReviewerEntry = otherReviewerNode.getData();
+        int otherReviewer = otherReviewerEntry.getRow();
+
+        // Skip the main reviewer and any non-existent entries
+        if (otherReviewer == reviewer || otherReviewerEntry.getCol() < 0) {
+            otherReviewerNode = otherReviewerNode.next();
+            continue;
+        }
+
+        double scoreDifference = 0.0;
+        int numMovie = 0;
+
+        // Inner loop: Find shared movies between 'reviewer' (X) and 'otherReviewer' (Y).
+        Node reviewerNode = head.next();
+        while (reviewerNode != tail) {
+            SparseEntry mainReviewerEntry = reviewerNode.getData();
+            if (mainReviewerEntry.getRow() == reviewer && mainReviewerEntry.getCol() > -1) {
+                int movie = mainReviewerEntry.getCol();
+                double rating = mainReviewerEntry.getScore();
+
+                // Innermost loop: Find the rating of 'otherReviewer' for the same movie.
+                Node innerOtherReviewerNode = head.next();
+                while (innerOtherReviewerNode != tail) {
+                    SparseEntry innerOtherEntry = innerOtherReviewerNode.getData();
+                    if (innerOtherEntry.getRow() == otherReviewer && innerOtherEntry.getCol() == movie) {
+                        double otherRating = innerOtherEntry.getScore();
+
+                        // Add to sum and count if a shared movie is found.
+                        scoreDifference += Math.abs(rating - otherRating);
+                        numMovie++;
+                    }
+                    innerOtherReviewerNode = innerOtherReviewerNode.next();
+                }
+            }
+            reviewerNode = reviewerNode.next();
+        }
+        // Calculate similarity score for the current pair if there are shared movies.
+        if (numMovie > 0) {
+            double currSimilarityScore = scoreDifference / numMovie;
+            // Check if this is the best score found so far, with tie-breaking for lower index.
+            if (currSimilarityScore < bestSimilarityScore || 
+                (currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)) {              
+                bestSimilarityScore = currSimilarityScore;
+                similarReviewer = otherReviewer;
+            }
+        }
+        otherReviewerNode = otherReviewerNode.next();
+    }   
+    // Check if any suitable match was found.
+    if (similarReviewer == -1) {
+        return -1;
+    }  
+    return similarReviewer;
+}

@@ -165,27 +165,29 @@ public class SparseMatrix {
     }
 
     /**
-     * Adds an entry in the matrix.
+     * Adds an entry to the sparse matrix.
      *
-     * @param row is what row the entry will be added to.
-     * @param col is what column the entry will be addded to.
+     * @param row is what row the reviewer entry will be added to.
+     * @param col is what column the movie entry will be addded to.
      * @param score is what rating the entry will have.
      */
     public void add(int row, int col, int score) {
         Node current = head.next();
-        while (current != tail) {
+        while (current != tail) { // Iterate through the linked list
             SparseEntry entry = current.getData();
+            // Find the correct insertion point for the new entry
             if (entry.getRow() > row || (entry.getRow() == row && 
                 entry.getCol() > col)) {
-                // Insert before current
+                // newEntry should come before the current node
                 SparseEntry newEntry = new SparseEntry(row, col, score);
                 Node newNode = new Node(newEntry, current.prev(), current);
+                // Link the new node into the list
                 current.prev().setNext(newNode);
                 current.setPrev(newNode);
-                listSize++;
+                listSize++; // Update the size 
                 return;
             }
-            // If an entry already exists with same row and col, update socre
+            // If an entry already exists with same row and col, update score
             if (entry.getRow() == row && entry.getCol() == col) {
                 entry.setScore(score);
                 return;
@@ -218,23 +220,22 @@ public class SparseMatrix {
      *
      * @param row is the number of the row to look to remove from.
      * @param col is the number of the column to look to remove from.
-     * @return true if the removal was successful.
-     * @throws IndexOutOfBoundsException if there is not an element 
-     * at the index.
+     * @return true if the removal was successful and false otherwise
      */
     public boolean removeIndex(int row, int col) {
         Node current = head.next();
-
+        // Iterate through the list until the tail is reached
         while (current != tail) {
             SparseEntry entry = current.getData();
+            // Check if the current entry matches the target to be removed
             if (entry.getRow() == row && entry.getCol() == col) {
                 // Disconnect the node from the list
                 current.prev().setNext(current.next());
                 current.next().setPrev(current.prev());
-                listSize--;
+                listSize--; // Decrement the matrix size
                 return true;
             }
-            current = current.next();
+            current = current.next(); // Move to the next node
         }
         // No entry found in that position
         return false;
@@ -250,17 +251,18 @@ public class SparseMatrix {
      * removed is found and successfully removed.
      */
     public boolean removeReviewer(int reviewer) {
-        boolean found = false;
+        boolean found = false; // Track if any entries have been removed yet
         Node current = head.next();
-
+        // Iterate through the list to find and remove the specified entry
         while (current != tail) {
             SparseEntry entry = current.getData();
-
+            // If the current entry matches the target reviewer
             if (entry.getRow() == reviewer) {
+                // Unlink the current node from the list
                 current.prev().setNext(current.next());
                 current.next().setPrev(current.prev());
-                listSize--;
-                found = true;
+                listSize--; // Decrement matrix size
+                found = true; // Set found to true since node has been removed
             }
             current = current.next();
         }
@@ -276,47 +278,44 @@ public class SparseMatrix {
      * @return found, or true, if the reviewer to be
      * removed is found and successfully removed.
      */
-    public boolean removeMovie(int movie) 
-    {
-        boolean found = false;
+    public boolean removeMovie(int movie) {
+        boolean found = false; // Track if any entries have been removed yet
         Node current = head.next();
-
+     // Iterate through the list to find and remove the specified entry
         while (current != tail) {
             SparseEntry entry = current.getData();
-            
+            // If the current entry matches the target movie
             if (entry.getCol() == movie) {
+                // Unlink the current node from the list
                 current.prev().setNext(current.next());
                 current.next().setPrev(current.prev());
-                listSize--;
-                found = true;
+                listSize--; // Decrement matrix size
+                found = true; // Set found to true since node has been removed
             }
             current = current.next();
-
         }
         return found;
     }
 
     /**
-     * Gets the object at the given position
+     * Gets the entry at the specified row and column
      * 
-     * @param row is the number of row to look at.
-     * @param col is the number of column to look at.
-     * @return The object at the given position
-     * @throws IndexOutOfBoundsException if no node is 
-     * at the given index.
+     * @param row is the row index of the entry to find
+     * @param col is the column index of the entry to find
+     * @return The object at the given position and null if not found
      */
     public SparseEntry get(int row, int col) {
         Node current = head.next();
-        while (current != tail) {
+        while (current != tail) { 
             SparseEntry entry = current.getData();
-            
+            // Check if the current entry's row and col matches the entry to get
             if (entry.getRow() == row && entry.getCol() == col) {
                 // If current data is equal to the wanted than return current
                 return current.getData();
             }
             current = current.next();
         }
-        return null;
+        return null; // Did not find the entry
     }
 
     /**
@@ -333,26 +332,29 @@ public class SparseMatrix {
         }
         StringBuilder builder = new StringBuilder();
         Node current = head.next();
-        int currentReviewer = -1;
+        int currentReviewer = -1; // Keep track of the current reviewer
 
         while (current != tail) {
             SparseEntry entry = current.getData();
-            // new reviewer
+            // Check if a new reviewer's ratings is starting
             if (entry.getRow() != currentReviewer) {
+                // If its not the very first reviewer then add a new line for format
                 if (currentReviewer != -1) {
-                    builder.append("\n"); // newline before next reviewer
+                    builder.append("\n");
                 }
+                // Update the current reviewer and append their index to string
                 currentReviewer = entry.getRow();
                 builder.append(currentReviewer).append(": ");
             }
-            else {
+            else { // If it is the same reviewer then add a space to separate
                 builder.append(" ");
             }
+            // Append the movie and score into string with correct format "( , )"
             builder.append("(").append(entry.getCol()).append(", ").append(entry
                 .getScore()).append(")");
             current = current.next();
         }
-        return builder.toString();
+        return builder.toString(); // Return the string
     }
     
     /**
@@ -361,22 +363,23 @@ public class SparseMatrix {
      * into a string format.
      * @param reviewer The reviewer to list ratings for
      * @return builder.toString() which is the final
-     * format of the Sparse Matrix in string format/
+     * format of the Sparse Matrix in string format
      */
     public String printReviewer(int reviewer) {
-        if (reviewer < 0)
-        {
+        // Return null for invalid input
+        if (reviewer < 0){
             return null;
         }
         
         StringBuilder builder = new StringBuilder();
         
         Node current = head.next();
+        // Append the reviewers index
         builder.append(reviewer).append(":");
-        int count = 0;
+        int count = 0; // Keep track of ratings found for the reviewer index
         while (current != tail) {
             SparseEntry entry = current.getData();
-            
+            // Check if the current entry matches the reviewer
             if (entry.getRow() == reviewer && entry.getCol() > -1) {
                 
                 builder.append(" ");
@@ -385,6 +388,7 @@ public class SparseMatrix {
             }
             current = current.next();
         }
+        // If no ratings were found, return null
         if (count == 0) {
             return null;
         }   
@@ -400,6 +404,7 @@ public class SparseMatrix {
      * format of the Sparse Matrix in string format.
      */
     public String printMovie(int movie) {
+        // Return null for invalid input
         if (movie < 0)
         {
             return null;
@@ -407,11 +412,12 @@ public class SparseMatrix {
         StringBuilder builder = new StringBuilder();
         
         Node current = head.next();
+        // Append the movie index
         builder.append(movie).append(":");
         int count = 0;
         while (current != tail) {
             SparseEntry entry = current.getData();
-            
+            // Check if the current entry matches the movie index
             if (entry.getCol() == movie && entry.getRow() > -1) {
                 builder.append(" ");
                 builder.append(entry.getScore());
@@ -419,6 +425,7 @@ public class SparseMatrix {
             }
             current = current.next();
         }
+        // If no ratings were found, return null
         if (count == 0) {
             return null;
         }
