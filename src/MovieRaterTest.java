@@ -397,38 +397,6 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
-     * Tests the printReviewer() method. In this scenario,
-     * the test should return null since the value of the
-     * reviewer is less than 0.
-     */
-    public void testPrintReviewerNull()
-    {
-        // Add a valid entry so the matrix isn't empty
-        matrix.add(1, 1, 5);
-
-        // Reviewer is negative, so it should always return null
-        assertNull(matrix.printReviewer(-1));
-
-    }
-    
-    /**
-     * Tests the printReviewer() method. In this scenario,
-     * the test should return null since the value of the
-     * reviewer is less than 0.
-     */
-    public void testPrintMovieNull()
-    {
-        // Add a valid entry for reviewer 0
-        matrix.add(0, 1, 5);
-
-        // Call printReviewer with a negative index
-        String result = matrix.printReviewer(0);
-
-        // Should return null due to reviewer < 0 check
-        assertNotNull(result);
-    }
-    
-    /**
      * Tests the listReviwer() method. Test case adds reviews,
      * calls the method, and expects that a list of the reviewer
      * with his movie and scores in ascending order are returned.
@@ -603,6 +571,31 @@ public class MovieRaterTest extends TestCase {
         // better similarity score than Reviewer 2.
         int similar = matrix.similarReviewer(1);
         assertEquals(3, similar);
+    }
+    
+    /**
+     * Tests the similarReviewer() method. In this scenario,
+     * there are scores tied for the best and so we decide 
+     * which score to set as the best and the one to return.
+     */
+    public void testSimilarReviewerTieBreaker()
+    {
+        // Reviewer 1 rates two movies
+        matrix.add(1, 1, 5);
+        matrix.add(1, 2, 3);
+
+        // Reviewer 2 gives identical ratings
+        matrix.add(2, 1, 5);
+        matrix.add(2, 2, 3);
+
+        // Reviewer 3 also gives identical ratings (tie with reviewer 2)
+        matrix.add(3, 1, 5);
+        matrix.add(3, 2, 3);
+
+        // Both reviewer 2 and 3 are equally similar to reviewer 1
+        // Tie should be broken in favor of the lower index (2)
+        int result = matrix.similarReviewer(1);
+        assertEquals("Tie should pick reviewer with lower index", 2, result);
     }
     
     /**

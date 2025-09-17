@@ -367,7 +367,7 @@ public class SparseMatrix {
      */
     public String printReviewer(int reviewer) {
         // Return null for invalid input
-        if (reviewer < 0){
+        if (reviewer < 0) {
             return null;
         }
         
