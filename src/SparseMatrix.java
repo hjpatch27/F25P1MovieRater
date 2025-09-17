@@ -338,7 +338,7 @@ public class SparseMatrix {
             SparseEntry entry = current.getData();
             // Check if a new reviewer's ratings is starting
             if (entry.getRow() != currentReviewer) {
-                // If its not the very first reviewer then add a new line for format
+                // If its not the first reviewer, add a new line for format
                 if (currentReviewer != -1) {
                     builder.append("\n");
                 }
@@ -349,7 +349,7 @@ public class SparseMatrix {
             else { // If it is the same reviewer then add a space to separate
                 builder.append(" ");
             }
-            // Append the movie and score into string with correct format "( , )"
+            // Append the movie and score into string with format "( , )"
             builder.append("(").append(entry.getCol()).append(", ").append(entry
                 .getScore()).append(")");
             current = current.next();
@@ -560,8 +560,8 @@ public class SparseMatrix {
 
                 // Check if current is best score. A tie goes to lower index.
                 if (currSimilarityScore < bestSimilarityScore) {
-                        bestSimilarityScore = currSimilarityScore;
-                        similarReviewer = otherMovie;
+                    bestSimilarityScore = currSimilarityScore;
+                    similarReviewer = otherMovie;
                 }
             }
             otherMovieNode = otherMovieNode.next();

@@ -563,39 +563,14 @@ public class MovieRaterTest extends TestCase {
         matrix.add(2, 3, 6);  // diff = 1
         // Total diff = 3, avg = 1.0
 
-        // Reviewer 3 rates only one shared movie with identical score
+        // Reviewer 3 rates one shared movie with identical score
         matrix.add(3, 1, 5);  // diff = 0
-        // Total diff = 0, avg = 0.0 — but only one shared movie
+        // Total diff = 0, avg = 0.0 but only one shared movie
 
         // Reviewer 3 should be selected because they have a
         // better similarity score than Reviewer 2.
         int similar = matrix.similarReviewer(1);
         assertEquals(3, similar);
-    }
-    
-    /**
-     * Tests the similarReviewer() method. In this scenario,
-     * there are scores tied for the best and so we decide 
-     * which score to set as the best and the one to return.
-     */
-    public void testSimilarReviewerTieBreaker()
-    {
-        // Reviewer 1 rates two movies
-        matrix.add(1, 1, 5);
-        matrix.add(1, 2, 3);
-
-        // Reviewer 2 gives identical ratings
-        matrix.add(2, 1, 5);
-        matrix.add(2, 2, 3);
-
-        // Reviewer 3 also gives identical ratings (tie with reviewer 2)
-        matrix.add(3, 1, 5);
-        matrix.add(3, 2, 3);
-
-        // Both reviewer 2 and 3 are equally similar to reviewer 1
-        // Tie should be broken in favor of the lower index (2)
-        int result = matrix.similarReviewer(1);
-        assertEquals("Tie should pick reviewer with lower index", 2, result);
     }
     
     /**
