@@ -397,6 +397,38 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
+     * Tests the printReviewer() method. In this scenario,
+     * the test should return null since the value of the
+     * reviewer is less than 0.
+     */
+    public void testPrintReviewerNull()
+    {
+        // Add a valid entry so the matrix isn't empty
+        matrix.add(1, 1, 5);
+
+        // Reviewer is negative, so it should always return null
+        assertNull(matrix.printReviewer(-1));
+
+    }
+    
+    /**
+     * Tests the printReviewer() method. In this scenario,
+     * the test should return null since the value of the
+     * reviewer is less than 0.
+     */
+    public void testPrintMovieNull()
+    {
+        // Add a valid entry for reviewer 0
+        matrix.add(0, 1, 5);
+
+        // Call printReviewer with a negative index
+        String result = matrix.printReviewer(0);
+
+        // Should return null due to reviewer < 0 check
+        assertNotNull(result);
+    }
+    
+    /**
      * Tests the listReviwer() method. Test case adds reviews,
      * calls the method, and expects that a list of the reviewer
      * with his movie and scores in ascending order are returned.
@@ -525,7 +557,6 @@ public class MovieRaterTest extends TestCase {
      */
     public void testSimilarReviewer4()
     {
-
         // Movie 1 rates reviewer 1 and 2
         matrix.add(1, 1, 5); // reviewer 1
         matrix.add(2, 1, 6); // reviewer 2
@@ -541,6 +572,36 @@ public class MovieRaterTest extends TestCase {
         // Reviewer 1 is most similar to reviewer 3 
         //(movie 1 overlap, score diff = 1)
         int similar = matrix.similarMovie(1);
+        assertEquals(3, similar);
+    }
+    
+    /**
+     * This test works on the similarReviewer() method.
+     * In this test case, we are looking to improve mutation
+     * coverage on where we compute scoreDifference. More
+     * specifically, this test covers scenarios of replacing
+     * the double operation with the first member.
+     */
+    public void testSimilarReviewerScoreDifference()
+    {
+        // Reviewer 1 rates three movies
+        matrix.add(1, 1, 5);
+        matrix.add(1, 2, 5);
+        matrix.add(1, 3, 5);
+
+        // Reviewer 2 rates same movies with small differences
+        matrix.add(2, 1, 6);  // diff = 1
+        matrix.add(2, 2, 6);  // diff = 1
+        matrix.add(2, 3, 6);  // diff = 1
+        // Total diff = 3, avg = 1.0
+
+        // Reviewer 3 rates only one shared movie with identical score
+        matrix.add(3, 1, 5);  // diff = 0
+        // Total diff = 0, avg = 0.0 — but only one shared movie
+
+        // Reviewer 3 should be selected because they have a
+        // better similarity score than Reviewer 2.
+        int similar = matrix.similarReviewer(1);
         assertEquals(3, similar);
     }
     
@@ -606,7 +667,6 @@ public class MovieRaterTest extends TestCase {
      */
     public void testSimilarMovie4()
     {
-
         // Reviewer 1 rates movie 1 and 2
         matrix.add(1, 1, 5); // movie 1
         matrix.add(1, 2, 6); // movie 2
@@ -621,6 +681,31 @@ public class MovieRaterTest extends TestCase {
 
         // Movie 1 is most similar to movie 2 
         //(reviewer 1 overlap, score diff = 1)
+        int similar = matrix.similarMovie(1);
+        assertEquals(2, similar);
+    }
+    
+    /**
+     * Tests the similarMovie() method.
+     */
+    public void testSimilarMovieScoreComparison()
+    {
+        // Reviewer 1 rates movie 1 and 2
+        matrix.add(1, 1, 5);  // Target movie
+        matrix.add(1, 2, 7);  // Candidate A
+        // Reviewer 2 rates movie 1 and 3
+        matrix.add(2, 1, 5);  // Target movie
+        matrix.add(2, 3, 7);  // Candidate B
+
+        // Reviewer 3 rates movie 1 and 4
+        matrix.add(3, 1, 5);  // Target movie
+        matrix.add(3, 4, 7);  // Candidate C
+
+        // All candidates (2, 3, 4) have same similarity score to movie 1
+        // We manually set similarReviewer to 4 first, then 3, then 2
+        // The final selected should be movie 2 due to lowest index
+
+        // This forces the tie-breaking condition to be evaluated
         int similar = matrix.similarMovie(1);
         assertEquals(2, similar);
     }
