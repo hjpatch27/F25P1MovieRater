@@ -463,8 +463,7 @@ public class SparseMatrix {
             Node reviewerNode = head.next();
             while (reviewerNode != tail) {
                 SparseEntry mainReviewerEntry = reviewerNode.getData();
-                if (mainReviewerEntry.getRow() == reviewer && 
-                    mainReviewerEntry.getCol() > -1) {
+                if (mainReviewerEntry.getRow() == reviewer) {
                     int movie = mainReviewerEntry.getCol();
                     double rating = mainReviewerEntry.getScore();
 
@@ -534,8 +533,7 @@ public class SparseMatrix {
             Node movieNode = head.next();
             while (movieNode != tail) {
                 SparseEntry mainMovieEntry = movieNode.getData();
-                if (mainMovieEntry.getCol() == movie && 
-                    mainMovieEntry.getRow() > -1) {
+                if (mainMovieEntry.getCol() == movie) {
                     int reviewer = mainMovieEntry.getRow();
                     double rating = mainMovieEntry.getScore();
 
