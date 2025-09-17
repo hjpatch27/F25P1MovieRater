@@ -491,9 +491,7 @@ public class SparseMatrix {
                 double currSimilarityScore = scoreDifference / numMovie;
 
                 // Check if current is best score. A tie goes to lower index.
-                if (currSimilarityScore < bestSimilarityScore || 
-                    (currSimilarityScore == bestSimilarityScore && 
-                    otherReviewer < similarReviewer)) { 
+                if (currSimilarityScore < bestSimilarityScore) { 
                     bestSimilarityScore = currSimilarityScore;
                     similarReviewer = otherReviewer;
                 }
@@ -561,11 +559,9 @@ public class SparseMatrix {
                 double currSimilarityScore = scoreDifference / numMovie;
 
                 // Check if current is best score. A tie goes to lower index.
-                if (currSimilarityScore < bestSimilarityScore || 
-                    (currSimilarityScore == bestSimilarityScore 
-                    && otherMovie < similarReviewer)) {         
-                    bestSimilarityScore = currSimilarityScore;
-                    similarReviewer = otherMovie;
+                if (currSimilarityScore < bestSimilarityScore) {
+                        bestSimilarityScore = currSimilarityScore;
+                        similarReviewer = otherMovie;
                 }
             }
             otherMovieNode = otherMovieNode.next();
