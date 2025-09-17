@@ -1,1 +1,65 @@
 I have not used AI in the completion of this assignment.
+
+User Input:
+My test is returning -1 only for a certain test condition when two candiates have the same lowest similarity score.
+Here is my method, tell me what is wrong with my logic.
+public int similarReviewer(int reviewer){
+Node current = head.next();
+int numMovie = 0;
+double scoreDifference = 0.0;
+double currSimilarityScore = 0.0;
+double bestSimilarityScore = 0.0;
+int otherReviewer = 0;
+int similarReviewer = -1;
+while (current != tail){
+SparseEntry reviewerEntry = current.getData();
+if (reviewerEntry.getRow() == reviewer &&
+reviewerEntry.getCol() > -1){
+// Get the movie that was reviewed
+int movie = reviewerEntry.getCol();
+double rating = reviewerEntry.getScore();
+// Find another reviewer for the movie that was rated
+Node innerCur = head.next();
+while (innerCur != tail){
+SparseEntry otherEntry = innerCur.getData();
+if (otherEntry.getCol() == movie &&otherEntry.getRow() != reviewer){
+// Save the other reviewer and their score
+otherReviewer = otherEntry.getRow();
+double otherRating = otherEntry.getScore();
+// Calculate absolute difference
+scoreDifference += Math.abs(rating - otherRating);
+numMovie++;
+// Calculate similarity score
+currSimilarityScore = scoreDifference / numMovie;
+}
+innerCur = innerCur.next();
+}
+// Check is similarity score was the best.
+//if (currSimilarityScore < bestSimilarityScore ||
+//(bestSimilarityScore == 0.0 && currSimilarityScore != 0.0))
+if (currSimilarityScore < bestSimilarityScore ||
+(currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)){
+// Replace best score with the current score.
+bestSimilarityScore = currSimilarityScore;
+// Set similarIndex to index of otherReviewer.
+similarReviewer = otherReviewer;
+}
+// Reset numMovie and currSimilarityScore
+numMovie = 0;
+scoreDifference = 0.0;
+}
+current = current.next();
+}
+return similarReviewer;
+}
+LLM Output:
+The provided similarReviewer method still returns -1 because its logic is fundamentally flawed.
+The main issue is that it doesn't correctly aggregate scores for a single otherReviewer. Instead, 
+it calculates and compares a score after processing each individual movie, leading to incorrect results. 
+The variable similarReviewer remains at its initial value of -1 because the comparison 
+currSimilarityScore < bestSimilarityScore is almost always false. The correct approach requires accumulating 
+all the differences for each potential reviewer before making any comparisons.
+To correctly implement the logic, you must use a nested-loop structure that iterates through every
+possible pair of reviewers. The outer loop will iterate through all reviewers, and the inner loop 
+will iterate through the movies to compare ratings. A third, inner-most loop is needed to find the 
+ratings of the two reviewers for each movie.
