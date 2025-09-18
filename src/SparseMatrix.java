@@ -433,6 +433,8 @@ public class SparseMatrix {
     }  
     
     /**
+     * Finds the reviewer most similar to the specified one.
+     * 
      * @param reviewer is the row number in the Sparse Matrix, or
      * reviewer to be comparing to
      * @return similarIndex which will be the index of the row,
@@ -502,6 +504,8 @@ public class SparseMatrix {
     }
     
     /**
+     * Finds the movie that is most similar to the specified one.
+     * 
      * @param movie is the column number in the Sparse Matrix, or
      * movie to be comparing to.
      * @return similarIndex which will be the index of the row,
