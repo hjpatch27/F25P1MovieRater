@@ -429,8 +429,9 @@ public class MovieRaterTest extends TestCase {
     /**
      * Test case to cover reviewer < 0 for the method printReviewer()
      */
-    public void testListReviewer3()
+    public void testListReviewerLessThanZero()
     {
+        // Since the reviewer is less than zero, return null
         String result = matrix.printReviewer(-5); 
         assertNull(result); 
     }
@@ -477,17 +478,18 @@ public class MovieRaterTest extends TestCase {
         matrix.add(2, 2, 3); // false && true
         String expected = "1: 5";
         assertEquals(expected, matrix.printMovie(1));
-        assertEquals(expected, matrix.printMovie(1));
     }
     
     /**
      * Test case to cover movie < 0 for the method printMovie()
      */
-    public void testListMovie3()
+    public void testListMovieLessThanZero()
     {
+        // Since the movie value is less than zero, return null
         String result = matrix.printMovie(-5); 
         assertNull(result); 
     }
+    
     /**
      * Tests the similarReviewer() method. In this scenario, reviewer 2 
      * is most similar to reviewer 1. Test case also covers when the 
@@ -518,32 +520,38 @@ public class MovieRaterTest extends TestCase {
      * tie for most similar. Should return the reviewer 
      * with the lowest index.
      */
-    public void testSimilarReviewer2()
+    public void testSimilarReviewerTieBreaker()
     {
         // Set up initial conditions
         it.addReview(1, 1, 5);
         it.addReview(2, 1, 6);
         it.addReview(3, 1, 6);
         
+        // For similarReviewer(1), Reviewer 2 and 3 have the same 
+        // similarity score. Should return 2 however since it's
+        // the lower index.
         assertEquals(2, it.similarReviewer(1));
     }
 
     /**
-     * Tests the similarReviewer() method.
+     * Tests the similarReviewer() method. In this scenario,
+     * we are improving mutation coverage by testing when the
+     * score similarities and movies overlap.
      */
-    public void testSimilarReviewer4()
+    public void testSimilarReviewerOverlap()
     {
-        // Movie 1 rates reviewer 1 and 2
-        matrix.add(1, 1, 5); // reviewer 1
-        matrix.add(2, 1, 6); // reviewer 2
+        // Set up initial conditions:
+        // Movie 1 rates Reviewer 1 and 2
+        matrix.add(1, 1, 5);
+        matrix.add(2, 1, 6);
 
         // Movie 2 rates reviewer 1 and 3
-        matrix.add(1, 2, 4); // reviewer 1
-        matrix.add(3, 2, 5); // reviewer 3
+        matrix.add(1, 2, 4);
+        matrix.add(3, 2, 5);
 
         // Movie 3 rates reviewer 2 and 3
-        matrix.add(2, 3, 6); // reviewer 2
-        matrix.add(3, 3, 6); // reviewer 3
+        matrix.add(2, 3, 6);
+        matrix.add(3, 3, 6);
 
         // Reviewer 1 is most similar to reviewer 3 
         //(movie 1 overlap, score diff = 1)
@@ -560,6 +568,7 @@ public class MovieRaterTest extends TestCase {
      */
     public void testSimilarReviewerScoreDifference()
     {
+        // Set up initial conditions:
         // Reviewer 1 rates three movies
         matrix.add(1, 1, 5);
         matrix.add(1, 2, 5);
@@ -648,21 +657,24 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
-     * Tests the similarMovie() method.
+     * Tests the similarMovie() method. In this scenario,
+     * we are improving mutation coverage by testing when the
+     * score similarities and reviewers overlap.
      */
-    public void testSimilarMovie4()
+    public void testSimilarMovieOverlap()
     {
+        // Set up initial conditions:
         // Reviewer 1 rates Movie's 1 and 2
-        matrix.add(1, 1, 5); // Movie 1
-        matrix.add(1, 2, 6); // Movie 2
+        matrix.add(1, 1, 5);
+        matrix.add(1, 2, 6);
 
         // Reviewer 2 rates Movie's 1 and 3
-        matrix.add(2, 1, 4); // Movie 1
-        matrix.add(2, 3, 5); // Movie 3
+        matrix.add(2, 1, 4);
+        matrix.add(2, 3, 5);
 
         // Reviewer 3 rates Movie's 2 and 3
-        matrix.add(3, 2, 6); // Movie 2
-        matrix.add(3, 3, 6); // Movie 3
+        matrix.add(3, 2, 6);
+        matrix.add(3, 3, 6);
 
         // Movie 1 is most similar to movie 2 
         // (Reviewer 1 overlap, score diff = 1)
@@ -671,7 +683,10 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
-     * Tests the similarMovie() method.
+     * Tests the similarMovie() method. In this scenario, we
+     * are testing the system for comparing the current 
+     * similarity score to the best one and checking cases such
+     * as when they are equal, different, etc.
      */
     public void testSimilarMovieScoreComparison()
     {
