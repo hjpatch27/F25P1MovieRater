@@ -1,6 +1,6 @@
 /**
- * Implementation of a sparse matrix. This will be used as the data structure
- * for our MovieRater.
+ * Implementation of a sparse matrix. Utilizing a doubly-linked list,
+ * this will be used as the data structure for our MovieRater.
  * 
  * @author Henry Patch (hjpatch27), Nyssa Loeu (nyssal23)
  * @version 9.18.2025
