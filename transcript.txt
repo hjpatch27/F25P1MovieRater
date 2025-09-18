@@ -3,54 +3,53 @@ I have used the LLM Gemini in this project. In SparseMatrix.java for line 434-49
 User Input:
 My test is returning -1 only for a certain test condition when two candiates have the same lowest similarity score.
 Here is my method, tell me what is wrong with my logic.
-public int similarReviewer(int reviewer){
-Node current = head.next();
-int numMovie = 0;
-double scoreDifference = 0.0;
-double currSimilarityScore = 0.0;
-double bestSimilarityScore = 0.0;
-int otherReviewer = 0;
-int similarReviewer = -1;
-while (current != tail) {
-SparseEntry reviewerEntry = current.getData();
-if (reviewerEntry.getRow() == reviewer &&
-reviewerEntry.getCol() > -1) {
-// Get the movie that was reviewed
-int movie = reviewerEntry.getCol();
-double rating = reviewerEntry.getScore();
-// Find another reviewer for the movie that was rated
-Node innerCur = head.next();
-while (innerCur != tail) {
-SparseEntry otherEntry = innerCur.getData();
-if (otherEntry.getCol() == movie &&otherEntry.getRow() != reviewer) {
-// Save the other reviewer and their score
-otherReviewer = otherEntry.getRow();
-double otherRating = otherEntry.getScore();
-// Calculate absolute difference
-scoreDifference += Math.abs(rating - otherRating);
-numMovie++;
-// Calculate similarity score
-currSimilarityScore = scoreDifference / numMovie;
-}
-innerCur = innerCur.next();
-}
-// Check is similarity score was the best.
-//if (currSimilarityScore < bestSimilarityScore ||
-//(bestSimilarityScore == 0.0 && currSimilarityScore != 0.0))
-if (currSimilarityScore < bestSimilarityScore ||
-(currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)) {
-// Replace best score with the current score.
-bestSimilarityScore = currSimilarityScore;
-// Set similarIndex to index of otherReviewer.
-similarReviewer = otherReviewer;
-}
-// Reset numMovie and currSimilarityScore
-numMovie = 0;
-scoreDifference = 0.0;
-}
-current = current.next();
-}
-return similarReviewer;
+public int similarReviewer(int reviewer) {
+	Node current = head.next();
+	int numMovie = 0;
+	double scoreDifference = 0.0;
+	double currSimilarityScore = 0.0;
+	double bestSimilarityScore = 0.0;
+	int otherReviewer = 0;
+	int similarReviewer = -1;
+	while (current != tail) {
+		SparseEntry reviewerEntry = current.getData();
+		if (reviewerEntry.getRow() == reviewer &&
+		reviewerEntry.getCol() > -1) {
+			// Get the movie that was reviewed
+			int movie = reviewerEntry.getCol();
+			double rating = reviewerEntry.getScore();
+			// Find another reviewer for the movie that was rated
+			Node innerCur = head.next();
+			while (innerCur != tail) {
+				SparseEntry otherEntry = innerCur.getData();
+				if (otherEntry.getCol() == movie &&otherEntry.getRow() != reviewer) {
+					// Save the other reviewer and their score
+					otherReviewer = otherEntry.getRow();
+					double otherRating = otherEntry.getScore();
+					// Calculate absolute difference
+					scoreDifference += Math.abs(rating - otherRating);
+					numMovie++;
+					// Calculate similarity score
+					currSimilarityScore = scoreDifference / numMovie;
+				}
+				innerCur = innerCur.next();
+			}
+			// Check is similarity score was the best.
+			if (currSimilarityScore < bestSimilarityScore ||
+			(currSimilarityScore == bestSimilarityScore 
+			&& otherReviewer < similarReviewer)) {
+				// Replace best score with the current score.
+				bestSimilarityScore = currSimilarityScore;
+				// Set similarIndex to index of otherReviewer.
+				similarReviewer = otherReviewer;
+			}
+			// Reset numMovie and currSimilarityScore
+			numMovie = 0;
+			scoreDifference = 0.0;
+		}
+		current = current.next();
+	}
+	return similarReviewer;
 }
 
 LLM Output:
