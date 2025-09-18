@@ -24,7 +24,8 @@ public class MovieRaterTest extends TestCase {
 
 
     /**
-     * Test clearing on initial
+     * Test the clear() method on the initial state (constructor)
+     * of the MovieRaterDB project.
      * 
      * @throws IOException
      */
@@ -221,7 +222,7 @@ public class MovieRaterTest extends TestCase {
     
     /**
      * Test case for the init() method. Ensures that the SparseMatrix
-     * object is initalized correctly.
+     * object is initialized correctly.
      */
     public void testInit() 
     {
@@ -489,11 +490,12 @@ public class MovieRaterTest extends TestCase {
     }
     /**
      * Tests the similarReviewer() method. In this scenario, reviewer 2 
-     * is most similar to reviewer 1. And when the target reviewer 
-     * has no movies in common.
+     * is most similar to reviewer 1. Test case also covers when the 
+     * target reviewer has no movies in common
      */
     public void testSimilarReviewer()
     {
+        // Set up initial conditions
         it.addReview(1, 1, 5);
         it.addReview(1, 2, 4);
         it.addReview(2, 1, 4);
@@ -501,8 +503,13 @@ public class MovieRaterTest extends TestCase {
         it.addReview(3, 1, 1);
         it.addReview(4, 5, 8);
         
+        // Reviewer 2 is most similar to Reviewer 1.
+        // Since their similarity score is lowest.
         assertEquals(2, it.similarReviewer(1));
+        // Reviewer 4 only has Movie 5, which no other
+        // reviewer has scored. Returns -1.
         assertEquals(-1, it.similarReviewer(4));
+        // Reviewer 5 does not exist. Returns -1.
         assertEquals(-1, it.similarReviewer(5));
     }
     
@@ -513,6 +520,7 @@ public class MovieRaterTest extends TestCase {
      */
     public void testSimilarReviewer2()
     {
+        // Set up initial conditions
         it.addReview(1, 1, 5);
         it.addReview(2, 1, 6);
         it.addReview(3, 1, 6);
@@ -574,11 +582,12 @@ public class MovieRaterTest extends TestCase {
     }
     
     /**
-     * Tests the similarMovie() method. In this scenario, movie 2 
-     * is most similar to movie 1.
+     * Tests the similarMovie() method. In this scenario, Movie 2 
+     * is most similar to Movie 1.
      */
     public void testSimilarMovie()
     {
+        // Set up initial conditions
         it.addReview(1, 1, 5);
         it.addReview(1, 2, 4);
         it.addReview(2, 1, 4);
@@ -586,24 +595,33 @@ public class MovieRaterTest extends TestCase {
         it.addReview(3, 1, 1);
         it.addReview(4, 5, 8);
         
+        // Movie 1 is most similar to Movie 2 since
+        // they share the lowest similarity score.
         assertEquals(2, it.similarMovie(1));
-        assertEquals(-1, it.similarMovie(4));
+        // Movie 5 shares no reviews/scores with other Movies,
+        // return -1.
+        assertEquals(-1, it.similarMovie(5));
+        // Movie 10 does not exist, return -1.
         assertEquals(-1, it.similarMovie(10));
     }
     
     /**
      * Tests the similarMovie() method. In this scenario, there is a 
-     * tie for most similar. Should return the movie 
-     * with the lowest index.
+     * tie for most similar. Should return the movie with the 
+     * lowest index.
      */
-    public void testSimilarMovie2()
+    public void testSimilarMovieTieBreaker()
     {
+        // Set up initial conditions
         it.addReview(1, 1, 5);
         it.addReview(1, 2, 6);
         it.addReview(2, 3, 3);
         it.addReview(2, 2, 2);
         it.addReview(3, 3, 1);
         
+        // Movie 1 has an equal similarity score with Movie 2
+        // and Movie 3. Since Movie 2 is the lower index,
+        // similarMovie(1) should return 2.
         assertEquals(2, it.similarMovie(1));
     }
     
@@ -613,15 +631,14 @@ public class MovieRaterTest extends TestCase {
      * In addition, we test scenarios where we set up the similar score
      * as the best score.
      */
-    public void testSimilarMovie3()
+    public void testSimilarMovieLessThanZero()
     {
         // Set up initial condition
         it.addReview(1, 1, 6);
         it.addReview(-1, 1, 6); // getRow() < 0 gets skipped
         it.addReview(2, -1, 7); // getCol() <= -1 get skipped
         
-        // Scenario 1: The previous score is better than the current
-        // one so no changes occur
+        // The previous score better than current one, no changes occur
         it.addReview(2, 1, 5);
         it.addReview(2, 2, 5);
         assertEquals(2, it.similarMovie(1));
@@ -635,20 +652,20 @@ public class MovieRaterTest extends TestCase {
      */
     public void testSimilarMovie4()
     {
-        // Reviewer 1 rates movie 1 and 2
-        matrix.add(1, 1, 5); // movie 1
-        matrix.add(1, 2, 6); // movie 2
+        // Reviewer 1 rates Movie's 1 and 2
+        matrix.add(1, 1, 5); // Movie 1
+        matrix.add(1, 2, 6); // Movie 2
 
-        // Reviewer 2 rates movie 1 and 3
-        matrix.add(2, 1, 4); // movie 1
-        matrix.add(2, 3, 5); // movie 3
+        // Reviewer 2 rates Movie's 1 and 3
+        matrix.add(2, 1, 4); // Movie 1
+        matrix.add(2, 3, 5); // Movie 3
 
-        // Reviewer 3 rates movie 2 and 3
-        matrix.add(3, 2, 6); // movie 2
-        matrix.add(3, 3, 6); // movie 3
+        // Reviewer 3 rates Movie's 2 and 3
+        matrix.add(3, 2, 6); // Movie 2
+        matrix.add(3, 3, 6); // Movie 3
 
         // Movie 1 is most similar to movie 2 
-        //(reviewer 1 overlap, score diff = 1)
+        // (Reviewer 1 overlap, score diff = 1)
         int similar = matrix.similarMovie(1);
         assertEquals(2, similar);
     }
