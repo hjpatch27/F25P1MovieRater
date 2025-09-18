@@ -1,5 +1,13 @@
 /**
- * {Project Description Here}
+ * In this project, we implement a movie rating database and
+ * analysis systen. The goal of the project is to utilize a
+ * sparse matrix in order to store and manage movie rating (1-10)
+ * from different reviewers with the core objective being to find
+ * ratings for a given movie or reviewer. Using a doubly-linked
+ * list, the sparse matrix it able to be navigated with additional
+ * capabilities such as adding, and removing data as well as the
+ * ability to compare movies and reviewers to see which ones have
+ * the most similar ratings.
  */
 
 import java.io.IOException;
