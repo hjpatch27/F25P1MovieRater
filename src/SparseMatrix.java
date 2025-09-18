@@ -19,6 +19,7 @@ public class SparseMatrix {
 
         /**
          * Constructor for the SparseEntry object.
+         * 
          * @param numRow the row of the object in the Sparse Matrix.
          * @param numCol the column of the object in the Sparse Matrix.
          * @param score the score of the object in the Sparse Matrix.
@@ -31,6 +32,7 @@ public class SparseMatrix {
 
         /**
          * Returns the row number of the entry in the Sparse Matrix.
+         * 
          * @return row, the number of the row the entry is in.
          */
         public int getRow() {
@@ -40,6 +42,7 @@ public class SparseMatrix {
 
         /**
          * Returns the column number of the entry in the Sparse Matrix.
+         * 
          * @return col, the number of the column the entry is in.
          */
         public int getCol() {
@@ -48,6 +51,7 @@ public class SparseMatrix {
 
         /**
          * Returns the value of the entry in the Sparse Matrix.
+         * 
          * @return score, the integer value the entry contains.
          */
         public int getScore() {
@@ -56,6 +60,7 @@ public class SparseMatrix {
 
         /**
          * Sets the score to a new value in the Sparse Matrix.
+         * 
          * @param newScore is the score value to be changed to.
          */
         public void setScore(int newScore) {
@@ -71,6 +76,7 @@ public class SparseMatrix {
 
         /**
          * Creates a new node with the given data
+         * 
          * @param d is the data to put inside the node
          */
         public Node(SparseEntry e, Node p, Node n) {
@@ -86,6 +92,7 @@ public class SparseMatrix {
 
         /**
          * Gets the next node.
+         * 
          * @return the next node.
          */
         public Node next() {
@@ -94,6 +101,7 @@ public class SparseMatrix {
 
         /**
          * Sets the next node to a new node.
+         * 
          * @param n is the node after the current one.
          */
         public Node setNext(Node n) {
@@ -103,6 +111,7 @@ public class SparseMatrix {
 
         /**
          * Gets and returns the previous node.
+         * 
          * @return prev, the previous node.
          */
         public Node prev() {
@@ -111,6 +120,7 @@ public class SparseMatrix {
 
         /**
          * Sets the previous node to a new node.
+         * 
          * @param p is what we'll change the previous node to.
          * @return prev which should now be Node p.
          */
@@ -322,6 +332,7 @@ public class SparseMatrix {
      * This methods reformats the Sparse Matrix data
      * structure and it's entries and prints it out 
      * into a string format.
+     * 
      * @return builder.toString() which is the final
      * format of the Sparse Matrix in string format/
      */
@@ -361,6 +372,7 @@ public class SparseMatrix {
      * This methods reformats the Sparse Matrix data
      * structure and it's entries and prints it out 
      * into a string format.
+     * 
      * @param reviewer The reviewer to list ratings for
      * @return builder.toString() which is the final
      * format of the Sparse Matrix in string format
@@ -399,6 +411,7 @@ public class SparseMatrix {
      * This methods reformats the Sparse Matrix data
      * structure and it's entries and prints it out 
      * into a string format.
+     * 
      * @param movie The reviewer to list ratings for
      * @return builder.toString() which is the final
      * format of the Sparse Matrix in string format.
