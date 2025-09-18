@@ -11,18 +11,18 @@ double currSimilarityScore = 0.0;
 double bestSimilarityScore = 0.0;
 int otherReviewer = 0;
 int similarReviewer = -1;
-while (current != tail){
+while (current != tail) {
 SparseEntry reviewerEntry = current.getData();
 if (reviewerEntry.getRow() == reviewer &&
-reviewerEntry.getCol() > -1){
+reviewerEntry.getCol() > -1) {
 // Get the movie that was reviewed
 int movie = reviewerEntry.getCol();
 double rating = reviewerEntry.getScore();
 // Find another reviewer for the movie that was rated
 Node innerCur = head.next();
-while (innerCur != tail){
+while (innerCur != tail) {
 SparseEntry otherEntry = innerCur.getData();
-if (otherEntry.getCol() == movie &&otherEntry.getRow() != reviewer){
+if (otherEntry.getCol() == movie &&otherEntry.getRow() != reviewer) {
 // Save the other reviewer and their score
 otherReviewer = otherEntry.getRow();
 double otherRating = otherEntry.getScore();
@@ -38,7 +38,7 @@ innerCur = innerCur.next();
 //if (currSimilarityScore < bestSimilarityScore ||
 //(bestSimilarityScore == 0.0 && currSimilarityScore != 0.0))
 if (currSimilarityScore < bestSimilarityScore ||
-(currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)){
+(currSimilarityScore == bestSimilarityScore && otherReviewer < similarReviewer)) {
 // Replace best score with the current score.
 bestSimilarityScore = currSimilarityScore;
 // Set similarIndex to index of otherReviewer.
