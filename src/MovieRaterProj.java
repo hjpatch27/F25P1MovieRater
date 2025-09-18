@@ -1,6 +1,6 @@
 /**
  * In this project, we implement a movie rating database and
- * analysis systen. The goal of the project is to utilize a
+ * analysis system. The goal of the project is to utilize a
  * sparse matrix in order to store and manage movie rating (1-10)
  * from different reviewers with the core objective being to find
  * ratings for a given movie or reviewer. Using a doubly-linked
